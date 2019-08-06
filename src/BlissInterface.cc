@@ -20,6 +20,23 @@ Obj FuncTestCommandWithParams(Obj self, Obj param, Obj param2)
 
 // TEST_BIT_BLIST( <list>, <pos> ) . . . . . .  test a bit of a boolean list
 
+Obj FuncUseBliss( Obj self, Obj mat, Obj m, Obj n)
+{
+    UInt k,mm,nn;
+    UInt i,j;
+    mm = INT_INTOBJ(m);
+    nn = INT_INTOBJ(n);
+    k = 0;
+    for (i = 1; i <= mm; i++) {
+        for (j = 1; j <= nn; j++) {
+            if (TEST_BIT_BLIST( ELM_LIST( mat, i ), j )) {
+                k++;
+            }
+        }
+    }
+    return INTOBJ_INT(k);
+}
+
 /***************************************************************************/
 
 // Table of functions to export
@@ -43,6 +60,7 @@ typedef Obj (* GVarFuncTypeDef)(/*arguments*/);
 static StructGVarFunc GVarFuncs [] = {
     GVAR_FUNC_TABLE_ENTRY(TestCommand, 0, ""),
     GVAR_FUNC_TABLE_ENTRY(TestCommandWithParams, 2, "param, param2"),
+    GVAR_FUNC_TABLE_ENTRY(UseBliss, 3, "mat, m, n"),
 
         { 0 } /* Finish with an empty entry */
 
