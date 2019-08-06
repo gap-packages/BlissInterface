@@ -18,13 +18,36 @@ Obj FuncTestCommandWithParams(Obj self, Obj param, Obj param2)
     return param;
 }
 
+// TEST_BIT_BLIST( <list>, <pos> ) . . . . . .  test a bit of a boolean list
+
+/***************************************************************************/
+
+// Table of functions to export
+
+//static StructGVarFunc GVarFuncs [] = {
+//    GVAR_FUNC(TestCommand, 0, ""),
+//    GVAR_FUNC(TestCommandWithParams, 2, "param, param2"),
+//
+//    { 0 } /* Finish with an empty entry */
+//};
+
+typedef Obj (* GVarFuncTypeDef)(/*arguments*/);
+
+#define GVAR_FUNC_TABLE_ENTRY(name, nparam, params) \
+  {#name, nparam, \
+   params, \
+   (GVarFuncTypeDef)Func##name, \
+   __FILE__ ":" #name }
+
 // Table of functions to export
 static StructGVarFunc GVarFuncs [] = {
-    GVAR_FUNC(TestCommand, 0, ""),
-    GVAR_FUNC(TestCommandWithParams, 2, "param, param2"),
+    GVAR_FUNC_TABLE_ENTRY(TestCommand, 0, ""),
+    GVAR_FUNC_TABLE_ENTRY(TestCommandWithParams, 2, "param, param2"),
 
-    { 0 } /* Finish with an empty entry */
+        { 0 } /* Finish with an empty entry */
+
 };
+
 
 /****************************************************************************
 **
