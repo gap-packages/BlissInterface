@@ -1,4 +1,5 @@
 SizeScreen([72]);
+ExtendRootDirectories([Concatenation(GAPInfo.UserHome,"/MyGAP/")]);
 LoadPackage( "BlissInterface", false );
 
 mat:=[

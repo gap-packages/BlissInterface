@@ -25,7 +25,7 @@ GAPINSTALLIB = $(BINARCHDIR)/$(MODULE_NAME).so
 
 MKDIR_P = /bin/mkdir -p
 
-GAP = @GAPPATH@/gap
+GAP = @GAPPATH@/gap -l $(HOME)"/MyGAP;"
 GAC = @GAPPATH@/gac
 
 all: $(GAPINSTALLIB)
