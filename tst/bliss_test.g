@@ -1,7 +1,5 @@
-LoadPackage( "BlissInterface" );
-
-#vec:=BlistList([1..7],[1,2,3]);
-#UseBliss(vec,7);
+SizeScreen([72]);
+LoadPackage( "BlissInterface", false );
 
 mat:=[
     BlistList([1..7],[1,2,4]),
