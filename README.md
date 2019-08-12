@@ -1,17 +1,16 @@
 # The GAP package BlissInterface
 
-TODO: add a description of your package; perhaps also instructions how how to
-install and use it, resp. where to find out more
-
+This package provides a low level interface to the software [***bliss:*** A Tool for Computing Automorphism Groups and Canonical Labelings of Graphs](http://www.tcs.hut.fi/Software/bliss/), written by Tommi Junttila and Petteri Kaski. 
 
 ## Contact
 
-TODO: add info on how to contact you and/or how to report issues with your
-package
+Maintainer: [Gábor P. Nagy](https://algebra.math.bme.hu/nagy-gabor), Budapest University of Technology, Hungary.
+
+For questions, remarks and issues please use the [issue tracker](https://github.com/nagygp/BlissInterface/issues).
 
 ## License
 
-TODO: Provide information on the license of your package. A license is
-important as it determines who has a right to distribute your package. The
-"default" license to consider is GNU General Public License v2 or later, as
-that is the license of GAP itself.
+BlissInterface is free software; you can redistribute it and/or modify it under
+the terms of the Version 2 of the GNU General Public License.
+
+For details see the file LICENSE.
