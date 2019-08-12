@@ -10,6 +10,11 @@ MODULE_NAME = BlissInterface
 
 SOURCES = src/BlissInterface.cc
 
+# SOURCES += src/bliss-0.73/graph.cc 
+# SOURCES += src/bliss-0.73/defs.cc 
+# SOURCES += src/bliss-0.73/timer.cc 
+# SOURCES += src/bliss-0.73/utils.cc
+
 ########################################################################
 # Do not edit below unless you know what you're doing
 ########################################################################

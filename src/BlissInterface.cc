@@ -15,8 +15,10 @@ Obj FuncTestCommandWithParams(Obj self, Obj param, Obj param2) {
 // TEST_BIT_BLIST( <list>, <pos> ) . . . . . .  test a bit of a boolean list
 
 Obj FuncUseBliss(Obj self, Obj mat, Obj m, Obj n) {
-  bliss::AbstractGraph *g = 0;
-  // bliss::AbstractGraph *g = new bliss::Graph(5);
+  bliss::AbstractGraph *g;
+  // It compiles if we add the neccessary .cc files to Makefile,
+  // but fails to load the package with "undefined symbol" error message:
+  // g = new bliss::Graph(5);
   UInt k, mm, nn;
   UInt i, j;
   mm = INT_INTOBJ(m);
