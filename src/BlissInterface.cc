@@ -18,7 +18,7 @@ Obj FuncUseBliss(Obj self, Obj mat, Obj m, Obj n) {
   bliss::AbstractGraph *g;
   // It compiles if we add the neccessary .cc files to Makefile,
   // but fails to load the package with "undefined symbol" error message:
-  // g = new bliss::Graph(5);
+  g = new bliss::Graph(5);
   UInt k, mm, nn;
   UInt i, j;
   mm = INT_INTOBJ(m);
@@ -31,7 +31,7 @@ Obj FuncUseBliss(Obj self, Obj mat, Obj m, Obj n) {
       }
     }
   }
-  return INTOBJ_INT(k);
+  return INTOBJ_INT(k * g->get_nof_vertices());
 }
 
 /***************************************************************************/
