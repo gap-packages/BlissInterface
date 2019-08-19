@@ -141,7 +141,9 @@ am_BlissInterface_la_OBJECTS =  \
 	src/bliss-0.73/BlissInterface_la-graph.lo \
 	src/bliss-0.73/BlissInterface_la-defs.lo \
 	src/bliss-0.73/BlissInterface_la-orbit.lo \
-	src/bliss-0.73/BlissInterface_la-partition.lo
+	src/bliss-0.73/BlissInterface_la-partition.lo \
+	src/bliss-0.73/BlissInterface_la-heap.lo \
+	src/bliss-0.73/BlissInterface_la-timer.lo
 BlissInterface_la_OBJECTS = $(am_BlissInterface_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -378,7 +380,8 @@ GAPINSTALLLIB = $(abs_top_srcdir)/$(BINARCHDIR)/BlissInterface.so
 lib_LTLIBRARIES = BlissInterface.la
 BlissInterface_la_SOURCES = src/BlissInterface.cc \
 	src/bliss-0.73/graph.cc src/bliss-0.73/defs.cc \
-	src/bliss-0.73/orbit.cc src/bliss-0.73/partition.cc
+	src/bliss-0.73/orbit.cc src/bliss-0.73/partition.cc \
+	src/bliss-0.73/heap.cc src/bliss-0.73/timer.cc
 BlissInterface_la_CPPFLAGS = $(GAP_CPPFLAGS)
 BlissInterface_la_CFLAGS = $(GAP_CFLAGS)
 BlissInterface_la_LDFLAGS = $(GAP_LDFLAGS) -module -avoid-version \
@@ -496,6 +499,12 @@ src/bliss-0.73/BlissInterface_la-orbit.lo:  \
 src/bliss-0.73/BlissInterface_la-partition.lo:  \
 	src/bliss-0.73/$(am__dirstamp) \
 	src/bliss-0.73/$(DEPDIR)/$(am__dirstamp)
+src/bliss-0.73/BlissInterface_la-heap.lo:  \
+	src/bliss-0.73/$(am__dirstamp) \
+	src/bliss-0.73/$(DEPDIR)/$(am__dirstamp)
+src/bliss-0.73/BlissInterface_la-timer.lo:  \
+	src/bliss-0.73/$(am__dirstamp) \
+	src/bliss-0.73/$(DEPDIR)/$(am__dirstamp)
 
 BlissInterface.la: $(BlissInterface_la_OBJECTS) $(BlissInterface_la_DEPENDENCIES) $(EXTRA_BlissInterface_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(BlissInterface_la_LINK) -rpath $(libdir) $(BlissInterface_la_OBJECTS) $(BlissInterface_la_LIBADD) $(LIBS)
@@ -513,8 +522,10 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/BlissInterface_la-BlissInterface.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/bliss-0.73/$(DEPDIR)/BlissInterface_la-defs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/bliss-0.73/$(DEPDIR)/BlissInterface_la-graph.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/bliss-0.73/$(DEPDIR)/BlissInterface_la-heap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/bliss-0.73/$(DEPDIR)/BlissInterface_la-orbit.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/bliss-0.73/$(DEPDIR)/BlissInterface_la-partition.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/bliss-0.73/$(DEPDIR)/BlissInterface_la-timer.Plo@am__quote@
 
 .cc.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
@@ -574,6 +585,20 @@ src/bliss-0.73/BlissInterface_la-partition.lo: src/bliss-0.73/partition.cc
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/bliss-0.73/partition.cc' object='src/bliss-0.73/BlissInterface_la-partition.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(BlissInterface_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/bliss-0.73/BlissInterface_la-partition.lo `test -f 'src/bliss-0.73/partition.cc' || echo '$(srcdir)/'`src/bliss-0.73/partition.cc
+
+src/bliss-0.73/BlissInterface_la-heap.lo: src/bliss-0.73/heap.cc
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(BlissInterface_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/bliss-0.73/BlissInterface_la-heap.lo -MD -MP -MF src/bliss-0.73/$(DEPDIR)/BlissInterface_la-heap.Tpo -c -o src/bliss-0.73/BlissInterface_la-heap.lo `test -f 'src/bliss-0.73/heap.cc' || echo '$(srcdir)/'`src/bliss-0.73/heap.cc
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/bliss-0.73/$(DEPDIR)/BlissInterface_la-heap.Tpo src/bliss-0.73/$(DEPDIR)/BlissInterface_la-heap.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/bliss-0.73/heap.cc' object='src/bliss-0.73/BlissInterface_la-heap.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(BlissInterface_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/bliss-0.73/BlissInterface_la-heap.lo `test -f 'src/bliss-0.73/heap.cc' || echo '$(srcdir)/'`src/bliss-0.73/heap.cc
+
+src/bliss-0.73/BlissInterface_la-timer.lo: src/bliss-0.73/timer.cc
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(BlissInterface_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/bliss-0.73/BlissInterface_la-timer.lo -MD -MP -MF src/bliss-0.73/$(DEPDIR)/BlissInterface_la-timer.Tpo -c -o src/bliss-0.73/BlissInterface_la-timer.lo `test -f 'src/bliss-0.73/timer.cc' || echo '$(srcdir)/'`src/bliss-0.73/timer.cc
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/bliss-0.73/$(DEPDIR)/BlissInterface_la-timer.Tpo src/bliss-0.73/$(DEPDIR)/BlissInterface_la-timer.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/bliss-0.73/timer.cc' object='src/bliss-0.73/BlissInterface_la-timer.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(BlissInterface_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/bliss-0.73/BlissInterface_la-timer.lo `test -f 'src/bliss-0.73/timer.cc' || echo '$(srcdir)/'`src/bliss-0.73/timer.cc
 
 mostlyclean-libtool:
 	-rm -f *.lo

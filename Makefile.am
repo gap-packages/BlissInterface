@@ -16,6 +16,8 @@ BlissInterface_la_SOURCES += src/bliss-0.73/graph.cc
 BlissInterface_la_SOURCES += src/bliss-0.73/defs.cc 
 BlissInterface_la_SOURCES += src/bliss-0.73/orbit.cc 
 BlissInterface_la_SOURCES += src/bliss-0.73/partition.cc
+BlissInterface_la_SOURCES += src/bliss-0.73/heap.cc
+BlissInterface_la_SOURCES += src/bliss-0.73/timer.cc
 BlissInterface_la_CPPFLAGS = $(GAP_CPPFLAGS)
 BlissInterface_la_CFLAGS = $(GAP_CFLAGS)
 BlissInterface_la_LDFLAGS = $(GAP_LDFLAGS) -module -avoid-version
@@ -40,3 +42,5 @@ distclean-local:
 
 doc:
 	($(GAPROOT)/bin/gap.sh -A makedoc.g)
+
+

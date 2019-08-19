@@ -37,8 +37,13 @@ gap> mat:=[
   [ false, true, false, false, false, true, true ], 
   [ true, false, true, false, false, false, true ] ]
 gap> 
-gap> UseBliss( mat, 7, 7);
-21
+gap> bl:=UseBliss( mat, 7, 7);
+[ [ (3,4)(5,7)(10,12)(13,14), (3,5)(4,7)(8,11)(10,12), 
+      (2,3)(4,6)(9,11)(12,13), (1,2)(4,7)(8,12)(10,11), 
+      (1,8,5,13,3,10,2,9)(4,14)(6,11,7,12) ], 
+  (1,14)(2,10,4,7,6,9,13)(3,8,11,12) ]
+gap> Print(StructureDescription(Group(bl[1])),"\n");
+PSL(3,2) : C2
 gap> STOP_TEST( "blissinterface.tst", 10000 );
 ## The first argument of STOP_TEST should be the name of the test file.
 ## The number is a proportionality factor that is used to output a 

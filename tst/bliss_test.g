@@ -12,4 +12,6 @@ mat:=[
     BlistList([1..7],[7,1,3])
 ];
 
-UseBliss( mat, 7, 7);
+bl:=UseBliss( mat, 7, 7);
+Print(StructureDescription(Group(bl[1])),"\n");
+

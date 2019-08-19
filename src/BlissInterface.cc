@@ -12,26 +12,77 @@ Obj FuncTestCommandWithParams(Obj self, Obj param, Obj param2) {
   return param;
 }
 
-// TEST_BIT_BLIST( <list>, <pos> ) . . . . . .  test a bit of a boolean list
+// copied from GAP package Digraphs 0.15.2
+
+void blissinterface_hook_function(void *user_param_v, unsigned int N,
+                                  const unsigned int *aut) {
+  UInt4 *ptr;
+  Obj p, gens, user_param;
+  UInt i, n;
+
+  user_param = reinterpret_cast<Obj>(user_param_v);
+  n = INT_INTOBJ(ELM_PLIST(user_param, 2)); // the degree
+  p = NEW_PERM4(n);
+  ptr = ADDR_PERM4(p);
+
+  for (i = 0; i < n; i++) {
+    ptr[i] = aut[i];
+  }
+
+  gens = ELM_PLIST(user_param, 1);
+  AssPlist(gens, LEN_PLIST(gens) + 1, p);
+}
+
+static Obj blissinterface_autgr_canlab(bliss::AbstractGraph *graph) {
+  Obj autos, p, n;
+  UInt4 *ptr;
+  const unsigned int *canon;
+  Int i;
+  bliss::Stats stats;
+
+  autos = NEW_PLIST(T_PLIST, 2);
+  n = INTOBJ_INT(graph->get_nof_vertices());
+
+  SET_ELM_PLIST(autos, 1, NEW_PLIST(T_PLIST, 0)); // perms of the vertices
+  CHANGED_BAG(autos);
+  SET_ELM_PLIST(autos, 2, n);
+  SET_LEN_PLIST(autos, 2);
+
+  canon = graph->canonical_form(stats, blissinterface_hook_function, autos);
+
+  p = NEW_PERM4(INT_INTOBJ(n));
+  ptr = ADDR_PERM4(p);
+
+  for (i = 0; i < INT_INTOBJ(n); i++) {
+    ptr[i] = canon[i];
+  }
+  SET_ELM_PLIST(autos, 2, p);
+  CHANGED_BAG(autos);
+
+  if (LEN_PLIST(ELM_PLIST(autos, 1)) != 0) {
+    SortDensePlist(ELM_PLIST(autos, 1));
+    RemoveDupsDensePlist(ELM_PLIST(autos, 1));
+  }
+
+  return autos;
+}
 
 Obj FuncUseBliss(Obj self, Obj mat, Obj m, Obj n) {
   bliss::AbstractGraph *g;
-  // It compiles if we add the neccessary .cc files to Makefile,
-  // but fails to load the package with "undefined symbol" error message:
-  g = new bliss::Graph(5);
   UInt k, mm, nn;
   UInt i, j;
   mm = INT_INTOBJ(m);
   nn = INT_INTOBJ(n);
+  g = new bliss::Graph(nn + mm);
   k = 0;
   for (i = 1; i <= mm; i++) {
     for (j = 1; j <= nn; j++) {
       if (TEST_BIT_BLIST(ELM_LIST(mat, i), j)) {
-        k++;
+        g->add_edge(i - 1, mm + j - 1);
       }
     }
   }
-  return INTOBJ_INT(k * g->get_nof_vertices());
+  return blissinterface_autgr_canlab(g);
 }
 
 /***************************************************************************/
