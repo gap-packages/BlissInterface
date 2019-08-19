@@ -11,7 +11,11 @@ GAPINSTALLLIB = $(abs_top_srcdir)/$(BINARCHDIR)/BlissInterface.so
 
 lib_LTLIBRARIES = BlissInterface.la
 
-BlissInterface_la_SOURCES = src/BlissInterface.cc src/bliss-0.73/graph.cc src/bliss-0.73/defs.cc src/bliss-0.73/orbit.cc src/bliss-0.73/partition.cc
+BlissInterface_la_SOURCES = src/BlissInterface.cc 
+BlissInterface_la_SOURCES += src/bliss-0.73/graph.cc 
+BlissInterface_la_SOURCES += src/bliss-0.73/defs.cc 
+BlissInterface_la_SOURCES += src/bliss-0.73/orbit.cc 
+BlissInterface_la_SOURCES += src/bliss-0.73/partition.cc
 BlissInterface_la_CPPFLAGS = $(GAP_CPPFLAGS)
 BlissInterface_la_CFLAGS = $(GAP_CFLAGS)
 BlissInterface_la_LDFLAGS = $(GAP_LDFLAGS) -module -avoid-version

@@ -2,8 +2,8 @@
  * BlissInterface: Low level interface to the bliss graph automorphism tool
  */
 
-#include "BlissInterface.hh"
-#include "src/compiled.h" /* GAP headers */
+#include "bliss-0.73/graph.hh" // for bliss_digraphs_release, . . .
+#include "src/compiled.h"      /* GAP headers */
 
 Obj FuncTestCommand(Obj self) { return INTOBJ_INT(42); }
 
