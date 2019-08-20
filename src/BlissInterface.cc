@@ -5,14 +5,9 @@
 #include "bliss-0.73/graph.hh" // for bliss_digraphs_release, . . .
 #include "src/compiled.h"      /* GAP headers */
 
-Obj FuncTestCommand(Obj self) { return INTOBJ_INT(42); }
-
-Obj FuncTestCommandWithParams(Obj self, Obj param, Obj param2) {
-  /* simply return the first parameter */
-  return param;
-}
-
-// copied from GAP package Digraphs 0.15.2
+/*
+ * copied from GAP package Digraphs 0.15.2 "digraphs_hook_function()"
+ */
 
 void blissinterface_hook_function(void *user_param_v, unsigned int N,
                                   const unsigned int *aut) {
@@ -20,7 +15,8 @@ void blissinterface_hook_function(void *user_param_v, unsigned int N,
   Obj p, gens, user_param;
   UInt i, n;
 
-  user_param = reinterpret_cast<Obj>(user_param_v);
+  // we need this in C++ to avoid "invalid conversion" error
+  user_param = static_cast<Obj>(user_param_v);
   n = INT_INTOBJ(ELM_PLIST(user_param, 2)); // the degree
   p = NEW_PERM4(n);
   ptr = ADDR_PERM4(p);
@@ -32,6 +28,14 @@ void blissinterface_hook_function(void *user_param_v, unsigned int N,
   gens = ELM_PLIST(user_param, 1);
   AssPlist(gens, LEN_PLIST(gens) + 1, p);
 }
+
+/*
+ * Returns: a GAP object list [gens,cl], where <gens> are generators
+ * of the aut group of the bipartite digraph, associated to the Steiner
+ * system, and <cl> is a canonical labeling of the digraph.
+ *
+ * Based on "FuncDIGRAPH_AUTOMORPHISMS" of the GAP package Digraphs 0.15.2
+ */
 
 static Obj blissinterface_autgr_canlab(bliss::AbstractGraph *graph) {
   Obj autos, p, n;
@@ -67,13 +71,13 @@ static Obj blissinterface_autgr_canlab(bliss::AbstractGraph *graph) {
   return autos;
 }
 
-Obj FuncUseBliss(Obj self, Obj mat, Obj m, Obj n) {
+Obj FuncBlissSteinerCanonicalLabeling(Obj self, Obj mat, Obj m, Obj n) {
   bliss::AbstractGraph *g;
   UInt k, mm, nn;
   UInt i, j;
   mm = INT_INTOBJ(m);
   nn = INT_INTOBJ(n);
-  g = new bliss::Graph(nn + mm);
+  g = new bliss::Digraph(nn + mm);
   k = 0;
   for (i = 1; i <= mm; i++) {
     for (j = 1; j <= nn; j++) {
@@ -89,6 +93,11 @@ Obj FuncUseBliss(Obj self, Obj mat, Obj m, Obj n) {
 
 // Table of functions to export
 
+/*
+ * "GVarFuncs" is nnt workin in C++, due to
+ * "invalid conversion from ‘void*’ to ‘Obj‘" error
+/*
+
 // static StructGVarFunc GVarFuncs [] = {
 //    GVAR_FUNC(TestCommand, 0, ""),
 //    GVAR_FUNC(TestCommandWithParams, 2, "param, param2"),
@@ -103,9 +112,7 @@ typedef Obj (*GVarFuncTypeDef)(/*arguments*/);
 
 // Table of functions to export
 static StructGVarFunc GVarFuncs[] = {
-    GVAR_FUNC_TABLE_ENTRY(TestCommand, 0, ""),
-    GVAR_FUNC_TABLE_ENTRY(TestCommandWithParams, 2, "param, param2"),
-    GVAR_FUNC_TABLE_ENTRY(UseBliss, 3, "mat, m, n"),
+    GVAR_FUNC_TABLE_ENTRY(BlissSteinerCanonicalLabeling, 3, "mat, m, n"),
 
     {0} /* Finish with an empty entry */
 
