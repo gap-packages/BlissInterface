@@ -398,7 +398,7 @@ configure:12233: checking how to hardcode library paths into programs
 configure:12258: result: immediate
 configure:12360: checking for shl_load
 configure:12360: gcc -o conftest -g -O2   conftest.c  >&5
-/tmp/ccXMOM9i.o: In function `main':
+/tmp/ccnbwQFJ.o: In function `main':
 /home/nagyg/MyGAP/pkg/BlissInterface/conftest.c:57: undefined reference to `shl_load'
 collect2: error: ld returned 1 exit status
 configure:12360: $? = 1
@@ -510,7 +510,7 @@ configure: failed program was:
 configure:12398: result: no
 configure:12403: checking for dlopen
 configure:12403: gcc -o conftest -g -O2   conftest.c  >&5
-/tmp/ccz3hv3q.o: In function `main':
+/tmp/cc6lst7R.o: In function `main':
 /home/nagyg/MyGAP/pkg/BlissInterface/conftest.c:57: undefined reference to `dlopen'
 collect2: error: ld returned 1 exit status
 configure:12403: $? = 1
@@ -586,7 +586,7 @@ configure:12643: $? = 0
 configure:12661: result: yes
 configure:12666: checking whether a statically linked program can dlopen itself
 configure:12746: gcc -o conftest -g -O2  -DHAVE_DLFCN_H  -Wl,--export-dynamic -static conftest.c -ldl  >&5
-/tmp/cccutg9D.o: In function `main':
+/tmp/cc8lRsc3.o: In function `main':
 /home/nagyg/MyGAP/pkg/BlissInterface/configure:12725: warning: Using 'dlopen' in statically linked applications requires at runtime the shared libraries from the glibc version used for linking
 configure:12749: $? = 0
 conftest: undefined symbol: _fnord

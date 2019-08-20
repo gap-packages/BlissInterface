@@ -2,7 +2,7 @@
  * BlissInterface: Low level interface to the bliss graph automorphism tool
  */
 
-#include "bliss-0.73/graph.hh" // for bliss_digraphs_release, . . .
+#include "bliss-0.73/graph.hh" /* for bliss graph classes and namespaces */
 #include "src/compiled.h"      /* GAP headers */
 
 /*
@@ -31,7 +31,7 @@ void blissinterface_hook_function(void *user_param_v, unsigned int N,
 
 /*
  * Returns: a GAP object list [gens,cl], where <gens> are generators
- * of the aut group of the bipartite digraph, associated to the Steiner
+ * of the aut group of the bipartite digraph, associated to the Bipartite
  * system, and <cl> is a canonical labeling of the digraph.
  *
  * Based on "FuncDIGRAPH_AUTOMORPHISMS" of the GAP package Digraphs 0.15.2
@@ -71,19 +71,83 @@ static Obj blissinterface_autgr_canlab(bliss::AbstractGraph *graph) {
   return autos;
 }
 
-Obj FuncBlissSteinerCanonicalLabeling(Obj self, Obj mat, Obj m, Obj n) {
+/*
+ * We construct the following directed/undirected graph <C>G</C> on <C>n</C>
+ * vertices <C>[1..n]</C>. The graph is given by the list <C>[N_1,...,N_n]</C>,
+ * where <C>N_i</C> is the list of (out)neighbors of the vertex <C>i</C>.
+ *
+ * Returns: The pair <C>[gens,cl]</C> as GAP object, where <C>gens</C> is a list
+ * of generators for <C>Aut(G)</C> and <C>cl</C> is a canonical labeling of
+ * <C>G</C>.
+ *
+ * Nonchecking version.
+ */
+
+Obj FuncBlissUndirectedCanonicalLabeling(Obj self, Obj n, Obj outneigh) {
   bliss::AbstractGraph *g;
-  UInt k, mm, nn;
-  UInt i, j;
-  mm = INT_INTOBJ(m);
+  UInt nn, i, j, b_size;
+  Obj block;
+
   nn = INT_INTOBJ(n);
-  g = new bliss::Digraph(nn + mm);
-  k = 0;
+  g = new bliss::Graph(nn);
+
+  for (i = 1; i <= nn; i++) {
+    block = ELM_PLIST(outneigh, i);
+    b_size = LEN_PLIST(block);
+    for (j = 1; j <= b_size; j++) {
+      g->add_edge(i - 1, INT_INTOBJ(ELM_PLIST(block, j)) - 1);
+    }
+  }
+  return blissinterface_autgr_canlab(g);
+}
+
+Obj FuncBlissDirectedCanonicalLabeling(Obj self, Obj n, Obj outneigh) {
+  bliss::AbstractGraph *g;
+  UInt nn, i, j, b_size;
+  Obj block;
+
+  nn = INT_INTOBJ(n);
+  g = new bliss::Digraph(nn);
+
+  for (i = 1; i <= nn; i++) {
+    block = ELM_PLIST(outneigh, i);
+    b_size = LEN_PLIST(block);
+    for (j = 1; j <= b_size; j++) {
+      g->add_edge(i - 1, INT_INTOBJ(ELM_PLIST(block, j)) - 1);
+    }
+  }
+  return blissinterface_autgr_canlab(g);
+}
+
+/*
+ * We construct the following directed bipartitige graph <C>G</C> on <C>n+m</C>
+ * vertices. Upper vertices are <C>[1..n]</C>, lower vertices are
+ * <C>n+[1..m]</C>. Edges point bottom up. The graph is given by the list
+ * <C>[N_1,...,N_m]</C>, where <C>N_i</C> is the list of outneighbors of the
+ * lower vertex <C>n+i</C>.
+ *
+ * Returns: The pair <C>[gens,cl]</C> as GAP object, where <C>gens</C> is a list
+ * of generators for <C>Aut(G)</C> and <C>cl</C> is a canonical labeling of
+ * <C>G</C>.
+ *
+ * Nonchecking version.
+ */
+
+Obj FuncBlissBipartiteCanonicalLabeling(Obj self, Obj n, Obj m, Obj outneigh) {
+  bliss::AbstractGraph *g;
+  UInt mm, nn;
+  UInt i, j, b_size;
+  Obj block;
+
+  nn = INT_INTOBJ(n);              // upper vertices [1..n]
+  mm = INT_INTOBJ(m);              // lower vertices n+[1..m]
+  g = new bliss::Digraph(nn + mm); // edges point bottom up
+
   for (i = 1; i <= mm; i++) {
-    for (j = 1; j <= nn; j++) {
-      if (TEST_BIT_BLIST(ELM_LIST(mat, i), j)) {
-        g->add_edge(i - 1, mm + j - 1);
-      }
+    block = ELM_PLIST(outneigh, i);
+    b_size = LEN_PLIST(block);
+    for (j = 1; j <= b_size; j++) {
+      g->add_edge(nn + i - 1, INT_INTOBJ(ELM_PLIST(block, j)) - 1);
     }
   }
   return blissinterface_autgr_canlab(g);
@@ -112,7 +176,9 @@ typedef Obj (*GVarFuncTypeDef)(/*arguments*/);
 
 // Table of functions to export
 static StructGVarFunc GVarFuncs[] = {
-    GVAR_FUNC_TABLE_ENTRY(BlissSteinerCanonicalLabeling, 3, "mat, m, n"),
+    GVAR_FUNC_TABLE_ENTRY(BlissUndirectedCanonicalLabeling, 2, "n, outneigh"),
+    GVAR_FUNC_TABLE_ENTRY(BlissDirectedCanonicalLabeling, 2, "n, outneigh"),
+    GVAR_FUNC_TABLE_ENTRY(BlissBipartiteCanonicalLabeling, 3, "n, m, outneigh"),
 
     {0} /* Finish with an empty entry */
 
