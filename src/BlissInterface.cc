@@ -72,9 +72,17 @@ static Obj blissinterface_autgr_canlab(bliss::AbstractGraph *graph) {
 }
 
 /*
- * We construct the following directed/undirected graph <C>G</C> on <C>n</C>
- * vertices <C>[1..n]</C>. The graph is given by the list <C>[N_1,...,N_n]</C>,
- * where <C>N_i</C> is the list of (out)neighbors of the vertex <C>i</C>.
+We construct the coloured graph <C>G</C> on <A>n</A>
+vertices <C>[1..n]</C>. If <A>isdirected</A> is <C>true</C> the <C>G</C>
+is a directed graph. 
+
+The graph is given by the list <C>[N_1,...,N_n]</C>,
+where <C>N_i</C> is the list of (out)neighbors of the vertex <C>i</C>. 
+Duplicate edges between vertices are ignored.
+
+If <A>colours</A> is a list of length <C>n</C> then its elements are used to
+define a vertex coloring of <C>G</C>.
+
  *
  * Returns: The pair <C>[gens,cl]</C> as GAP object, where <C>gens</C> is a list
  * of generators for <C>Aut(G)</C> and <C>cl</C> is a canonical labeling of
@@ -83,32 +91,24 @@ static Obj blissinterface_autgr_canlab(bliss::AbstractGraph *graph) {
  * Nonchecking version.
  */
 
-Obj FuncBlissUndirectedCanonicalLabeling(Obj self, Obj n, Obj outneigh) {
+Obj FuncBLISS_GRAPH_CANONICAL_LABELING(Obj self, Obj n, Obj outneigh, Obj colours, Obj isdirected) {
   bliss::AbstractGraph *g;
   UInt nn, i, j, b_size;
   Obj block;
 
   nn = INT_INTOBJ(n);
-  g = new bliss::Graph(nn);
+  if (isdirected == True) {
+    g = new bliss::Digraph(nn);
+  } else {
+    g = new bliss::Graph(nn);
+  }
 
-  for (i = 1; i <= nn; i++) {
-    block = ELM_PLIST(outneigh, i);
-    b_size = LEN_PLIST(block);
-    for (j = 1; j <= b_size; j++) {
-      g->add_edge(i - 1, INT_INTOBJ(ELM_PLIST(block, j)) - 1);
+  if (IS_LIST(colours) && (LEN_LIST(colours) == nn)) {
+    for (i = 1; i <= nn; i++) {
+      g->change_color(i-1, INT_INTOBJ(ELM_PLIST(colours, i)));
     }
   }
-  return blissinterface_autgr_canlab(g);
-}
-
-Obj FuncBlissDirectedCanonicalLabeling(Obj self, Obj n, Obj outneigh) {
-  bliss::AbstractGraph *g;
-  UInt nn, i, j, b_size;
-  Obj block;
-
-  nn = INT_INTOBJ(n);
-  g = new bliss::Digraph(nn);
-
+  
   for (i = 1; i <= nn; i++) {
     block = ELM_PLIST(outneigh, i);
     b_size = LEN_PLIST(block);
@@ -125,6 +125,12 @@ Obj FuncBlissDirectedCanonicalLabeling(Obj self, Obj n, Obj outneigh) {
  * <C>n+[1..m]</C>. Edges point bottom up. The graph is given by the list
  * <C>[N_1,...,N_m]</C>, where <C>N_i</C> is the list of outneighbors of the
  * lower vertex <C>n+i</C>.
+
+If <A>ucolours</A> is a list of length <C>n</C> then its elements are used to
+define a coloring of the upper vertices.
+If <A>lcolours</A> is a list of length <C>m</C> then its elements are used to
+define a coloring of the lower vertices.
+
  *
  * Returns: The pair <C>[gens,cl]</C> as GAP object, where <C>gens</C> is a list
  * of generators for <C>Aut(G)</C> and <C>cl</C> is a canonical labeling of
@@ -133,7 +139,7 @@ Obj FuncBlissDirectedCanonicalLabeling(Obj self, Obj n, Obj outneigh) {
  * Nonchecking version.
  */
 
-Obj FuncBlissBipartiteCanonicalLabeling(Obj self, Obj n, Obj m, Obj outneigh) {
+Obj FuncBLISS_BIPARTITE_CANONICAL_LABELING(Obj self, Obj n, Obj m, Obj outneigh, Obj ucolours, Obj lcolours) {
   bliss::AbstractGraph *g;
   UInt mm, nn;
   UInt i, j, b_size;
@@ -141,8 +147,20 @@ Obj FuncBlissBipartiteCanonicalLabeling(Obj self, Obj n, Obj m, Obj outneigh) {
 
   nn = INT_INTOBJ(n);              // upper vertices [1..n]
   mm = INT_INTOBJ(m);              // lower vertices n+[1..m]
-  g = new bliss::Digraph(nn + mm); // edges point bottom up
+  g = new bliss::Digraph(nn + mm); // edges point bottom up 
 
+  if (IS_LIST(ucolours) && (LEN_LIST(ucolours) == nn)) {
+    for (i = 1; i <= nn; i++) {
+      g->change_color(i-1, INT_INTOBJ(ELM_PLIST(ucolours, i)));
+    }
+  }
+ 
+  if (IS_LIST(lcolours) && (LEN_LIST(lcolours) == mm)) {
+    for (i = 1; i <= mm; i++) {
+      g->change_color(nn+i-1, INT_INTOBJ(ELM_PLIST(lcolours, i)));
+    }
+  }
+ 
   for (i = 1; i <= mm; i++) {
     block = ELM_PLIST(outneigh, i);
     b_size = LEN_PLIST(block);
@@ -176,9 +194,8 @@ typedef Obj (*GVarFuncTypeDef)(/*arguments*/);
 
 // Table of functions to export
 static StructGVarFunc GVarFuncs[] = {
-    GVAR_FUNC_TABLE_ENTRY(BlissUndirectedCanonicalLabeling, 2, "n, outneigh"),
-    GVAR_FUNC_TABLE_ENTRY(BlissDirectedCanonicalLabeling, 2, "n, outneigh"),
-    GVAR_FUNC_TABLE_ENTRY(BlissBipartiteCanonicalLabeling, 3, "n, m, outneigh"),
+    GVAR_FUNC_TABLE_ENTRY(BLISS_GRAPH_CANONICAL_LABELING, 4, "n, outneigh, colours, isdirected"),
+    GVAR_FUNC_TABLE_ENTRY(BLISS_BIPARTITE_CANONICAL_LABELING, 5, "n, m, outneigh, ucolours, lcolours"),
 
     {0} /* Finish with an empty entry */
 
