@@ -1,7 +1,7 @@
 #
 # BlissInterface: Low level interface to the bliss graph automorphism tool
 #
-#! @Chapter Description
+#! @Chapter Usage of the package
 #!
 #! @Section Introduction
 #!
@@ -96,6 +96,10 @@ DeclareGlobalFunction( "BlissBipartiteCanonicalLabeling" );
 
 #! @Section Examples
 #! 
+#! Using the point-line graph $\Gamma$ of the Fano plane $PG(2,2)$, we can compute its
+#! collineation group $PSL(3,2)$. By colouring the vertices of $\Gamma$, we get
+#! stabilizers of points and/or line.
+#! 
 #! @BeginExampleSession
 #! gap> LoadPackage( "BlissInterface", false );
 #! true
@@ -142,7 +146,13 @@ DeclareGlobalFunction( "BlissBipartiteCanonicalLabeling" );
 #! S4
 #! gap> Orbits(g1cc,[1..14]);
 #! [ [ 1, 4, 2 ], [ 3, 6, 5, 7 ], [ 8 ], [ 9, 13, 10, 11, 14, 12 ] ]
-#! gap> 
+#! @EndExampleSession
+#! 
+#! The automorphism group of the Petersen graphy is isomorphic to $S_5$. 
+#! The automorphisms preserving two disjoint 5-cycles form a dihedral group 
+#! of order 10.
+#! 
+#! @BeginExampleSession 
 #! gap> petersen:=[[2,5,6],[1,3,7],[2,4,8],[3,5,9],[1,4,10],
 #! >     [1,8,9],[2,9,10],[3,6,10],[4,6,7],[5,7,8]];
 #! [ [ 2, 5, 6 ], [ 1, 3, 7 ], [ 2, 4, 8 ], [ 3, 5, 9 ], [ 1, 4, 10 ], 
@@ -164,7 +174,12 @@ DeclareGlobalFunction( "BlissBipartiteCanonicalLabeling" );
 #! Group([ (2,5)(3,4)(7,10)(8,9), (1,2,3,4,5)(6,7,8,9,10) ])
 #! gap> Print(StructureDescription(g2c),"\n");
 #! D10
-#! gap> 
+#! @EndExampleSession 
+#! 
+#! Let $\Gamma$ be the direct product of two oriented cycles of size 3.
+#! Then $Aut(\Gamma)$ is isomorphic to $(C_3 \times C_3).C_2$.
+#! 
+#! @BeginExampleSession 
 #! gap> dir_edges:=[
 #! >     [1,2],[2,3],[3,1],[4,5],[5,6],[6,4],[7,8],[8,9],[9,7],
 #! >     [1,4],[4,7],[7,1],[2,5],[5,8],[8,2],[3,6],[6,9],[9,3]
@@ -181,7 +196,12 @@ DeclareGlobalFunction( "BlissBipartiteCanonicalLabeling" );
 #! Group([ (2,4)(3,7)(6,8), (1,2,3)(4,5,6)(7,8,9) ])
 #! gap> Print(StructureDescription(g3),"\n");
 #! C3 x S3
-#! gap> 
+#! @EndExampleSession 
+#! 
+#! The last example shows that the same set of edges may define both
+#! directed and undirected graphs.
+#! 
+#! @BeginExampleSession 
 #! gap> path:=[[2],[3],[]];
 #! [ [ 2 ], [ 3 ], [  ] ]
 #! gap> BlissGraphCanonicalLabeling(3, path, false, true);

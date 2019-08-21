@@ -11,7 +11,7 @@ SetPackageInfo( rec(
 PackageName := "BlissInterface",
 Subtitle := "Low level interface to the bliss graph automorphism tool",
 Version := "0.1",
-Date := "05/08/2019", # dd/mm/yyyy format
+Date := "21/08/2019", # dd/mm/yyyy format
 License := "GPL-2.0-or-later",
 
 Persons := [

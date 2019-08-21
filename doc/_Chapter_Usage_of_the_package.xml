@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!-- This is an automatically generated file. -->
-<Chapter Label="Chapter_Description">
-<Heading>Description</Heading>
+<Chapter Label="Chapter_Usage_of_the_package">
+<Heading>Usage of the package</Heading>
 
 <P/>
-<Section Label="Chapter_Description_Section_Introduction">
+<Section Label="Chapter_Usage_of_the_package_Section_Introduction">
 <Heading>Introduction</Heading>
 
 <P/>
@@ -29,7 +29,7 @@ we recommend the packages <Package>Digraphs</Package> and
 </Section>
 
 
-<Section Label="Chapter_Description_Section_Installation">
+<Section Label="Chapter_Usage_of_the_package_Section_Installation">
 <Heading>Installation</Heading>
 
 <P/>
@@ -71,7 +71,7 @@ For questions, remarks and issues please use the
 </Section>
 
 
-<Section Label="Chapter_Description_Section_Functionality">
+<Section Label="Chapter_Usage_of_the_package_Section_Functionality">
 <Heading>Functionality</Heading>
 
 <P/>
@@ -125,7 +125,7 @@ in unpredictable behaviour.
 </Section>
 
 
-<Section Label="Chapter_Description_Section_Examples">
+<Section Label="Chapter_Usage_of_the_package_Section_Examples">
 <Heading>Examples</Heading>
 
 <P/>
