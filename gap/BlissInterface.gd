@@ -24,7 +24,22 @@
 #!
 #! @Section Installation
 #! 
-#! TODO
+#! - Download the package from <URL>https://github.com/nagygp/BlissInterface</URL>.
+#! - Unzip/untar the file, this should create a directory called <F>BlissInterface*</F>.
+#! - Locate the <F>pkg</F> directory of your &GAP; directory, which contains the 
+#!   directories <F>lib</F>, <F>doc</F> and so on. Move the directory 
+#!   <F>BlissInterface*</F> into the <F>pkg</F> directory.
+#! - Alternatively, you can use your <F>pkg</F> directory. Make sure it is in your 
+#!   &GAP; root path.
+#! - It is necessary to compile the &BlissInterface; package. Inside the 
+#!   <F>pkg/BlissInterface*</F> directory, type
+#!   <Listing>
+#!   <![CDATA[./configure
+#!   make]]></Listing>
+#! - Start &GAP; in the usual way (i.e. type <C>gap</C> at the command line).
+#! - Type <C>LoadPackage("blissinterface");</C>
+#! - For questions, remarks and issues please use the 
+#!   <URL Text="issue tracker">https://github.com/nagygp/BlissInterface/issues</URL>.
 #! 
 #! @Section Functionality
 #!
