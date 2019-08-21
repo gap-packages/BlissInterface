@@ -10,12 +10,14 @@ g1:=Group(bl1[1]);
 Print(StructureDescription(g1),"\n");
 OrbitLength(g1,fano,OnSetsSets);
 
-bl1c:=BlissBipartiteCanonicalLabeling(7, 7, fano, [0,0,1,0,1,1,1], 0);
+bl1c:=BlissBipartiteCanonicalLabeling(7, 7, fano, 
+    [0,0,1,0,1,1,1], 0);
 g1c:=Group(bl1c[1]);
 Print(StructureDescription(g1c),"\n");
 Orbits(g1c,[1..14]);
 
-bl1cc:=BlissBipartiteCanonicalLabeling(7, 7, fano, 0, [0,1,1,1,1,1,1]);
+bl1cc:=BlissBipartiteCanonicalLabeling(7, 7, fano, 0, 
+    [0,1,1,1,1,1,1]);
 g1cc:=Group(bl1cc[1]);
 Print(StructureDescription(g1cc),"\n");
 Orbits(g1cc,[1..14]);
@@ -26,7 +28,8 @@ bl2:=BlissGraphCanonicalLabeling(10, petersen, false, false);
 g2:=Group(bl2[1]);
 Print(StructureDescription(g2),"\n");
 
-bl2c:=BlissGraphCanonicalLabeling(10, petersen, [1,1,1,1,1,2,2,2,2,2], false);
+bl2c:=BlissGraphCanonicalLabeling(10, petersen, 
+    [1,1,1,1,1,2,2,2,2,2], false);
 g2c:=Group(bl2c[1]);
 Print(StructureDescription(g2c),"\n");
 
