@@ -2,7 +2,7 @@
  * BlissInterface: Low level interface to the bliss graph automorphism tool
  */
 
-#include "bliss-0.73/graph.hh" /* for bliss graph classes and namespaces */
+#include "../extern/bliss-0.73/graph.hh" /* for bliss graph classes and namespaces */
 #include "src/compiled.h"      /* GAP headers */
 
 /*

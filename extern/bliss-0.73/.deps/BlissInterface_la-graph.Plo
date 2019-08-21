@@ -1,6 +1,5 @@
-src/BlissInterface_la-BlissInterface.lo: src/BlissInterface.cc \
- /usr/include/stdc-predef.h src/../extern/bliss-0.73/graph.hh \
- /usr/include/c++/7/cstdio \
+extern/bliss-0.73/BlissInterface_la-graph.lo: extern/bliss-0.73/graph.cc \
+ /usr/include/stdc-predef.h /usr/include/c++/7/cstdio \
  /usr/include/x86_64-linux-gnu/c++/7/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/7/bits/os_defines.h \
  /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
@@ -23,7 +22,17 @@ src/BlissInterface_la-BlissInterface.lo: src/BlissInterface.cc \
  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
  /usr/include/x86_64-linux-gnu/bits/sys_errlist.h \
  /usr/include/x86_64-linux-gnu/bits/stdio.h \
- /usr/include/x86_64-linux-gnu/bits/stdio2.h /usr/include/c++/7/vector \
+ /usr/include/x86_64-linux-gnu/bits/stdio2.h /usr/include/c++/7/cassert \
+ /usr/include/assert.h /usr/include/c++/7/climits \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include-fixed/limits.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include-fixed/syslimits.h \
+ /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/local_lim.h \
+ /usr/include/linux/limits.h \
+ /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/uio_lim.h /usr/include/c++/7/set \
+ /usr/include/c++/7/bits/stl_tree.h \
  /usr/include/c++/7/bits/stl_algobase.h \
  /usr/include/c++/7/bits/functexcept.h \
  /usr/include/c++/7/bits/exception_defines.h \
@@ -47,15 +56,18 @@ src/BlissInterface_la-BlissInterface.lo: src/BlissInterface.cc \
  /usr/include/c++/7/typeinfo /usr/include/c++/7/bits/hash_bytes.h \
  /usr/include/c++/7/bits/nested_exception.h \
  /usr/include/c++/7/bits/memoryfwd.h \
- /usr/include/c++/7/bits/stl_construct.h \
+ /usr/include/c++/7/bits/stl_function.h \
+ /usr/include/c++/7/backward/binders.h \
  /usr/include/c++/7/ext/alloc_traits.h \
  /usr/include/c++/7/bits/alloc_traits.h \
- /usr/include/c++/7/bits/stl_uninitialized.h \
- /usr/include/c++/7/bits/stl_vector.h /usr/include/c++/7/initializer_list \
- /usr/include/c++/7/bits/stl_bvector.h \
- /usr/include/c++/7/bits/functional_hash.h \
- /usr/include/c++/7/bits/range_access.h \
- /usr/include/c++/7/bits/vector.tcc src/../extern/bliss-0.73/kstack.hh \
+ /usr/include/c++/7/ext/aligned_buffer.h \
+ /usr/include/c++/7/bits/stl_set.h /usr/include/c++/7/initializer_list \
+ /usr/include/c++/7/bits/stl_multiset.h \
+ /usr/include/c++/7/bits/range_access.h /usr/include/c++/7/list \
+ /usr/include/c++/7/bits/stl_list.h \
+ /usr/include/c++/7/bits/allocated_ptr.h /usr/include/c++/7/bits/list.tcc \
+ /usr/include/c++/7/algorithm /usr/include/c++/7/utility \
+ /usr/include/c++/7/bits/stl_relops.h /usr/include/c++/7/bits/stl_algo.h \
  /usr/include/c++/7/cstdlib /usr/include/stdlib.h \
  /usr/include/x86_64-linux-gnu/bits/waitflags.h \
  /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
@@ -89,54 +101,23 @@ src/BlissInterface_la-BlissInterface.lo: src/BlissInterface.cc \
  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
- /usr/include/c++/7/bits/std_abs.h src/../extern/bliss-0.73/defs.hh \
- /usr/include/c++/7/cassert /usr/include/assert.h \
- /usr/include/c++/7/cstdarg src/../extern/bliss-0.73/kqueue.hh \
- src/../extern/bliss-0.73/heap.hh src/../extern/bliss-0.73/orbit.hh \
- src/../extern/bliss-0.73/partition.hh /usr/include/c++/7/climits \
- /usr/lib/gcc/x86_64-linux-gnu/7/include-fixed/limits.h \
- /usr/lib/gcc/x86_64-linux-gnu/7/include-fixed/syslimits.h \
- /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
- /usr/include/x86_64-linux-gnu/bits/local_lim.h \
- /usr/include/linux/limits.h \
- /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
- /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
- /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
- src/../extern/bliss-0.73/graph.hh src/../extern/bliss-0.73/bignum.hh \
- src/../extern/bliss-0.73/uintseqhash.hh /opt/gap4/src/compiled.h \
- /opt/gap4/src/ariths.h /opt/gap4/src/objects.h /opt/gap4/src/gasman.h \
- /opt/gap4/src/system.h /opt/gap4/gen/config.h /usr/include/ctype.h \
- /usr/include/setjmp.h /usr/include/x86_64-linux-gnu/bits/setjmp.h \
- /usr/include/x86_64-linux-gnu/bits/setjmp2.h \
- /usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h /usr/include/stdint.h \
- /usr/include/x86_64-linux-gnu/bits/wchar.h \
- /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
- /usr/include/c++/7/stdlib.h /usr/include/string.h /usr/include/strings.h \
- /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
- /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
- /opt/gap4/src/debug.h /opt/gap4/src/intobj.h /opt/gap4/src/blister.h \
- /opt/gap4/src/bool.h /opt/gap4/src/calls.h /opt/gap4/src/gaputils.h \
- /opt/gap4/src/code.h /opt/gap4/src/compiler.h /opt/gap4/src/compstat.h \
- /opt/gap4/src/costab.h /opt/gap4/src/cyclotom.h /opt/gap4/src/dt.h \
- /opt/gap4/src/dteval.h /opt/gap4/src/error.h /opt/gap4/src/exprs.h \
- /opt/gap4/src/finfield.h /opt/gap4/src/ffdata.h /opt/gap4/src/funcs.h \
- /opt/gap4/src/gap.h /opt/gap4/src/gapstate.h /opt/gap4/src/gvars.h \
- /opt/gap4/src/integer.h /opt/gap4/src/intrprtr.h /opt/gap4/src/io.h \
- /opt/gap4/src/iostream.h /opt/gap4/src/listfunc.h \
- /opt/gap4/src/listoper.h /opt/gap4/src/lists.h /opt/gap4/src/macfloat.h \
- /opt/gap4/src/modules.h /opt/gap4/src/objcftl.h /opt/gap4/src/objfgelm.h \
- /opt/gap4/src/plist.h /opt/gap4/src/objpcgel.h /opt/gap4/src/objscoll.h \
- /opt/gap4/src/opers.h /opt/gap4/src/permutat.h /opt/gap4/src/pperm.h \
- /opt/gap4/src/precord.h /opt/gap4/src/range.h /opt/gap4/src/rational.h \
- /opt/gap4/src/read.h /opt/gap4/src/records.h /opt/gap4/src/saveload.h \
- /opt/gap4/src/scanner.h /opt/gap4/src/sctable.h /opt/gap4/src/set.h \
- /opt/gap4/src/stats.h /opt/gap4/src/streams.h /opt/gap4/src/stringobj.h \
- /opt/gap4/src/sysfiles.h /opt/gap4/src/tietze.h /opt/gap4/src/trans.h \
- /opt/gap4/src/vars.h /opt/gap4/src/vector.h /opt/gap4/src/weakptr.h
+ /usr/include/c++/7/bits/std_abs.h /usr/include/c++/7/bits/algorithmfwd.h \
+ /usr/include/c++/7/bits/stl_heap.h /usr/include/c++/7/bits/stl_tempbuf.h \
+ /usr/include/c++/7/bits/stl_construct.h \
+ /usr/include/c++/7/bits/uniform_int_dist.h /usr/include/c++/7/limits \
+ extern/bliss-0.73/defs.hh /usr/include/c++/7/cstdarg \
+ extern/bliss-0.73/timer.hh extern/bliss-0.73/graph.hh \
+ /usr/include/c++/7/vector /usr/include/c++/7/bits/stl_uninitialized.h \
+ /usr/include/c++/7/bits/stl_vector.h \
+ /usr/include/c++/7/bits/stl_bvector.h \
+ /usr/include/c++/7/bits/functional_hash.h \
+ /usr/include/c++/7/bits/vector.tcc extern/bliss-0.73/kstack.hh \
+ extern/bliss-0.73/kqueue.hh extern/bliss-0.73/heap.hh \
+ extern/bliss-0.73/orbit.hh extern/bliss-0.73/partition.hh \
+ extern/bliss-0.73/bignum.hh extern/bliss-0.73/uintseqhash.hh \
+ extern/bliss-0.73/utils.hh
 
 /usr/include/stdc-predef.h:
-
-src/../extern/bliss-0.73/graph.hh:
 
 /usr/include/c++/7/cstdio:
 
@@ -188,7 +169,33 @@ src/../extern/bliss-0.73/graph.hh:
 
 /usr/include/x86_64-linux-gnu/bits/stdio2.h:
 
-/usr/include/c++/7/vector:
+/usr/include/c++/7/cassert:
+
+/usr/include/assert.h:
+
+/usr/include/c++/7/climits:
+
+/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed/limits.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed/syslimits.h:
+
+/usr/include/limits.h:
+
+/usr/include/x86_64-linux-gnu/bits/posix1_lim.h:
+
+/usr/include/x86_64-linux-gnu/bits/local_lim.h:
+
+/usr/include/linux/limits.h:
+
+/usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
+
+/usr/include/x86_64-linux-gnu/bits/xopen_lim.h:
+
+/usr/include/x86_64-linux-gnu/bits/uio_lim.h:
+
+/usr/include/c++/7/set:
+
+/usr/include/c++/7/bits/stl_tree.h:
 
 /usr/include/c++/7/bits/stl_algobase.h:
 
@@ -248,27 +255,39 @@ src/../extern/bliss-0.73/graph.hh:
 
 /usr/include/c++/7/bits/memoryfwd.h:
 
-/usr/include/c++/7/bits/stl_construct.h:
+/usr/include/c++/7/bits/stl_function.h:
+
+/usr/include/c++/7/backward/binders.h:
 
 /usr/include/c++/7/ext/alloc_traits.h:
 
 /usr/include/c++/7/bits/alloc_traits.h:
 
-/usr/include/c++/7/bits/stl_uninitialized.h:
+/usr/include/c++/7/ext/aligned_buffer.h:
 
-/usr/include/c++/7/bits/stl_vector.h:
+/usr/include/c++/7/bits/stl_set.h:
 
 /usr/include/c++/7/initializer_list:
 
-/usr/include/c++/7/bits/stl_bvector.h:
-
-/usr/include/c++/7/bits/functional_hash.h:
+/usr/include/c++/7/bits/stl_multiset.h:
 
 /usr/include/c++/7/bits/range_access.h:
 
-/usr/include/c++/7/bits/vector.tcc:
+/usr/include/c++/7/list:
 
-src/../extern/bliss-0.73/kstack.hh:
+/usr/include/c++/7/bits/stl_list.h:
+
+/usr/include/c++/7/bits/allocated_ptr.h:
+
+/usr/include/c++/7/bits/list.tcc:
+
+/usr/include/c++/7/algorithm:
+
+/usr/include/c++/7/utility:
+
+/usr/include/c++/7/bits/stl_relops.h:
+
+/usr/include/c++/7/bits/stl_algo.h:
 
 /usr/include/c++/7/cstdlib:
 
@@ -342,194 +361,50 @@ src/../extern/bliss-0.73/kstack.hh:
 
 /usr/include/c++/7/bits/std_abs.h:
 
-src/../extern/bliss-0.73/defs.hh:
+/usr/include/c++/7/bits/algorithmfwd.h:
 
-/usr/include/c++/7/cassert:
+/usr/include/c++/7/bits/stl_heap.h:
 
-/usr/include/assert.h:
+/usr/include/c++/7/bits/stl_tempbuf.h:
+
+/usr/include/c++/7/bits/stl_construct.h:
+
+/usr/include/c++/7/bits/uniform_int_dist.h:
+
+/usr/include/c++/7/limits:
+
+extern/bliss-0.73/defs.hh:
 
 /usr/include/c++/7/cstdarg:
 
-src/../extern/bliss-0.73/kqueue.hh:
+extern/bliss-0.73/timer.hh:
 
-src/../extern/bliss-0.73/heap.hh:
+extern/bliss-0.73/graph.hh:
 
-src/../extern/bliss-0.73/orbit.hh:
+/usr/include/c++/7/vector:
 
-src/../extern/bliss-0.73/partition.hh:
+/usr/include/c++/7/bits/stl_uninitialized.h:
 
-/usr/include/c++/7/climits:
+/usr/include/c++/7/bits/stl_vector.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed/limits.h:
+/usr/include/c++/7/bits/stl_bvector.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed/syslimits.h:
+/usr/include/c++/7/bits/functional_hash.h:
 
-/usr/include/limits.h:
+/usr/include/c++/7/bits/vector.tcc:
 
-/usr/include/x86_64-linux-gnu/bits/posix1_lim.h:
+extern/bliss-0.73/kstack.hh:
 
-/usr/include/x86_64-linux-gnu/bits/local_lim.h:
+extern/bliss-0.73/kqueue.hh:
 
-/usr/include/linux/limits.h:
+extern/bliss-0.73/heap.hh:
 
-/usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
+extern/bliss-0.73/orbit.hh:
 
-/usr/include/x86_64-linux-gnu/bits/xopen_lim.h:
+extern/bliss-0.73/partition.hh:
 
-/usr/include/x86_64-linux-gnu/bits/uio_lim.h:
+extern/bliss-0.73/bignum.hh:
 
-src/../extern/bliss-0.73/graph.hh:
+extern/bliss-0.73/uintseqhash.hh:
 
-src/../extern/bliss-0.73/bignum.hh:
-
-src/../extern/bliss-0.73/uintseqhash.hh:
-
-/opt/gap4/src/compiled.h:
-
-/opt/gap4/src/ariths.h:
-
-/opt/gap4/src/objects.h:
-
-/opt/gap4/src/gasman.h:
-
-/opt/gap4/src/system.h:
-
-/opt/gap4/gen/config.h:
-
-/usr/include/ctype.h:
-
-/usr/include/setjmp.h:
-
-/usr/include/x86_64-linux-gnu/bits/setjmp.h:
-
-/usr/include/x86_64-linux-gnu/bits/setjmp2.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h:
-
-/usr/include/stdint.h:
-
-/usr/include/x86_64-linux-gnu/bits/wchar.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
-
-/usr/include/c++/7/stdlib.h:
-
-/usr/include/string.h:
-
-/usr/include/strings.h:
-
-/usr/include/x86_64-linux-gnu/bits/strings_fortified.h:
-
-/usr/include/x86_64-linux-gnu/bits/string_fortified.h:
-
-/opt/gap4/src/debug.h:
-
-/opt/gap4/src/intobj.h:
-
-/opt/gap4/src/blister.h:
-
-/opt/gap4/src/bool.h:
-
-/opt/gap4/src/calls.h:
-
-/opt/gap4/src/gaputils.h:
-
-/opt/gap4/src/code.h:
-
-/opt/gap4/src/compiler.h:
-
-/opt/gap4/src/compstat.h:
-
-/opt/gap4/src/costab.h:
-
-/opt/gap4/src/cyclotom.h:
-
-/opt/gap4/src/dt.h:
-
-/opt/gap4/src/dteval.h:
-
-/opt/gap4/src/error.h:
-
-/opt/gap4/src/exprs.h:
-
-/opt/gap4/src/finfield.h:
-
-/opt/gap4/src/ffdata.h:
-
-/opt/gap4/src/funcs.h:
-
-/opt/gap4/src/gap.h:
-
-/opt/gap4/src/gapstate.h:
-
-/opt/gap4/src/gvars.h:
-
-/opt/gap4/src/integer.h:
-
-/opt/gap4/src/intrprtr.h:
-
-/opt/gap4/src/io.h:
-
-/opt/gap4/src/iostream.h:
-
-/opt/gap4/src/listfunc.h:
-
-/opt/gap4/src/listoper.h:
-
-/opt/gap4/src/lists.h:
-
-/opt/gap4/src/macfloat.h:
-
-/opt/gap4/src/modules.h:
-
-/opt/gap4/src/objcftl.h:
-
-/opt/gap4/src/objfgelm.h:
-
-/opt/gap4/src/plist.h:
-
-/opt/gap4/src/objpcgel.h:
-
-/opt/gap4/src/objscoll.h:
-
-/opt/gap4/src/opers.h:
-
-/opt/gap4/src/permutat.h:
-
-/opt/gap4/src/pperm.h:
-
-/opt/gap4/src/precord.h:
-
-/opt/gap4/src/range.h:
-
-/opt/gap4/src/rational.h:
-
-/opt/gap4/src/read.h:
-
-/opt/gap4/src/records.h:
-
-/opt/gap4/src/saveload.h:
-
-/opt/gap4/src/scanner.h:
-
-/opt/gap4/src/sctable.h:
-
-/opt/gap4/src/set.h:
-
-/opt/gap4/src/stats.h:
-
-/opt/gap4/src/streams.h:
-
-/opt/gap4/src/stringobj.h:
-
-/opt/gap4/src/sysfiles.h:
-
-/opt/gap4/src/tietze.h:
-
-/opt/gap4/src/trans.h:
-
-/opt/gap4/src/vars.h:
-
-/opt/gap4/src/vector.h:
-
-/opt/gap4/src/weakptr.h:
+extern/bliss-0.73/utils.hh:
