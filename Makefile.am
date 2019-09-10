@@ -13,26 +13,19 @@ GAPINSTALLLIB = $(abs_top_srcdir)/$(BINARCHDIR)/BlissInterface.so
 
 lib_LTLIBRARIES = BlissInterface.la
 
-pkginclude_HEADERS = extern/bliss-0.73/bignum.hh
-pkginclude_HEADERS += extern/bliss-0.73/bliss_C.h
-pkginclude_HEADERS += extern/bliss-0.73/defs.hh
-pkginclude_HEADERS += extern/bliss-0.73/graph.hh
-pkginclude_HEADERS += extern/bliss-0.73/heap.hh
-pkginclude_HEADERS += extern/bliss-0.73/kqueue.hh
-pkginclude_HEADERS += extern/bliss-0.73/kstack.hh
-pkginclude_HEADERS += extern/bliss-0.73/orbit.hh
+pkginclude_HEADERS = extern/bliss-0.73/graph.hh
 pkginclude_HEADERS += extern/bliss-0.73/partition.hh
+pkginclude_HEADERS += extern/bliss-0.73/orbit.hh
+pkginclude_HEADERS += extern/bliss-0.73/heap.hh
 pkginclude_HEADERS += extern/bliss-0.73/timer.hh
-pkginclude_HEADERS += extern/bliss-0.73/uintseqhash.hh
-pkginclude_HEADERS += extern/bliss-0.73/utils.hh
 
 BlissInterface_la_SOURCES = src/BlissInterface.cc 
 BlissInterface_la_SOURCES += extern/bliss-0.73/graph.cc 
-BlissInterface_la_SOURCES += extern/bliss-0.73/defs.cc 
-BlissInterface_la_SOURCES += extern/bliss-0.73/orbit.cc 
 BlissInterface_la_SOURCES += extern/bliss-0.73/partition.cc
+BlissInterface_la_SOURCES += extern/bliss-0.73/orbit.cc 
 BlissInterface_la_SOURCES += extern/bliss-0.73/heap.cc
 BlissInterface_la_SOURCES += extern/bliss-0.73/timer.cc
+
 BlissInterface_la_CPPFLAGS = $(GAP_CPPFLAGS)
 BlissInterface_la_CFLAGS = $(GAP_CFLAGS)
 BlissInterface_la_LDFLAGS = $(GAP_LDFLAGS) -module -avoid-version

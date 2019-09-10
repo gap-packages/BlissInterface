@@ -44,7 +44,7 @@
 #define PACKAGE_NAME "BlissInterface"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "BlissInterface 0.1"
+#define PACKAGE_STRING "BlissInterface 0.2"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "blissinterface"
@@ -53,7 +53,7 @@
 #define PACKAGE_URL ""
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "0.1"
+#define PACKAGE_VERSION "0.2"
 
 /* Define to 1 if you have the ANSI C header files. */
 #define STDC_HEADERS 1
@@ -62,4 +62,4 @@
 #define SYS_IS_CYGWIN32 0
 
 /* Version number of package */
-#define VERSION "0.1"
+#define VERSION "0.2"
