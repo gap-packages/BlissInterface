@@ -6,7 +6,7 @@ This package provides a low level interface to the software [***bliss:*** A Tool
 
 Maintainer: [Gábor P. Nagy](https://algebra.math.bme.hu/nagy-gabor), Budapest University of Technology, Hungary.
 
-For questions, remarks and issues please use the [issue tracker](https://github.com/nagygp/BlissInterface/issues).
+For questions, remarks and issues please use the [issue tracker](https://github.com/gap-packages/BlissInterface/issues).
 
 ## License
 

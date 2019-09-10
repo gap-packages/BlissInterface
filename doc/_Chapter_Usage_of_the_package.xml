@@ -35,7 +35,7 @@ we recommend the packages <Package>Digraphs</Package> and
 <P/>
 <List>
 <Item>
-Download the package from <URL>https://github.com/nagygp/BlissInterface</URL>.
+Download the package from <URL>https://github.com/gap-packages/BlissInterface</URL>.
 </Item>
 <Item>
 Unzip/untar the file, this should create a directory called <F>BlissInterface*</F>.
@@ -64,7 +64,7 @@ Type <C>LoadPackage("blissinterface");</C>
 </Item>
 <Item>
 For questions, remarks and issues please use the
-<URL Text="issue tracker">https://github.com/nagygp/BlissInterface/issues</URL>.
+<URL Text="issue tracker">https://github.com/gap-packages/BlissInterface/issues</URL>.
 </Item>
 </List>
 <P/>
