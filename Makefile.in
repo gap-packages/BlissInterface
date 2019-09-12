@@ -143,7 +143,10 @@ am_BlissInterface_la_OBJECTS =  \
 	extern/bliss-0.73/BlissInterface_la-partition.lo \
 	extern/bliss-0.73/BlissInterface_la-orbit.lo \
 	extern/bliss-0.73/BlissInterface_la-heap.lo \
-	extern/bliss-0.73/BlissInterface_la-timer.lo
+	extern/bliss-0.73/BlissInterface_la-timer.lo \
+	extern/bliss-0.73/BlissInterface_la-defs.lo \
+	extern/bliss-0.73/BlissInterface_la-uintseqhash.lo \
+	extern/bliss-0.73/BlissInterface_la-utils.lo
 BlissInterface_la_OBJECTS = $(am_BlissInterface_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -382,11 +385,14 @@ GAPINSTALLLIB = $(abs_top_srcdir)/$(BINARCHDIR)/BlissInterface.so
 lib_LTLIBRARIES = BlissInterface.la
 pkginclude_HEADERS = extern/bliss-0.73/graph.hh \
 	extern/bliss-0.73/partition.hh extern/bliss-0.73/orbit.hh \
-	extern/bliss-0.73/heap.hh extern/bliss-0.73/timer.hh
+	extern/bliss-0.73/heap.hh extern/bliss-0.73/timer.hh \
+	extern/bliss-0.73/defs.hh extern/bliss-0.73/uintseqhash.hh \
+	extern/bliss-0.73/utils.hh
 BlissInterface_la_SOURCES = src/BlissInterface.cc \
 	extern/bliss-0.73/graph.cc extern/bliss-0.73/partition.cc \
 	extern/bliss-0.73/orbit.cc extern/bliss-0.73/heap.cc \
-	extern/bliss-0.73/timer.cc
+	extern/bliss-0.73/timer.cc extern/bliss-0.73/defs.cc \
+	extern/bliss-0.73/uintseqhash.cc extern/bliss-0.73/utils.cc
 BlissInterface_la_CPPFLAGS = $(GAP_CPPFLAGS)
 BlissInterface_la_CFLAGS = $(GAP_CFLAGS)
 BlissInterface_la_LDFLAGS = $(GAP_LDFLAGS) -module -avoid-version \
@@ -507,6 +513,15 @@ extern/bliss-0.73/BlissInterface_la-heap.lo:  \
 extern/bliss-0.73/BlissInterface_la-timer.lo:  \
 	extern/bliss-0.73/$(am__dirstamp) \
 	extern/bliss-0.73/$(DEPDIR)/$(am__dirstamp)
+extern/bliss-0.73/BlissInterface_la-defs.lo:  \
+	extern/bliss-0.73/$(am__dirstamp) \
+	extern/bliss-0.73/$(DEPDIR)/$(am__dirstamp)
+extern/bliss-0.73/BlissInterface_la-uintseqhash.lo:  \
+	extern/bliss-0.73/$(am__dirstamp) \
+	extern/bliss-0.73/$(DEPDIR)/$(am__dirstamp)
+extern/bliss-0.73/BlissInterface_la-utils.lo:  \
+	extern/bliss-0.73/$(am__dirstamp) \
+	extern/bliss-0.73/$(DEPDIR)/$(am__dirstamp)
 
 BlissInterface.la: $(BlissInterface_la_OBJECTS) $(BlissInterface_la_DEPENDENCIES) $(EXTRA_BlissInterface_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(BlissInterface_la_LINK) -rpath $(libdir) $(BlissInterface_la_OBJECTS) $(BlissInterface_la_LIBADD) $(LIBS)
@@ -521,11 +536,14 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@extern/bliss-0.73/$(DEPDIR)/BlissInterface_la-defs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@extern/bliss-0.73/$(DEPDIR)/BlissInterface_la-graph.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@extern/bliss-0.73/$(DEPDIR)/BlissInterface_la-heap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@extern/bliss-0.73/$(DEPDIR)/BlissInterface_la-orbit.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@extern/bliss-0.73/$(DEPDIR)/BlissInterface_la-partition.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@extern/bliss-0.73/$(DEPDIR)/BlissInterface_la-timer.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@extern/bliss-0.73/$(DEPDIR)/BlissInterface_la-uintseqhash.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@extern/bliss-0.73/$(DEPDIR)/BlissInterface_la-utils.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/BlissInterface_la-BlissInterface.Plo@am__quote@
 
 .cc.o:
@@ -593,6 +611,27 @@ extern/bliss-0.73/BlissInterface_la-timer.lo: extern/bliss-0.73/timer.cc
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='extern/bliss-0.73/timer.cc' object='extern/bliss-0.73/BlissInterface_la-timer.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(BlissInterface_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o extern/bliss-0.73/BlissInterface_la-timer.lo `test -f 'extern/bliss-0.73/timer.cc' || echo '$(srcdir)/'`extern/bliss-0.73/timer.cc
+
+extern/bliss-0.73/BlissInterface_la-defs.lo: extern/bliss-0.73/defs.cc
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(BlissInterface_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT extern/bliss-0.73/BlissInterface_la-defs.lo -MD -MP -MF extern/bliss-0.73/$(DEPDIR)/BlissInterface_la-defs.Tpo -c -o extern/bliss-0.73/BlissInterface_la-defs.lo `test -f 'extern/bliss-0.73/defs.cc' || echo '$(srcdir)/'`extern/bliss-0.73/defs.cc
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) extern/bliss-0.73/$(DEPDIR)/BlissInterface_la-defs.Tpo extern/bliss-0.73/$(DEPDIR)/BlissInterface_la-defs.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='extern/bliss-0.73/defs.cc' object='extern/bliss-0.73/BlissInterface_la-defs.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(BlissInterface_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o extern/bliss-0.73/BlissInterface_la-defs.lo `test -f 'extern/bliss-0.73/defs.cc' || echo '$(srcdir)/'`extern/bliss-0.73/defs.cc
+
+extern/bliss-0.73/BlissInterface_la-uintseqhash.lo: extern/bliss-0.73/uintseqhash.cc
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(BlissInterface_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT extern/bliss-0.73/BlissInterface_la-uintseqhash.lo -MD -MP -MF extern/bliss-0.73/$(DEPDIR)/BlissInterface_la-uintseqhash.Tpo -c -o extern/bliss-0.73/BlissInterface_la-uintseqhash.lo `test -f 'extern/bliss-0.73/uintseqhash.cc' || echo '$(srcdir)/'`extern/bliss-0.73/uintseqhash.cc
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) extern/bliss-0.73/$(DEPDIR)/BlissInterface_la-uintseqhash.Tpo extern/bliss-0.73/$(DEPDIR)/BlissInterface_la-uintseqhash.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='extern/bliss-0.73/uintseqhash.cc' object='extern/bliss-0.73/BlissInterface_la-uintseqhash.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(BlissInterface_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o extern/bliss-0.73/BlissInterface_la-uintseqhash.lo `test -f 'extern/bliss-0.73/uintseqhash.cc' || echo '$(srcdir)/'`extern/bliss-0.73/uintseqhash.cc
+
+extern/bliss-0.73/BlissInterface_la-utils.lo: extern/bliss-0.73/utils.cc
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(BlissInterface_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT extern/bliss-0.73/BlissInterface_la-utils.lo -MD -MP -MF extern/bliss-0.73/$(DEPDIR)/BlissInterface_la-utils.Tpo -c -o extern/bliss-0.73/BlissInterface_la-utils.lo `test -f 'extern/bliss-0.73/utils.cc' || echo '$(srcdir)/'`extern/bliss-0.73/utils.cc
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) extern/bliss-0.73/$(DEPDIR)/BlissInterface_la-utils.Tpo extern/bliss-0.73/$(DEPDIR)/BlissInterface_la-utils.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='extern/bliss-0.73/utils.cc' object='extern/bliss-0.73/BlissInterface_la-utils.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(BlissInterface_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o extern/bliss-0.73/BlissInterface_la-utils.lo `test -f 'extern/bliss-0.73/utils.cc' || echo '$(srcdir)/'`extern/bliss-0.73/utils.cc
 
 mostlyclean-libtool:
 	-rm -f *.lo

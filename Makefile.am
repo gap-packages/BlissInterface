@@ -26,6 +26,14 @@ BlissInterface_la_SOURCES += extern/bliss-0.73/orbit.cc
 BlissInterface_la_SOURCES += extern/bliss-0.73/heap.cc
 BlissInterface_la_SOURCES += extern/bliss-0.73/timer.cc
 
+pkginclude_HEADERS += extern/bliss-0.73/defs.hh
+pkginclude_HEADERS += extern/bliss-0.73/uintseqhash.hh
+pkginclude_HEADERS += extern/bliss-0.73/utils.hh
+
+BlissInterface_la_SOURCES += extern/bliss-0.73/defs.cc 
+BlissInterface_la_SOURCES += extern/bliss-0.73/uintseqhash.cc
+BlissInterface_la_SOURCES += extern/bliss-0.73/utils.cc
+
 BlissInterface_la_CPPFLAGS = $(GAP_CPPFLAGS)
 BlissInterface_la_CFLAGS = $(GAP_CFLAGS)
 BlissInterface_la_LDFLAGS = $(GAP_LDFLAGS) -module -avoid-version
