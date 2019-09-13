@@ -1,0 +1,6 @@
+autom4te.cache/* linguist-generated=true
+cnf/* linguist-generated=true
+m4/* linguist-generated=true
+doc/*.xml linguist-documentation=true
+extern/bliss-0.73/* linguist-vendored=true
+
