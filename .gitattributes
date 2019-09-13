@@ -2,6 +2,7 @@ autom4te.cache/* linguist-generated=true
 cnf/* linguist-generated=true
 m4/* linguist-generated=true
 config.status linguist-generated=true
+Makefile.in linguist-generated=true
 libtool linguist-generated=true
 src/_pkgconfig.h linguist-generated=true
 
