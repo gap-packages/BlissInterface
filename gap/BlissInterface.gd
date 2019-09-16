@@ -9,7 +9,7 @@
 #! interface to the software <URL Text="bliss: A Tool for Computing 
 #! Automorphism Groups and Canonical Labelings of 
 #! Graphs">http://www.tcs.hut.fi/Software/bliss/</URL>, 
-#! written by Tommi Junttila and Petteri Kaski. 
+#! written by Tommi Junttila and Petteri Kaski <Cite Key="Bliss:2007" />. 
 #! 
 #! The only interest of this package is the computation of the group 
 #! of colour preserving automorphisms of coloured graphs. The graphs 
@@ -19,8 +19,12 @@
 #! consume memory and computation resources for a while.
 #! 
 #! For more specialized algorithms and methods of the theory of graphs,
-#! we recommend the packages <Package>Digraphs</Package> and
-#! <Package>GRAPE</Package>.
+#! we recommend the packages <Package>Digraphs</Package> <Cite 
+#! Key="Digraphs0.15.2" /> and <Package>GRAPE</Package> <Cite 
+#! Key="GRAPE4.8.2" />. 
+#! To compute graph automorphisms see also the software  <URL Text="nauty">
+#! http://users.cecs.anu.edu.au/~bdm/nauty/</URL> by Brendan McKay and Adolfo 
+#! Piperno <Cite Key="Nauty:2014" />.
 #!
 #! @Section Installation
 #! 

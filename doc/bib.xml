@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE file SYSTEM "bibxmlext.dtd">
+<file>
+
+<entry id="Digraphs0.15.2"><misc>
+  <author>
+    <name><first>Jan</first><last>De Beule</last></name>
+    <name><first>Julius</first><last>Jonusas</last></name>
+    <name><first>James</first><last>Mitchell</last></name>
+    <name><first>Michael</first><last>Torpey</last></name>
+    <name><first>Wilf</first><last>Wilson</last></name>
+  </author>
+  <title><C>Digraphs</C>, Graphs, digraphs, and multidigraphs in GAP,
+         <C>V</C>ersion 0.15.2</title>
+  <howpublished><URL>https://gap-packages.github.io/Digraphs</URL></howpublished>
+  <month>Apr</month>
+  <year>2019</year>
+  <note>GAP package</note>
+  <keywords></keywords>
+</misc></entry>
+
+
+<entry id="GRAPE4.8.2"><misc>
+  <author>
+    <name><first>Leonard H.</first><last>Soicher</last></name>
+  </author>
+  <title><C>GRAPE</C>, GRaph Algorithms using PErmutation groups,
+         <C>V</C>ersion 4.8.2</title>
+  <howpublished><URL>https://gap-packages.github.io/grape</URL></howpublished>
+  <month>Mar</month>
+  <year>2019</year>
+  <note>Refereed GAP package</note>
+  <keywords>graph; geometry; design</keywords>
+</misc></entry>
+
+<entry id="Nauty:2014"><article>
+  <author>
+    <name><first>Brendan D.</first><last>McKay</last></name>
+    <name><first>Adolfo</first><last>Piperno</last></name>
+  </author>  
+  <title>Practical graph isomorphism, <C>II</C></title>
+  <journal>J. Symbolic Comput.</journal>
+  <year>2014</year>
+  <volume>60</volume>
+  <pages>94–112</pages>
+  <issn>0747-7171</issn>
+  <mrnumber>3131381</mrnumber>
+  <mrclass>05C60 (05C85 68Q25)</mrclass>
+  <mrreviewer>Bharati Rajan</mrreviewer>
+  <url>https://doi.org/10.1016/j.jsc.2013.09.003</url>
+  <other type="doi">10.1016/j.jsc.2013.09.003</other>
+  <other type="fjournal">Journal of Symbolic Computation</other>
+</article></entry>
+
+<entry id="Bliss:2007"><inproceedings>
+  <author>
+    <name><first>Tommi</first><last>Junttila</last></name>
+    <name><first>Petteri</first><last>Kaski</last></name>
+  </author>  
+  <title>Engineering an Efficient Canonical Labeling Tool for Large and Sparse
+      Graphs</title>
+  <booktitle>Proceedings of the Meeting on Algorithm Engineering &amp;
+      Expermiments</booktitle>
+  <year>2007</year>
+  <pages>135--149</pages>
+  <address>Philadelphia, PA, USA</address>
+  <publisher>Society for Industrial and Applied Mathematics</publisher>
+  <location>New Orleans, Louisiana</location>
+  <url>http://dl.acm.org/citation.cfm?id=2791188.2791201</url>
+  <other type="acmid">2791201</other>
+  <other type="numpages">15</other>
+</inproceedings></entry>
+
+</file>
