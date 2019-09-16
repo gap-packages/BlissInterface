@@ -6,8 +6,13 @@
 #include "src/compiled.h"      /* GAP headers */
 
 /*
- * copied from GAP package Digraphs 0.15.2 "digraphs_hook_function()"
- */
+ * The following code is a derivative work of the code from the GAP package Digraphs
+ * which is licensed GPLv3. This code therefore is also licensed under the terms 
+ * of the GNU Public License, version 3.
+ *
+ * Based on "digraphs_hook_function()" of the GAP package Digraphs 0.15.2 
+ * Modified by G.P. Nagy, 21/08/2019
+*/
 
 void blissinterface_hook_function(void *user_param_v, unsigned int N,
                                   const unsigned int *aut) {
@@ -15,7 +20,7 @@ void blissinterface_hook_function(void *user_param_v, unsigned int N,
   Obj p, gens, user_param;
   UInt i, n;
 
-  // we need this in C++ to avoid "invalid conversion" error
+  // one needs this in C++ to avoid "invalid conversion" error
   user_param = static_cast<Obj>(user_param_v);
   n = INT_INTOBJ(ELM_PLIST(user_param, 2)); // the degree
   p = NEW_PERM4(n);
@@ -30,12 +35,20 @@ void blissinterface_hook_function(void *user_param_v, unsigned int N,
 }
 
 /*
+ * The following code is a derivative work of the code from the GAP package Digraphs
+ * which is licensed GPLv3. This code therefore is also licensed under the terms 
+ * of the GNU Public License, version 3.
+ *
+ * Based on "FuncDIGRAPH_AUTOMORPHISMS" of the GAP package Digraphs 0.15.2
+ * Modified by G.P. Nagy, 21/08/2019
+ */
+
+/*
  * Returns: a GAP object list [gens,cl], where <gens> are generators
  * of the aut group of the bipartite digraph, associated to the Bipartite
  * system, and <cl> is a canonical labeling of the digraph.
- *
- * Based on "FuncDIGRAPH_AUTOMORPHISMS" of the GAP package Digraphs 0.15.2
  */
+
 
 static Obj blissinterface_autgr_canlab(bliss::AbstractGraph *graph) {
   Obj autos, p, n;
@@ -72,18 +85,18 @@ static Obj blissinterface_autgr_canlab(bliss::AbstractGraph *graph) {
 }
 
 /*
-We construct the coloured graph <C>G</C> on <A>n</A>
-vertices <C>[1..n]</C>. If <A>isdirected</A> is <C>true</C> the <C>G</C>
-is a directed graph.
-
-The graph is given by the list <C>[N_1,...,N_n]</C>,
-where <C>N_i</C> is the list of (out)neighbors of the vertex <C>i</C>.
-Duplicate edges between vertices are ignored.
-
-If <A>colours</A> is a list of length <C>n</C> then its elements are used to
-define a vertex coloring of <C>G</C>.
-
- *
+ * We construct the coloured graph <C>G</C> on <A>n</A>
+ * vertices <C>[1..n]</C>. If <A>isdirected</A> is <C>true</C> the <C>G</C>
+ * is a directed graph.
+ * 
+ * The graph is given by the list <C>[N_1,...,N_n]</C>,
+ * where <C>N_i</C> is the list of (out)neighbors of the vertex <C>i</C>.
+ * Duplicate edges between vertices are ignored.
+ * 
+ * If <A>colours</A> is a list of length <C>n</C> then its elements are used to
+ * define a vertex coloring of <C>G</C>.
+ * 
+ * 
  * Returns: The pair <C>[gens,cl]</C> as GAP object, where <C>gens</C> is a list
  * of generators for <C>Aut(G)</C> and <C>cl</C> is a canonical labeling of
  * <C>G</C>.
