@@ -191,7 +191,7 @@ Obj FuncBLISS_BIPARTITE_CANONICAL_LABELING(Obj self, Obj n, Obj m, Obj outneigh,
 /*
  * "GVarFuncs" is not workin in C++, due to
  * "invalid conversion from ‘void*’ to ‘Obj‘" error
-/*
+ */
 
 // static StructGVarFunc GVarFuncs [] = {
 //    GVAR_FUNC(TestCommand, 0, ""),
@@ -257,10 +257,6 @@ static StructInitInfo module = {
     /* preSave     = */ 0,
     /* postSave    = */ 0,
     /* postRestore = */ 0,
-    /* moduleStateSize      = */ 0,
-    /* moduleStateOffsetPtr = */ 0,
-    /* initModuleState      = */ 0,
-    /* destroyModuleState   = */ 0,
 };
 
 extern "C" StructInitInfo *Init__Dynamic(void) { return &module; }
