@@ -9,7 +9,7 @@ dnl ##
 dnl ## Setup autoconf
 dnl ##
 AC_PREREQ([2.68])
-AC_INIT([BlissInterface], m4_esyscmd([tr -d '\n' < VERSION]))
+AC_INIT([BlissInterface], [package])
 AC_CONFIG_SRCDIR([src/BlissInterface.cc])
 AC_CONFIG_HEADER([src/_pkgconfig.h:cnf/pkgconfig.h.in])
 AC_CONFIG_MACRO_DIR([m4])

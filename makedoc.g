@@ -8,4 +8,3 @@ if fail = LoadPackage("AutoDoc", "2018.02.14") then
 fi;
 
 AutoDoc( rec( scaffold := rec( bib := "bib.xml" ), autodoc := true ) );
-PrintTo( "VERSION", GAPInfo.PackageInfoCurrent.Version );
