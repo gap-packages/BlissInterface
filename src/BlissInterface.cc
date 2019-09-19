@@ -3,16 +3,16 @@
  */
 
 #include "../extern/bliss-0.73/graph.hh" /* for bliss graph classes and namespaces */
-#include "src/compiled.h"      /* GAP headers */
+#include "src/compiled.h"                /* GAP headers */
 
 /*
- * The following code is a derivative work of the code from the GAP package Digraphs
- * which is licensed GPLv3. This code therefore is also licensed under the terms 
- * of the GNU Public License, version 3.
+ * The following code is a derivative work of the code from the GAP package
+ * Digraphs which is licensed GPLv3. This code therefore is also licensed under
+ * the terms of the GNU Public License, version 3.
  *
- * Based on "digraphs_hook_function()" of the GAP package Digraphs 0.15.2 
+ * Based on "digraphs_hook_function()" of the GAP package Digraphs 0.15.2
  * Modified by G.P. Nagy, 21/08/2019
-*/
+ */
 
 void blissinterface_hook_function(void *user_param_v, unsigned int N,
                                   const unsigned int *aut) {
@@ -35,9 +35,9 @@ void blissinterface_hook_function(void *user_param_v, unsigned int N,
 }
 
 /*
- * The following code is a derivative work of the code from the GAP package Digraphs
- * which is licensed GPLv3. This code therefore is also licensed under the terms 
- * of the GNU Public License, version 3.
+ * The following code is a derivative work of the code from the GAP package
+ * Digraphs which is licensed GPLv3. This code therefore is also licensed under
+ * the terms of the GNU Public License, version 3.
  *
  * Based on "FuncDIGRAPH_AUTOMORPHISMS" of the GAP package Digraphs 0.15.2
  * Modified by G.P. Nagy, 21/08/2019
@@ -48,7 +48,6 @@ void blissinterface_hook_function(void *user_param_v, unsigned int N,
  * of the aut group of the bipartite digraph, associated to the Bipartite
  * system, and <cl> is a canonical labeling of the digraph.
  */
-
 
 static Obj blissinterface_autgr_canlab(bliss::AbstractGraph *graph) {
   Obj autos, p, n;
@@ -88,15 +87,15 @@ static Obj blissinterface_autgr_canlab(bliss::AbstractGraph *graph) {
  * We construct the coloured graph <C>G</C> on <A>n</A>
  * vertices <C>[1..n]</C>. If <A>isdirected</A> is <C>true</C> the <C>G</C>
  * is a directed graph.
- * 
+ *
  * The graph is given by the list <C>[N_1,...,N_n]</C>,
  * where <C>N_i</C> is the list of (out)neighbors of the vertex <C>i</C>.
  * Duplicate edges between vertices are ignored.
- * 
+ *
  * If <A>colours</A> is a list of length <C>n</C> then its elements are used to
  * define a vertex coloring of <C>G</C>.
- * 
- * 
+ *
+ *
  * Returns: The pair <C>[gens,cl]</C> as GAP object, where <C>gens</C> is a list
  * of generators for <C>Aut(G)</C> and <C>cl</C> is a canonical labeling of
  * <C>G</C>.
@@ -134,7 +133,7 @@ Obj FuncBLISS_GRAPH_CANONICAL_LABELING(Obj self, Obj n, Obj outneigh,
 }
 
 /*
- * We construct the following directed bipartitige graph <C>G</C> on <C>n+m</C>
+ * We construct the following directed bipartite graph <C>G</C> on <C>n+m</C>
  * vertices. Upper vertices are <C>[1..n]</C>, lower vertices are
  * <C>n+[1..m]</C>. Edges point bottom up. The graph is given by the list
  * <C>[N_1,...,N_m]</C>, where <C>N_i</C> is the list of outneighbors of the
@@ -190,7 +189,7 @@ Obj FuncBLISS_BIPARTITE_CANONICAL_LABELING(Obj self, Obj n, Obj m, Obj outneigh,
 // Table of functions to export
 
 /*
- * "GVarFuncs" is nnt workin in C++, due to
+ * "GVarFuncs" is not workin in C++, due to
  * "invalid conversion from ‘void*’ to ‘Obj‘" error
 /*
 

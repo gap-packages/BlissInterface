@@ -1,5 +1,5 @@
 #
-# blissinterface: Line by line blissinterface and code coverage for GAP
+# BlissInterface: Low level interface to the bliss graph automorphism tool
 #
 # This file is part of the build system of a GAP kernel extension.
 # Requires GNU autoconf, GNU automake and GNU libtool.
