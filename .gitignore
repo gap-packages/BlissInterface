@@ -18,9 +18,33 @@
 /doc/*.tex
 /doc/*.toc
 /doc/manual.pdf
+/doc/BlissInterface.xml
+/doc/_*.xml
+/doc/title.xml
 
-/bin/
 /Makefile
+/Makefile.in
+/aclocal.m4
+/autom4te.cache/
+/bin/
+/cnf/
+/configure
+/config.log
+/config.status
+/libtool
+/m4/libtool.m4
+/m4/ltoptions.m4
+/m4/ltsugar.m4
+/m4/ltversion.m4
+/m4/lt~obsolete.m4
+/src/_pkgconfig.h
+/src/stamp-h1
+
+.deps
+.dirstamp
+.libs
+*.la
+*.lo
 
 /tmp/
 /gh-pages/
