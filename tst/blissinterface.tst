@@ -103,6 +103,11 @@ gap> BlissGraphCanonicalLabeling(3, path, false, true);
 [ [  ], (1,2,3) ]
 gap> BlissGraphCanonicalLabeling(3, path, false, false);
 [ [ (1,3) ], (1,2,3) ]
+gap> 
+gap> BlissGraphCanonicalLabeling(1,[[]],0,false);
+[ [  ], () ]
+gap> BlissGraphCanonicalLabeling(1,[],0,false);
+Error, BI: <2> must be a list of lists of integers between 1 and <1>.
 
 #
 gap> STOP_TEST( "blissinterface.tst", 10000 );

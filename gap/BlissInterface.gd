@@ -79,7 +79,7 @@ DeclareGlobalFunction( "BlissGraphCanonicalLabeling" );
 #!   <C>[1..n+m]</C>. Upper vertices are <C>[1..n]</C>, lower vertices are
 #!   <C>[n+1..n+m]</C>. Edges point bottom up.
 #!   The edges of <C>G</C> are given by <A>outneigh</A>, which is a list 
-#!   <C>[N_1,...,N_n]</C>, such that <C>N_i</C> is the list of outneighbors 
+#!   <C>[N_1,...,N_m]</C>, such that <C>N_i</C> is the list of outneighbors 
 #!   of the lower vertex <C>n+i</C>. Duplicate edges between vertices and 
 #!   loops are ignored.
 #!   <P />If <A>ucolours</A> is a list of length <C>n</C> then its elements 
