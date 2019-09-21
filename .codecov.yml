@@ -18,3 +18,4 @@ ignore:
   - "read.g"
   - "tst/*"     # ignore test harness code
   - "tst/**/*"  # ignore test harness code
+  - "extern/bliss-0.73/*"   # ignore bliss-0.73
