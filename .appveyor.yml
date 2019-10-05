@@ -21,7 +21,7 @@ install:
 build_script:
   - bash -lc "cd $APPVEYOR_BUILD_FOLDER && scripts/build_pkg.sh"
   - bash -lc "cd $APPVEYOR_BUILD_FOLDER && make clean"
-  - bash -lc "cd && 7z a myapp.zip $APPVEYOR_BUILD_FOLDER/bin && ls"
+ # - bash -lc "cd && 7z a myapp.zip $APPVEYOR_BUILD_FOLDER/bin && ls"
 
 test_script:
   - bash -lc "cd $APPVEYOR_BUILD_FOLDER && scripts/run_tests.sh"
@@ -32,5 +32,6 @@ test_script:
 #  - bash -lc "cd $APPVEYOR_BUILD_FOLDER && ./codecov.sh"
 
 artifacts:
-  - path: myapp.zip
+  - path: bin
     name: MyApp
+    type: zip
