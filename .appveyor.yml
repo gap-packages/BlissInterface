@@ -28,3 +28,9 @@ on_success:
   - bash -lc "cd $APPVEYOR_BUILD_FOLDER && scripts/gather-coverage.sh"
   - curl -s https://codecov.io/bash > codecov.sh
   - bash -lc "cd $APPVEYOR_BUILD_FOLDER && ./codecov.sh"
+  - bash -lc "cd $APPVEYOR_BUILD_FOLDER && make clean"
+  - bash -lc "7z a myapp.zip $APPVEYOR_BUILD_FOLDER/bin"
+
+artifacts:
+  - path: myapp.zip
+    name: MyApp
