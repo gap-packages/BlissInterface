@@ -1,1 +1,42 @@
-Placeholder
+  
+  
+                                [1X BlissInterface [101X
+  
+  
+           [1X Low level interface to the bliss graph automorphism tool [101X
+  
+  
+                                      0.21
+  
+  
+                                 8 October 2019
+  
+  
+                                 Gábor P. Nagy
+  
+  
+  
+  Gábor P. Nagy
+      Email:    [7Xmailto:nagyg@math.bme.hu[107X
+      Homepage: [7Xhttps://algebra.math.bme.hu/nagy-gabor[107X
+      Address:  [33X[0;14YDepartment of Algebra, Budapest University of Technology[133X
+                [33X[0;14YEgry József utca 1[133X
+                [33X[0;14YH-1111 Budapest (Hungary)[133X
+  
+  
+  
+  -------------------------------------------------------
+  
+  
+  [1XContents (BlissInterface)[101X
+  
+  1 [33X[0;0YUsage of the package[133X
+    1.1 [33X[0;0YIntroduction[133X
+    1.2 [33X[0;0YInstallation[133X
+    1.3 [33X[0;0YFunctionality[133X
+      1.3-1 BlissGraphCanonicalLabeling
+      1.3-2 BlissBipartiteCanonicalLabeling
+    1.4 [33X[0;0YExamples[133X
+  
+  
+  [32X

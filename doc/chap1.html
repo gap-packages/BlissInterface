@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>GAP (BlissInterface) - Chapter 1: Usage of the package</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="GAPDoc2HTML" />
+<link rel="stylesheet" type="text/css" href="manual.css" />
+<script src="manual.js" type="text/javascript"></script>
+<script type="text/javascript">overwriteStyle();</script>
+</head>
+<body class="chap1"  onload="jscontent()">
+
+
+<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+
+<div class="chlinkprevnexttop">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap0.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chapBib.html">[Next Chapter]</a>&nbsp;  </div>
+
+<p id="mathjaxlink" class="pcenter"><a href="chap1_mj.html">[MathJax on]</a></p>
+<p><a id="X7C96F6267A2105A0" name="X7C96F6267A2105A0"></a></p>
+<div class="ChapSects"><a href="chap1.html#X7C96F6267A2105A0">1 <span class="Heading">Usage of the package</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1.html#X7DFB63A97E67C0A1">1.1 <span class="Heading">Introduction</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1.html#X8360C04082558A12">1.2 <span class="Heading">Installation</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1.html#X87F1120883F5B4D0">1.3 <span class="Heading">Functionality</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X7DB61B5078C0C9E8">1.3-1 BlissGraphCanonicalLabeling</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap1.html#X7A54506C81032799">1.3-2 BlissBipartiteCanonicalLabeling</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1.html#X7A489A5D79DA9E5C">1.4 <span class="Heading">Examples</span></a>
+</span>
+</div>
+</div>
+
+<h3>1 <span class="Heading">Usage of the package</span></h3>
+
+<p><a id="X7DFB63A97E67C0A1" name="X7DFB63A97E67C0A1"></a></p>
+
+<h4>1.1 <span class="Heading">Introduction</span></h4>
+
+<p>The <strong class="pkg">GAP</strong> package <strong class="pkg">BlissInterface</strong> provides a low level interface to the software <span class="URL"><a href="http://www.tcs.hut.fi/Software/bliss/">bliss: A Tool for Computing Automorphism Groups and Canonical Labelings of Graphs</a></span>, written by Tommi Junttila and Petteri Kaski <a href="chapBib.html#biBBliss:2007">[JK07]</a>.</p>
+
+<p>The only interest of this package is the computation of the group of colour preserving automorphisms of coloured graphs. The graphs can be directed or undirected, bipartite or not. Duplicate edges between vertices are ignored but try to avoid introducing them in the first place as they are not ignored immediately but will consume memory and computation resources for a while.</p>
+
+<p>For more specialized algorithms and methods of the theory of graphs, we recommend the packages <strong class="pkg">Digraphs</strong> <a href="chapBib.html#biBDigraphs0.15.2">[DBJM+19]</a> and <strong class="pkg">GRAPE</strong> <a href="chapBib.html#biBGRAPE4.8.2">[Soi19]</a>. To compute graph automorphisms see also the software <span class="URL"><a href=" http://users.cecs.anu.edu.au/~bdm/nauty/">nauty</a></span> by Brendan McKay and Adolfo Piperno <a href="chapBib.html#biBNauty:2014">[MP14]</a>.</p>
+
+<p><a id="X8360C04082558A12" name="X8360C04082558A12"></a></p>
+
+<h4>1.2 <span class="Heading">Installation</span></h4>
+
+
+<ul>
+<li><p>Download the package from <span class="URL"><a href="https://github.com/gap-packages/BlissInterface">https://github.com/gap-packages/BlissInterface</a></span>.</p>
+
+</li>
+<li><p>Unzip/untar the file, this should create a directory called <code class="file">BlissInterface*</code>.</p>
+
+</li>
+<li><p>Locate the <code class="file">pkg</code> directory of your <strong class="pkg">GAP</strong> directory, which contains the directories <code class="file">lib</code>, <code class="file">doc</code> and so on. Move the directory <code class="file">BlissInterface*</code> into the <code class="file">pkg</code> directory.</p>
+
+</li>
+<li><p>Alternatively, you can use your <code class="file">pkg</code> directory. Make sure it is in your <strong class="pkg">GAP</strong> root path.</p>
+
+</li>
+<li><p>It is necessary to compile the <strong class="pkg">BlissInterface</strong> package. Inside the <code class="file">pkg/BlissInterface*</code> directory, type</p>
+
+
+<div class="example"><pre>
+./configure
+make</pre></div>
+
+</li>
+<li><p>Start <strong class="pkg">GAP</strong> in the usual way (i.e. type <code class="code">gap</code> at the command line).</p>
+
+</li>
+<li><p>Type <code class="code">LoadPackage("blissinterface");</code></p>
+
+</li>
+<li><p>For questions, remarks and issues please use the <span class="URL"><a href="https://github.com/gap-packages/BlissInterface/issues">issue tracker</a></span>.</p>
+
+</li>
+</ul>
+<p><a id="X87F1120883F5B4D0" name="X87F1120883F5B4D0"></a></p>
+
+<h4>1.3 <span class="Heading">Functionality</span></h4>
+
+<p>This section will describe the two functions of <strong class="pkg">BlissInterface</strong>, and their nonchecking counterparts.</p>
+
+<p><a id="X7DB61B5078C0C9E8" name="X7DB61B5078C0C9E8"></a></p>
+
+<h5>1.3-1 BlissGraphCanonicalLabeling</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; BlissGraphCanonicalLabeling</code>( <var class="Arg">n</var>, <var class="Arg">outneigh</var>, <var class="Arg">colours</var>, <var class="Arg">isdirected</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns: The pair <code class="code">[gens,cl]</code> as GAP object, where <code class="code">gens</code> is a list of generators for for the group of colour preserving automorphisms of the graph <code class="code">G</code>, and <code class="code">cl</code> is a canonical labeling of <code class="code">G</code>.</p>
+
+<p>The coloured graph <code class="code">G</code> has vertices <code class="code">[1..n]</code>. If <var class="Arg">isdirected</var> is <code class="code">true</code> the <code class="code">G</code> is directed. The edges of <code class="code">G</code> are given by <var class="Arg">outneigh</var>, which is a list <code class="code">[N_1,...,N_n]</code>, such that <code class="code">N_i</code> is the list of (out)neighbors of the vertex <code class="code">i</code>. Duplicate edges between vertices and loops are ignored.</p>
+
+<p>If <var class="Arg">colours</var> is a list of length <code class="code">n</code> then its elements are used to define a vertex colouring of <code class="code">G</code>, otherwise all vertices have colour <code class="code">0</code>.</p>
+
+<p>This function has a nonchecking version <code class="code">BLISS_GRAPH_CANONICAL_LABELING</code> with the same parameters. Clearly, the nonchecking version is slightly faster but it must be used with extreme care. Bad parameters may result in unpredictable behaviour.</p>
+
+<p><a id="X7A54506C81032799" name="X7A54506C81032799"></a></p>
+
+<h5>1.3-2 BlissBipartiteCanonicalLabeling</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; BlissBipartiteCanonicalLabeling</code>( <var class="Arg">n</var>, <var class="Arg">m</var>, <var class="Arg">outneigh</var>, <var class="Arg">ucolours</var>, <var class="Arg">lcolours</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns: The pair <code class="code">[gens,cl]</code> as GAP object, where <code class="code">gens</code> is a list of generators for <code class="code">Aut(G)</code> and <code class="code">cl</code> is a canonical labeling of <code class="code">G</code>. The pair <code class="code">[gens,cl]</code> as GAP object, where <code class="code">gens</code> is a list of generators for for the group of colour preserving automorphisms of the directed bipartite graph <code class="code">G</code>, and <code class="code">cl</code> is a canonical labeling of <code class="code">G</code>.</p>
+
+<p>The coloured, directed, bipartite graph <code class="code">G</code> has vertices <code class="code">[1..n+m]</code>. Upper vertices are <code class="code">[1..n]</code>, lower vertices are <code class="code">[n+1..n+m]</code>. Edges point bottom up. The edges of <code class="code">G</code> are given by <var class="Arg">outneigh</var>, which is a list <code class="code">[N_1,...,N_m]</code>, such that <code class="code">N_i</code> is the list of outneighbors of the lower vertex <code class="code">n+i</code>. Duplicate edges between vertices and loops are ignored.</p>
+
+<p>If <var class="Arg">ucolours</var> is a list of length <code class="code">n</code> then its elements are used to define a colouring of the upper vertices, otherwise all upper vertices have colour <code class="code">0</code>. Similarly, if <var class="Arg">lcolours</var> is a list of length <code class="code">m</code> then it defines a colouring of the lower vertices.</p>
+
+<p>This function has a nonchecking version <code class="code">BLISS_BIPARTITE_CANONICAL_LABELING</code> with the same parameters. Clearly, the nonchecking version is slightly faster but it must be used with extreme care. Bad parameters may result in unpredictable behaviour.</p>
+
+<p><a id="X7A489A5D79DA9E5C" name="X7A489A5D79DA9E5C"></a></p>
+
+<h4>1.4 <span class="Heading">Examples</span></h4>
+
+<p>Using the point-line graph <span class="Math">\Gamma</span> of the Fano plane <span class="Math">PG(2,2)</span>, we can compute its collineation group <span class="Math">PSL(3,2)</span>. By colouring the vertices of <span class="Math">\Gamma</span>, we get stabilizers of points and/or line.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LoadPackage( "BlissInterface", false );</span>
+true
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput"></span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">fano:=Set([[1,2,4],[2,3,5],[3,4,6],[4,5,7],</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">    [5,6,1],[6,7,2],[7,1,3]],Set);</span>
+[ [ 1, 2, 4 ], [ 1, 3, 7 ], [ 1, 5, 6 ], [ 2, 3, 5 ], [ 2, 6, 7 ], 
+  [ 3, 4, 6 ], [ 4, 5, 7 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput"></span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">bl1:=BlissBipartiteCanonicalLabeling(7, 7, fano, 0, 0);</span>
+[ [ (3,5)(6,7)(9,10)(13,14), (3,6)(5,7)(9,10)(11,12), 
+      (2,3)(4,7)(8,9)(12,13), (1,2)(5,7)(9,11)(10,12) ], 
+  (1,7,3,4,5,2,6)(8,14)(9,13)(10,12) ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g1:=Group(bl1[1]);</span>
+Group([ (3,5)(6,7)(9,10)(13,14), (3,6)(5,7)(9,10)(11,12), (2,3)(4,7)
+(8,9)(12,13), (1,2)(5,7)(9,11)(10,12) ])
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Print(StructureDescription(g1),"\n");</span>
+PSL(3,2)
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">OrbitLength(g1,fano,OnSetsSets);</span>
+1
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput"></span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">bl1c:=BlissBipartiteCanonicalLabeling(7, 7, fano, </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">    [0,0,1,0,1,1,1], 0);</span>
+[ [ (3,5)(6,7)(9,10)(13,14), (3,7)(5,6)(11,12)(13,14), 
+      (2,4)(5,6)(11,13)(12,14), (1,2)(5,7)(9,11)(10,12) ], 
+  (1,3,14,5,12,4)(6,11,7,13)(8,10) ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g1c:=Group(bl1c[1]);</span>
+Group([ (3,5)(6,7)(9,10)(13,14), (3,7)(5,6)(11,12)(13,14), (2,4)(5,6)
+(11,13)(12,14), (1,2)(5,7)(9,11)(10,12) ])
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Print(StructureDescription(g1c),"\n");</span>
+S4
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Orbits(g1c,[1..14]);</span>
+[ [ 1, 4, 2 ], [ 3, 6, 5, 7 ], [ 8 ], [ 9, 13, 10, 11, 14, 12 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput"></span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">bl1cc:=BlissBipartiteCanonicalLabeling(7, 7, fano, 0, </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">    [0,1,1,1,1,1,1]);</span>
+[ [ (3,5)(6,7)(9,10)(13,14), (3,7)(5,6)(11,12)(13,14), 
+      (2,4)(5,6)(11,13)(12,14), (1,2)(5,7)(9,11)(10,12) ], 
+  (1,7,3,4,5,2,6)(9,14)(10,13)(11,12) ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g1cc:=Group(bl1cc[1]);</span>
+Group([ (3,5)(6,7)(9,10)(13,14), (3,7)(5,6)(11,12)(13,14), (2,4)(5,6)
+(11,13)(12,14), (1,2)(5,7)(9,11)(10,12) ])
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Print(StructureDescription(g1cc),"\n");</span>
+S4
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Orbits(g1cc,[1..14]);</span>
+[ [ 1, 4, 2 ], [ 3, 6, 5, 7 ], [ 8 ], [ 9, 13, 10, 11, 14, 12 ] ]
+</pre></div>
+
+<p>The automorphism group of the Petersen graphy is isomorphic to <span class="Math">S_5</span>. The automorphisms preserving two disjoint 5-cycles form a dihedral group of order 10.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">petersen:=[[2,5,6],[1,3,7],[2,4,8],[3,5,9],[1,4,10],</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">    [1,8,9],[2,9,10],[3,6,10],[4,6,7],[5,7,8]];</span>
+[ [ 2, 5, 6 ], [ 1, 3, 7 ], [ 2, 4, 8 ], [ 3, 5, 9 ], [ 1, 4, 10 ], 
+  [ 1, 8, 9 ], [ 2, 9, 10 ], [ 3, 6, 10 ], [ 4, 6, 7 ], [ 5, 7, 8 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">bl2:=BlissGraphCanonicalLabeling(10, petersen, false, false);</span>
+[ [ (4,8)(5,6)(9,10), (2,5,6)(3,4,9,7,10,8), (1,2,3,4,9,6)(5,7,8) ], 
+  (1,10)(2,9)(3,6,8,4,5,7) ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g2:=Group(bl2[1]);</span>
+Group([ (4,8)(5,6)(9,10), (2,5,6)(3,4,9,7,10,8), (1,2,3,4,9,6)
+(5,7,8) ])
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Print(StructureDescription(g2),"\n");</span>
+S5
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput"></span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">bl2c:=BlissGraphCanonicalLabeling(10, petersen, </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">    [1,1,1,1,1,2,2,2,2,2], false);</span>
+[ [ (2,5)(3,4)(7,10)(8,9), (1,2,3,4,5)(6,7,8,9,10) ], 
+  (1,5,3,2,4)(6,10,7)(8,9) ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g2c:=Group(bl2c[1]);</span>
+Group([ (2,5)(3,4)(7,10)(8,9), (1,2,3,4,5)(6,7,8,9,10) ])
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Print(StructureDescription(g2c),"\n");</span>
+D10
+</pre></div>
+
+<p>Let <span class="Math">\Gamma</span> be the direct product of two oriented cycles of size 3. Then <span class="Math">Aut(\Gamma)</span> is isomorphic to <span class="Math">(C_3 \times C_3).C_2</span>.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">dir_edges:=[</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">    [1,2],[2,3],[3,1],[4,5],[5,6],[6,4],[7,8],[8,9],[9,7],</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">    [1,4],[4,7],[7,1],[2,5],[5,8],[8,2],[3,6],[6,9],[9,3]</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">];</span>
+[ [ 1, 2 ], [ 2, 3 ], [ 3, 1 ], [ 4, 5 ], [ 5, 6 ], [ 6, 4 ], 
+  [ 7, 8 ], [ 8, 9 ], [ 9, 7 ], [ 1, 4 ], [ 4, 7 ], [ 7, 1 ], 
+  [ 2, 5 ], [ 5, 8 ], [ 8, 2 ], [ 3, 6 ], [ 6, 9 ], [ 9, 3 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">dg:=List([1..9],i-&gt;Filtered([1..9],j-&gt;[i,j] in dir_edges));</span>
+[ [ 2, 4 ], [ 3, 5 ], [ 1, 6 ], [ 5, 7 ], [ 6, 8 ], [ 4, 9 ], 
+  [ 1, 8 ], [ 2, 9 ], [ 3, 7 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">bl3:=BlissGraphCanonicalLabeling(9, dg, false, true);</span>
+[ [ (2,4)(3,7)(6,8), (1,2,3)(4,5,6)(7,8,9) ], (1,9)(2,7,5,4,8)(3,6) ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g3:=Group(bl3[1]);</span>
+Group([ (2,4)(3,7)(6,8), (1,2,3)(4,5,6)(7,8,9) ])
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Print(StructureDescription(g3),"\n");</span>
+C3 x S3
+</pre></div>
+
+<p>The last example shows that the same set of edges may define both directed and undirected graphs.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">path:=[[2],[3],[]];</span>
+[ [ 2 ], [ 3 ], [  ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">BlissGraphCanonicalLabeling(3, path, false, true);</span>
+[ [  ], (1,2,3) ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">BlissGraphCanonicalLabeling(3, path, false, false);</span>
+[ [ (1,3) ], (1,2,3) ]
+</pre></div>
+
+
+<div class="chlinkprevnextbot">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap0.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chapBib.html">[Next Chapter]</a>&nbsp;  </div>
+
+
+<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+
+<hr />
+<p class="foot">generated by <a href="http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
+</body>
+</html>

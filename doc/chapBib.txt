@@ -2,15 +2,21 @@
   
   [1XReferences[101X
   
-  [[20XDBJM+19[120X]  [16XDe  Beule,  J.,  Jonusas,  J.,  Mitchell,  J.,  Torpey,  M.  and Wilson, W.[116X, [17XDigraphs, Graphs, digraphs, and multidigraphs in GAP, Version 0.15.2[117X (2019), ((GAP
-  package)), https://gap-packages.github.io/Digraphs.
+  [[20XDBJM+19[120X]  [16XDe  Beule,  J., Jonusas, J., Mitchell, J., Torpey, M. and Wilson,
+  W.[116X,  [17XDigraphs,  Graphs,  digraphs,  and multidigraphs in GAP, Version 0.15.2[117X
+  (2019), ((GAP package)), https://gap-packages.github.io/Digraphs.
   
-  [[20XJK07[120X]  [16XJunttila, T. and Kaski, P.[116X, [17XEngineering an Efficient Canonical Labeling Tool for Large and Sparse Graphs[117X, in Proceedings of the Meeting on Algorithm Engineering &
-  Expermiments, Society for Industrial and Applied Mathematics, Philadelphia, PA, USA (2007), 135--149.
+  [[20XJK07[120X]  [16XJunttila,  T.  and  Kaski,  P.[116X,  [17XEngineering  an Efficient Canonical
+  Labeling  Tool for Large and Sparse Graphs[117X, in Proceedings of the Meeting on
+  Algorithm  Engineering  &  Expermiments,  Society for Industrial and Applied
+  Mathematics, Philadelphia, PA, USA (2007), 135--149.
   
-  [[20XMP14[120X] [16XMcKay, B. D. and Piperno, A.[116X, [17XPractical graph isomorphism, II[117X, [18XJ. Symbolic Comput.[118X, [19X60[119X (2014), 94–112.
+  [[20XMP14[120X]  [16XMcKay,  B.  D.  and Piperno, A.[116X, [17XPractical graph isomorphism, II[117X, [18XJ.
+  Symbolic Comput.[118X, [19X60[119X (2014), 94–112.
   
-  [[20XSoi19[120X] [16XSoicher, L. H.[116X, [17XGRAPE, GRaph Algorithms using PErmutation groups, Version 4.8.2[117X (2019), ((Refereed GAP package)), https://gap-packages.github.io/grape.
+  [[20XSoi19[120X]  [16XSoicher,  L.  H.[116X, [17XGRAPE, GRaph Algorithms using PErmutation groups,
+  Version       4.8.2[117X       (2019),       ((Refereed       GAP      package)),
+  https://gap-packages.github.io/grape.
   
   
   

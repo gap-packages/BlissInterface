@@ -1,0 +1,222 @@
+  
+  [1X1 [33X[0;0YUsage of the package[133X[101X
+  
+  
+  [1X1.1 [33X[0;0YIntroduction[133X[101X
+  
+  [33X[0;0YThe  [5XGAP[105X  package  [5XBlissInterface[105X  provides  a  low  level  interface to the
+  software  bliss:  A  Tool  for  Computing  Automorphism Groups and Canonical
+  Labelings  of  Graphs  ([7Xhttp://www.tcs.hut.fi/Software/bliss/[107X),  written  by
+  Tommi Junttila and Petteri Kaski [JK07].[133X
+  
+  [33X[0;0YThe  only interest of this package is the computation of the group of colour
+  preserving  automorphisms  of coloured graphs. The graphs can be directed or
+  undirected,  bipartite  or not. Duplicate edges between vertices are ignored
+  but try to avoid introducing them in the first place as they are not ignored
+  immediately but will consume memory and computation resources for a while.[133X
+  
+  [33X[0;0YFor  more  specialized  algorithms  and  methods of the theory of graphs, we
+  recommend  the  packages  [5XDigraphs[105X  [DBJM+19]  and [5XGRAPE[105X [Soi19]. To compute
+  graph      automorphisms      see      also      the      software     nauty
+  ([7Xhttp://users.cecs.anu.edu.au/~bdm/nauty/[107X)   by  Brendan  McKay  and  Adolfo
+  Piperno [MP14].[133X
+  
+  
+  [1X1.2 [33X[0;0YInstallation[133X[101X
+  
+  [30X    [33X[0;6YDownload                the                package                from
+        [7Xhttps://github.com/gap-packages/BlissInterface[107X.[133X
+  
+  [30X    [33X[0;6YUnzip/untar   the   file,   this  should  create  a  directory  called
+        [11XBlissInterface*[111X.[133X
+  
+  [30X    [33X[0;6YLocate  the  [11Xpkg[111X  directory  of your [5XGAP[105X directory, which contains the
+        directories  [11Xlib[111X,  [11Xdoc[111X  and  so on. Move the directory [11XBlissInterface*[111X
+        into the [11Xpkg[111X directory.[133X
+  
+  [30X    [33X[0;6YAlternatively, you can use your [11Xpkg[111X directory. Make sure it is in your
+        [5XGAP[105X root path.[133X
+  
+  [30X    [33X[0;6YIt  is  necessary  to  compile  the [5XBlissInterface[105X package. Inside the
+        [11Xpkg/BlissInterface*[111X directory, type[133X
+  
+  [4X      [32X[104X
+          [4X./configure[104X
+          [4Xmake[104X
+        [4X[32X[104X
+  
+  [30X    [33X[0;6YStart [5XGAP[105X in the usual way (i.e. type [10Xgap[110X at the command line).[133X
+  
+  [30X    [33X[0;6YType [10XLoadPackage("blissinterface");[110X[133X
+  
+  [30X    [33X[0;6YFor  questions,  remarks  and  issues  please  use  the  issue tracker
+        ([7Xhttps://github.com/gap-packages/BlissInterface/issues[107X).[133X
+  
+  
+  [1X1.3 [33X[0;0YFunctionality[133X[101X
+  
+  [33X[0;0YThis  section  will  describe the two functions of [5XBlissInterface[105X, and their
+  nonchecking counterparts.[133X
+  
+  [1X1.3-1 BlissGraphCanonicalLabeling[101X
+  
+  [33X[1;0Y[29X[2XBlissGraphCanonicalLabeling[102X( [3Xn[103X, [3Xoutneigh[103X, [3Xcolours[103X, [3Xisdirected[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10YThe  pair  [10X[gens,cl][110X  as  GAP  object,  where  [10Xgens[110X  is  a list of
+            generators for for the group of colour preserving automorphisms of
+            the graph [10XG[110X, and [10Xcl[110X is a canonical labeling of [10XG[110X.[133X
+  
+  [33X[0;0YThe  coloured  graph  [10XG[110X  has vertices [10X[1..n][110X. If [3Xisdirected[103X is [10Xtrue[110X the [10XG[110X is
+  directed.   The  edges  of  [10XG[110X  are  given  by  [3Xoutneigh[103X,  which  is  a  list
+  [10X[N_1,...,N_n][110X,  such that [10XN_i[110X is the list of (out)neighbors of the vertex [10Xi[110X.
+  Duplicate edges between vertices and loops are ignored.[133X
+  
+  [33X[0;0YIf  [3Xcolours[103X  is  a  list  of length [10Xn[110X then its elements are used to define a
+  vertex colouring of [10XG[110X, otherwise all vertices have colour [10X0[110X.[133X
+  
+  [33X[0;0YThis  function has a nonchecking version [10XBLISS_GRAPH_CANONICAL_LABELING[110X with
+  the same parameters. Clearly, the nonchecking version is slightly faster but
+  it   must   be  used  with  extreme  care.  Bad  parameters  may  result  in
+  unpredictable behaviour.[133X
+  
+  [1X1.3-2 BlissBipartiteCanonicalLabeling[101X
+  
+  [33X[1;0Y[29X[2XBlissBipartiteCanonicalLabeling[102X( [3Xn[103X, [3Xm[103X, [3Xoutneigh[103X, [3Xucolours[103X, [3Xlcolours[103X ) [32X function[133X
+  [6XReturns:[106X  [33X[0;10YThe  pair  [10X[gens,cl][110X  as  GAP  object,  where  [10Xgens[110X  is  a list of
+            generators  for  [10XAut(G)[110X  and  [10Xcl[110X is a canonical labeling of [10XG[110X. The
+            pair  [10X[gens,cl][110X  as GAP object, where [10Xgens[110X is a list of generators
+            for  for  the  group  of  colour  preserving  automorphisms of the
+            directed bipartite graph [10XG[110X, and [10Xcl[110X is a canonical labeling of [10XG[110X.[133X
+  
+  [33X[0;0YThe  coloured,  directed,  bipartite  graph  [10XG[110X  has vertices [10X[1..n+m][110X. Upper
+  vertices  are  [10X[1..n][110X, lower vertices are [10X[n+1..n+m][110X. Edges point bottom up.
+  The  edges  of  [10XG[110X are given by [3Xoutneigh[103X, which is a list [10X[N_1,...,N_m][110X, such
+  that  [10XN_i[110X  is  the  list  of outneighbors of the lower vertex [10Xn+i[110X. Duplicate
+  edges between vertices and loops are ignored.[133X
+  
+  [33X[0;0YIf  [3Xucolours[103X  is  a  list of length [10Xn[110X then its elements are used to define a
+  colouring of the upper vertices, otherwise all upper vertices have colour [10X0[110X.
+  Similarly,  if [3Xlcolours[103X is a list of length [10Xm[110X then it defines a colouring of
+  the lower vertices.[133X
+  
+  [33X[0;0YThis  function  has a nonchecking version [10XBLISS_BIPARTITE_CANONICAL_LABELING[110X
+  with  the  same  parameters.  Clearly,  the  nonchecking version is slightly
+  faster  but  it must be used with extreme care. Bad parameters may result in
+  unpredictable behaviour.[133X
+  
+  
+  [1X1.4 [33X[0;0YExamples[133X[101X
+  
+  [33X[0;0YUsing  the point-line graph [23X\Gamma[123X of the Fano plane [23XPG(2,2)[123X, we can compute
+  its collineation group [23XPSL(3,2)[123X. By colouring the vertices of [23X\Gamma[123X, we get
+  stabilizers of points and/or line.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XLoadPackage( "BlissInterface", false );[127X[104X
+    [4X[28Xtrue[128X[104X
+    [4X[25Xgap>[125X [27X[127X[104X
+    [4X[25Xgap>[125X [27Xfano:=Set([[1,2,4],[2,3,5],[3,4,6],[4,5,7],[127X[104X
+    [4X[25X>[125X [27X    [5,6,1],[6,7,2],[7,1,3]],Set);[127X[104X
+    [4X[28X[ [ 1, 2, 4 ], [ 1, 3, 7 ], [ 1, 5, 6 ], [ 2, 3, 5 ], [ 2, 6, 7 ], [128X[104X
+    [4X[28X  [ 3, 4, 6 ], [ 4, 5, 7 ] ][128X[104X
+    [4X[25Xgap>[125X [27X[127X[104X
+    [4X[25Xgap>[125X [27Xbl1:=BlissBipartiteCanonicalLabeling(7, 7, fano, 0, 0);[127X[104X
+    [4X[28X[ [ (3,5)(6,7)(9,10)(13,14), (3,6)(5,7)(9,10)(11,12), [128X[104X
+    [4X[28X      (2,3)(4,7)(8,9)(12,13), (1,2)(5,7)(9,11)(10,12) ], [128X[104X
+    [4X[28X  (1,7,3,4,5,2,6)(8,14)(9,13)(10,12) ][128X[104X
+    [4X[25Xgap>[125X [27Xg1:=Group(bl1[1]);[127X[104X
+    [4X[28XGroup([ (3,5)(6,7)(9,10)(13,14), (3,6)(5,7)(9,10)(11,12), (2,3)(4,7)[128X[104X
+    [4X[28X(8,9)(12,13), (1,2)(5,7)(9,11)(10,12) ])[128X[104X
+    [4X[25Xgap>[125X [27XPrint(StructureDescription(g1),"\n");[127X[104X
+    [4X[28XPSL(3,2)[128X[104X
+    [4X[25Xgap>[125X [27XOrbitLength(g1,fano,OnSetsSets);[127X[104X
+    [4X[28X1[128X[104X
+    [4X[25Xgap>[125X [27X[127X[104X
+    [4X[25Xgap>[125X [27Xbl1c:=BlissBipartiteCanonicalLabeling(7, 7, fano, [127X[104X
+    [4X[25X>[125X [27X    [0,0,1,0,1,1,1], 0);[127X[104X
+    [4X[28X[ [ (3,5)(6,7)(9,10)(13,14), (3,7)(5,6)(11,12)(13,14), [128X[104X
+    [4X[28X      (2,4)(5,6)(11,13)(12,14), (1,2)(5,7)(9,11)(10,12) ], [128X[104X
+    [4X[28X  (1,3,14,5,12,4)(6,11,7,13)(8,10) ][128X[104X
+    [4X[25Xgap>[125X [27Xg1c:=Group(bl1c[1]);[127X[104X
+    [4X[28XGroup([ (3,5)(6,7)(9,10)(13,14), (3,7)(5,6)(11,12)(13,14), (2,4)(5,6)[128X[104X
+    [4X[28X(11,13)(12,14), (1,2)(5,7)(9,11)(10,12) ])[128X[104X
+    [4X[25Xgap>[125X [27XPrint(StructureDescription(g1c),"\n");[127X[104X
+    [4X[28XS4[128X[104X
+    [4X[25Xgap>[125X [27XOrbits(g1c,[1..14]);[127X[104X
+    [4X[28X[ [ 1, 4, 2 ], [ 3, 6, 5, 7 ], [ 8 ], [ 9, 13, 10, 11, 14, 12 ] ][128X[104X
+    [4X[25Xgap>[125X [27X[127X[104X
+    [4X[25Xgap>[125X [27Xbl1cc:=BlissBipartiteCanonicalLabeling(7, 7, fano, 0, [127X[104X
+    [4X[25X>[125X [27X    [0,1,1,1,1,1,1]);[127X[104X
+    [4X[28X[ [ (3,5)(6,7)(9,10)(13,14), (3,7)(5,6)(11,12)(13,14), [128X[104X
+    [4X[28X      (2,4)(5,6)(11,13)(12,14), (1,2)(5,7)(9,11)(10,12) ], [128X[104X
+    [4X[28X  (1,7,3,4,5,2,6)(9,14)(10,13)(11,12) ][128X[104X
+    [4X[25Xgap>[125X [27Xg1cc:=Group(bl1cc[1]);[127X[104X
+    [4X[28XGroup([ (3,5)(6,7)(9,10)(13,14), (3,7)(5,6)(11,12)(13,14), (2,4)(5,6)[128X[104X
+    [4X[28X(11,13)(12,14), (1,2)(5,7)(9,11)(10,12) ])[128X[104X
+    [4X[25Xgap>[125X [27XPrint(StructureDescription(g1cc),"\n");[127X[104X
+    [4X[28XS4[128X[104X
+    [4X[25Xgap>[125X [27XOrbits(g1cc,[1..14]);[127X[104X
+    [4X[28X[ [ 1, 4, 2 ], [ 3, 6, 5, 7 ], [ 8 ], [ 9, 13, 10, 11, 14, 12 ] ][128X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YThe  automorphism  group  of  the  Petersen graphy is isomorphic to [23XS_5[123X. The
+  automorphisms  preserving  two  disjoint  5-cycles  form a dihedral group of
+  order 10.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xpetersen:=[[2,5,6],[1,3,7],[2,4,8],[3,5,9],[1,4,10],[127X[104X
+    [4X[25X>[125X [27X    [1,8,9],[2,9,10],[3,6,10],[4,6,7],[5,7,8]];[127X[104X
+    [4X[28X[ [ 2, 5, 6 ], [ 1, 3, 7 ], [ 2, 4, 8 ], [ 3, 5, 9 ], [ 1, 4, 10 ], [128X[104X
+    [4X[28X  [ 1, 8, 9 ], [ 2, 9, 10 ], [ 3, 6, 10 ], [ 4, 6, 7 ], [ 5, 7, 8 ] ][128X[104X
+    [4X[25Xgap>[125X [27Xbl2:=BlissGraphCanonicalLabeling(10, petersen, false, false);[127X[104X
+    [4X[28X[ [ (4,8)(5,6)(9,10), (2,5,6)(3,4,9,7,10,8), (1,2,3,4,9,6)(5,7,8) ], [128X[104X
+    [4X[28X  (1,10)(2,9)(3,6,8,4,5,7) ][128X[104X
+    [4X[25Xgap>[125X [27Xg2:=Group(bl2[1]);[127X[104X
+    [4X[28XGroup([ (4,8)(5,6)(9,10), (2,5,6)(3,4,9,7,10,8), (1,2,3,4,9,6)[128X[104X
+    [4X[28X(5,7,8) ])[128X[104X
+    [4X[25Xgap>[125X [27XPrint(StructureDescription(g2),"\n");[127X[104X
+    [4X[28XS5[128X[104X
+    [4X[25Xgap>[125X [27X[127X[104X
+    [4X[25Xgap>[125X [27Xbl2c:=BlissGraphCanonicalLabeling(10, petersen, [127X[104X
+    [4X[25X>[125X [27X    [1,1,1,1,1,2,2,2,2,2], false);[127X[104X
+    [4X[28X[ [ (2,5)(3,4)(7,10)(8,9), (1,2,3,4,5)(6,7,8,9,10) ], [128X[104X
+    [4X[28X  (1,5,3,2,4)(6,10,7)(8,9) ][128X[104X
+    [4X[25Xgap>[125X [27Xg2c:=Group(bl2c[1]);[127X[104X
+    [4X[28XGroup([ (2,5)(3,4)(7,10)(8,9), (1,2,3,4,5)(6,7,8,9,10) ])[128X[104X
+    [4X[25Xgap>[125X [27XPrint(StructureDescription(g2c),"\n");[127X[104X
+    [4X[28XD10[128X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YLet  [23X\Gamma[123X  be  the  direct  product of two oriented cycles of size 3. Then
+  [23XAut(\Gamma)[123X is isomorphic to [23X(C_3 \times C_3).C_2[123X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xdir_edges:=[[127X[104X
+    [4X[25X>[125X [27X    [1,2],[2,3],[3,1],[4,5],[5,6],[6,4],[7,8],[8,9],[9,7],[127X[104X
+    [4X[25X>[125X [27X    [1,4],[4,7],[7,1],[2,5],[5,8],[8,2],[3,6],[6,9],[9,3][127X[104X
+    [4X[25X>[125X [27X];[127X[104X
+    [4X[28X[ [ 1, 2 ], [ 2, 3 ], [ 3, 1 ], [ 4, 5 ], [ 5, 6 ], [ 6, 4 ], [128X[104X
+    [4X[28X  [ 7, 8 ], [ 8, 9 ], [ 9, 7 ], [ 1, 4 ], [ 4, 7 ], [ 7, 1 ], [128X[104X
+    [4X[28X  [ 2, 5 ], [ 5, 8 ], [ 8, 2 ], [ 3, 6 ], [ 6, 9 ], [ 9, 3 ] ][128X[104X
+    [4X[25Xgap>[125X [27Xdg:=List([1..9],i->Filtered([1..9],j->[i,j] in dir_edges));[127X[104X
+    [4X[28X[ [ 2, 4 ], [ 3, 5 ], [ 1, 6 ], [ 5, 7 ], [ 6, 8 ], [ 4, 9 ], [128X[104X
+    [4X[28X  [ 1, 8 ], [ 2, 9 ], [ 3, 7 ] ][128X[104X
+    [4X[25Xgap>[125X [27Xbl3:=BlissGraphCanonicalLabeling(9, dg, false, true);[127X[104X
+    [4X[28X[ [ (2,4)(3,7)(6,8), (1,2,3)(4,5,6)(7,8,9) ], (1,9)(2,7,5,4,8)(3,6) ][128X[104X
+    [4X[25Xgap>[125X [27Xg3:=Group(bl3[1]);[127X[104X
+    [4X[28XGroup([ (2,4)(3,7)(6,8), (1,2,3)(4,5,6)(7,8,9) ])[128X[104X
+    [4X[25Xgap>[125X [27XPrint(StructureDescription(g3),"\n");[127X[104X
+    [4X[28XC3 x S3[128X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YThe  last  example shows that the same set of edges may define both directed
+  and undirected graphs.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xpath:=[[2],[3],[]];[127X[104X
+    [4X[28X[ [ 2 ], [ 3 ], [  ] ][128X[104X
+    [4X[25Xgap>[125X [27XBlissGraphCanonicalLabeling(3, path, false, true);[127X[104X
+    [4X[28X[ [  ], (1,2,3) ][128X[104X
+    [4X[25Xgap>[125X [27XBlissGraphCanonicalLabeling(3, path, false, false);[127X[104X
+    [4X[28X[ [ (1,3) ], (1,2,3) ][128X[104X
+  [4X[32X[104X
+  

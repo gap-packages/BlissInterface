@@ -41,11 +41,14 @@ citeas: |
 bibtex: |
     @misc{ BlissInterface0.21,
       author =           {Nagy, G. P.},
-      title =            {{BlissInterface}, Low level interface to the bliss graph automorphism tool, {V}ersion 0.21},
+      title =            {{BlissInterface},  Low  level  interface  to the bliss
+                          graph automorphism tool, {V}ersion 0.21},
       month =            {Oct},
       year =             {2019},
       note =             {GAP package},
-      howpublished =     {\href {https://gap-packages.github.io/BlissInterface/} {\texttt{https://gap-packages.github.io/}\discretionary {}{}{}\texttt{BlissInterface/}}},
+      howpublished =     {\href {https://gap-packages.github.io/BlissInterface/}
+                          {\texttt{https://gap-packages.github.io/}\discretionary
+                          {}{}{}\texttt{BlissInterface/}}},
       printedkey =       {Nag19}
     }
 
