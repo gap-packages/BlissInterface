@@ -21,6 +21,8 @@ packageinfo: https://gap-packages.github.io/BlissInterface/PackageInfo.g
 downloads:
     - name: .tar.gz
       url: https://github.com/gap-packages/BlissInterface/releases/download/v0.21/BlissInterface-0.21.tar.gz
+    - name: .zip
+      url: https://github.com/gap-packages/BlissInterface/releases/download/v0.21/BlissInterface-0.21-win.zip
 
 abstract: |
 
