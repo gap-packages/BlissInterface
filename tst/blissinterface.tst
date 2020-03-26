@@ -191,7 +191,7 @@ gap> dg:=List([1..9],i->Filtered([1..9],j->[i,j] in dir_edges));
   [ 1, 8 ], [ 2, 9 ], [ 3, 7 ] ]
 gap> bl3:=BlissGraphCanonicalLabeling(9, dg, false, true);
 [ [ (2,4)(3,7)(6,8), (1,2,3)(4,5,6)(7,8,9) ], (1,9)(2,7,5,4,8)(3,6), 
-  895877481 ]
+  -177864343 ]
 gap> g3:=Group(bl3[1]);
 Group([ (2,4)(3,7)(6,8), (1,2,3)(4,5,6)(7,8,9) ])
 gap> Print(StructureDescription(g3),"\n");
