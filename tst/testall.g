@@ -6,23 +6,31 @@
 #
 LoadPackage( "BlissInterface" );
 
-# TestDirectory(DirectoriesPackageLibrary( "BlissInterface", "tst" ),
-#   rec(
-#     exitGAP := true,
-#     testOptions := rec(compareFunction := "uptowhitespace")
-#     )
-#   );
-
 dir := DirectoriesPackageLibrary( "BlissInterface", "tst" );
-optrec := rec(
-  exitGAP := true,
-  testOptions := rec(compareFunction := "uptowhitespace")
+if GAPInfo.BytesPerVariable=8 then 
+  toexclude := [ "blissinterface_32bit.tst" ]; 
+else
+  toexclude := [ "blissinterface_64bit.tst" ];
+fi;
+
+TestDirectory( dir,
+  rec(
+    exitGAP := true,
+    testOptions := rec(compareFunction := "uptowhitespace"),
+    exclude := toexclude
+  )
 );
 
-if GAPInfo.BytesPerVariable=4 then 
-  Test( Filename(dir,"blissinterface_32bit.tst"), optrec );
-else
-  Test( Filename(dir,"blissinterface_64bit.tst"), optrec );
-fi;
+# dir := DirectoriesPackageLibrary( "BlissInterface", "tst" );
+# optrec := rec(
+#   exitGAP := true,
+#   testOptions := rec(compareFunction := "uptowhitespace")
+# );
+
+# if GAPInfo.BytesPerVariable=4 then 
+#   Test( Filename(dir,"blissinterface_32bit.tst"), rec(compareFunction := "uptowhitespace") );
+# else
+#   Test( Filename(dir,"blissinterface_64bit.tst"), rec(compareFunction := "uptowhitespace") );
+# fi;
 
 FORCE_QUIT_GAP(1); # if we ever get here, there was an error
