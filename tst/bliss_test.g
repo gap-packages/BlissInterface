@@ -1,7 +1,11 @@
-SizeScreen([72]);
+LogTo("/tmp/blissinterface_test.tst");
+START_TEST("BlissInterface package: blissinterface.tst");
+SizeScreen([72,23]);
+
 ExtendRootDirectories([Concatenation(GAPInfo.UserHome,"/MyGAP/")]);
 LoadPackage( "BlissInterface", false );
 
+###################################
 fano:=Set([[1,2,4],[2,3,5],[3,4,6],[4,5,7],
     [5,6,1],[6,7,2],[7,1,3]],Set);
 
@@ -45,3 +49,9 @@ Print(StructureDescription(g3),"\n");
 path:=[[2],[3],[]];
 BlissGraphCanonicalLabeling(3, path, false, true);
 BlissGraphCanonicalLabeling(3, path, false, false);
+###################################
+
+STOP_TEST( "blissinterface.tst", 10000 );
+LogTo();
+
+StringTime(Runtime());
