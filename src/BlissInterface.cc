@@ -56,7 +56,7 @@ static Obj blissinterface_autgr_canlab(bliss::AbstractGraph *graph) {
   Int i;
   bliss::Stats stats;
 
-  autos = NEW_PLIST(T_PLIST, 2);
+  autos = NEW_PLIST(T_PLIST, 3);
   n = INTOBJ_INT(graph->get_nof_vertices());
 
   SET_ELM_PLIST(autos, 1, NEW_PLIST(T_PLIST, 0)); // perms of the vertices
@@ -73,6 +73,11 @@ static Obj blissinterface_autgr_canlab(bliss::AbstractGraph *graph) {
     ptr[i] = canon[i];
   }
   SET_ELM_PLIST(autos, 2, p);
+  CHANGED_BAG(autos);
+
+  Obj hash = INTOBJ_INT(graph->permute(canon)->get_hash());
+  SET_ELM_PLIST(autos, 3, hash);
+  SET_LEN_PLIST(autos, 3);
   CHANGED_BAG(autos);
 
   if (LEN_PLIST(ELM_PLIST(autos, 1)) != 0) {

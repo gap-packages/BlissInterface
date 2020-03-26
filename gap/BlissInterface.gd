@@ -64,16 +64,17 @@
 #!   behaviour. 
 #! @Arguments n, outneigh, colours, isdirected
 #! @Returns
-#!   The pair <C>[gens,cl]</C> as GAP object, where <C>gens</C> is a list
-#!   of generators for for the group of colour preserving automorphisms of 
-#!   the graph <C>G</C>, and <C>cl</C> is a canonical labeling of <C>G</C>.
+#!   The triple <C>[gens,cl,hash]</C> as GAP object, where <C>gens</C> is a list
+#!   of generators for the group of colour preserving automorphisms of 
+#!   the graph <C>G</C>, <C>cl</C> is a canonical labeling of <C>G</C>, 
+#!   and <C>hash</C> is an integer valued hash of the permuted graph.
 DeclareGlobalFunction( "BlissGraphCanonicalLabeling" );
 
 #! @Arguments n, m, outneigh, ucolours, lcolours
 #! @Returns
-#!   The pair <C>[gens,cl]</C> as GAP object, where <C>gens</C> is a list
-#!   of generators for <C>Aut(G)</C> and <C>cl</C> is a canonical labeling of
-#!   <C>G</C>.
+#!   The triple <C>[gens,cl,hash]</C> as GAP object, where <C>gens</C> is a list
+#!   of generators for <C>Aut(G)</C>, <C>cl</C> is a canonical labeling of
+#!   <C>G</C>, and <C>hash</C> is an integer valued hash of the permuted graph.
 #! @Description
 #!   The coloured, directed, bipartite graph <C>G</C> has vertices 
 #!   <C>[1..n+m]</C>. Upper vertices are <C>[1..n]</C>, lower vertices are
@@ -91,11 +92,6 @@ DeclareGlobalFunction( "BlissGraphCanonicalLabeling" );
 #!   with the same parameters. Clearly, the nonchecking version is slightly 
 #!   faster but it must be used with extreme care. Bad parameters may result 
 #!   in unpredictable behaviour. 
-#! @Returns
-#!   The pair <C>[gens,cl]</C> as GAP object, where <C>gens</C> is a list
-#!   of generators for for the group of colour preserving automorphisms of 
-#!   the directed bipartite graph <C>G</C>, and <C>cl</C> is a canonical 
-#!   labeling of <C>G</C>.
 DeclareGlobalFunction( "BlissBipartiteCanonicalLabeling" );
 
 #! @Section Examples
