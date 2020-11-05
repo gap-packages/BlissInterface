@@ -73,8 +73,8 @@
 
 
 <div class="example"><pre>
-./configure
-make</pre></div>
+   ./configure
+   make</pre></div>
 
 </li>
 <li><p>Start <strong class="pkg">GAP</strong> in the usual way (i.e. type <code class="code">gap</code> at the command line).</p>
@@ -98,7 +98,7 @@ make</pre></div>
 <h5>1.3-1 BlissGraphCanonicalLabeling</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; BlissGraphCanonicalLabeling</code>( <var class="Arg">n</var>, <var class="Arg">outneigh</var>, <var class="Arg">colours</var>, <var class="Arg">isdirected</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
-<p>Returns: The pair <code class="code">[gens,cl]</code> as GAP object, where <code class="code">gens</code> is a list of generators for for the group of colour preserving automorphisms of the graph <code class="code">G</code>, and <code class="code">cl</code> is a canonical labeling of <code class="code">G</code>.</p>
+<p>Returns: The triple <code class="code">[gens,cl,hash]</code> as GAP object, where <code class="code">gens</code> is a list of generators for the group of colour preserving automorphisms of the graph <code class="code">G</code>, <code class="code">cl</code> is a canonical labeling of <code class="code">G</code>, and <code class="code">hash</code> is an integer valued hash of the permuted graph.</p>
 
 <p>The coloured graph <code class="code">G</code> has vertices <code class="code">[1..n]</code>. If <var class="Arg">isdirected</var> is <code class="code">true</code> the <code class="code">G</code> is directed. The edges of <code class="code">G</code> are given by <var class="Arg">outneigh</var>, which is a list <code class="code">[N_1,...,N_n]</code>, such that <code class="code">N_i</code> is the list of (out)neighbors of the vertex <code class="code">i</code>. Duplicate edges between vertices and loops are ignored.</p>
 
@@ -111,7 +111,7 @@ make</pre></div>
 <h5>1.3-2 BlissBipartiteCanonicalLabeling</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; BlissBipartiteCanonicalLabeling</code>( <var class="Arg">n</var>, <var class="Arg">m</var>, <var class="Arg">outneigh</var>, <var class="Arg">ucolours</var>, <var class="Arg">lcolours</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
-<p>Returns: The pair <code class="code">[gens,cl]</code> as GAP object, where <code class="code">gens</code> is a list of generators for <code class="code">Aut(G)</code> and <code class="code">cl</code> is a canonical labeling of <code class="code">G</code>. The pair <code class="code">[gens,cl]</code> as GAP object, where <code class="code">gens</code> is a list of generators for for the group of colour preserving automorphisms of the directed bipartite graph <code class="code">G</code>, and <code class="code">cl</code> is a canonical labeling of <code class="code">G</code>.</p>
+<p>Returns: The triple <code class="code">[gens,cl,hash]</code> as GAP object, where <code class="code">gens</code> is a list of generators for <code class="code">Aut(G)</code>, <code class="code">cl</code> is a canonical labeling of <code class="code">G</code>, and <code class="code">hash</code> is an integer valued hash of the permuted graph.</p>
 
 <p>The coloured, directed, bipartite graph <code class="code">G</code> has vertices <code class="code">[1..n+m]</code>. Upper vertices are <code class="code">[1..n]</code>, lower vertices are <code class="code">[n+1..n+m]</code>. Edges point bottom up. The edges of <code class="code">G</code> are given by <var class="Arg">outneigh</var>, which is a list <code class="code">[N_1,...,N_m]</code>, such that <code class="code">N_i</code> is the list of outneighbors of the lower vertex <code class="code">n+i</code>. Duplicate edges between vertices and loops are ignored.</p>
 
@@ -138,10 +138,10 @@ true
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">bl1:=BlissBipartiteCanonicalLabeling(7, 7, fano, 0, 0);</span>
 [ [ (3,5)(6,7)(9,10)(13,14), (3,6)(5,7)(9,10)(11,12), 
       (2,3)(4,7)(8,9)(12,13), (1,2)(5,7)(9,11)(10,12) ], 
-  (1,7,3,4,5,2,6)(8,14)(9,13)(10,12) ]
+  (1,7,3,4,5,2,6)(8,14)(9,13)(10,12), 1847000447 ]
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g1:=Group(bl1[1]);</span>
 Group([ (3,5)(6,7)(9,10)(13,14), (3,6)(5,7)(9,10)(11,12), (2,3)(4,7)
-(8,9)(12,13), (1,2)(5,7)(9,11)(10,12) ])
+  (8,9)(12,13), (1,2)(5,7)(9,11)(10,12) ])
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Print(StructureDescription(g1),"\n");</span>
 PSL(3,2)
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">OrbitLength(g1,fano,OnSetsSets);</span>
@@ -151,10 +151,10 @@ PSL(3,2)
 <span class="GAPprompt">&gt;</span> <span class="GAPinput">    [0,0,1,0,1,1,1], 0);</span>
 [ [ (3,5)(6,7)(9,10)(13,14), (3,7)(5,6)(11,12)(13,14), 
       (2,4)(5,6)(11,13)(12,14), (1,2)(5,7)(9,11)(10,12) ], 
-  (1,3,14,5,12,4)(6,11,7,13)(8,10) ]
+  (1,3,14,5,12,4)(6,11,7,13)(8,10), 2515557588 ]
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g1c:=Group(bl1c[1]);</span>
 Group([ (3,5)(6,7)(9,10)(13,14), (3,7)(5,6)(11,12)(13,14), (2,4)(5,6)
-(11,13)(12,14), (1,2)(5,7)(9,11)(10,12) ])
+  (11,13)(12,14), (1,2)(5,7)(9,11)(10,12) ])
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Print(StructureDescription(g1c),"\n");</span>
 S4
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Orbits(g1c,[1..14]);</span>
@@ -164,10 +164,10 @@ S4
 <span class="GAPprompt">&gt;</span> <span class="GAPinput">    [0,1,1,1,1,1,1]);</span>
 [ [ (3,5)(6,7)(9,10)(13,14), (3,7)(5,6)(11,12)(13,14), 
       (2,4)(5,6)(11,13)(12,14), (1,2)(5,7)(9,11)(10,12) ], 
-  (1,7,3,4,5,2,6)(9,14)(10,13)(11,12) ]
+  (1,7,3,4,5,2,6)(9,14)(10,13)(11,12), 1330424485 ]
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g1cc:=Group(bl1cc[1]);</span>
 Group([ (3,5)(6,7)(9,10)(13,14), (3,7)(5,6)(11,12)(13,14), (2,4)(5,6)
-(11,13)(12,14), (1,2)(5,7)(9,11)(10,12) ])
+  (11,13)(12,14), (1,2)(5,7)(9,11)(10,12) ])
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Print(StructureDescription(g1cc),"\n");</span>
 S4
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Orbits(g1cc,[1..14]);</span>
@@ -184,17 +184,17 @@ S4
   [ 1, 8, 9 ], [ 2, 9, 10 ], [ 3, 6, 10 ], [ 4, 6, 7 ], [ 5, 7, 8 ] ]
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">bl2:=BlissGraphCanonicalLabeling(10, petersen, false, false);</span>
 [ [ (4,8)(5,6)(9,10), (2,5,6)(3,4,9,7,10,8), (1,2,3,4,9,6)(5,7,8) ], 
-  (1,10)(2,9)(3,6,8,4,5,7) ]
+  (1,10)(2,9)(3,6,8,4,5,7), 3430842650 ]
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g2:=Group(bl2[1]);</span>
-Group([ (4,8)(5,6)(9,10), (2,5,6)(3,4,9,7,10,8), (1,2,3,4,9,6)
-(5,7,8) ])
+Group([ (4,8)(5,6)(9,10), (2,5,6)(3,4,9,7,10,8), (1,2,3,4,9,6)(5,7,8) 
+ ])
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Print(StructureDescription(g2),"\n");</span>
 S5
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput"></span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">bl2c:=BlissGraphCanonicalLabeling(10, petersen, </span>
 <span class="GAPprompt">&gt;</span> <span class="GAPinput">    [1,1,1,1,1,2,2,2,2,2], false);</span>
 [ [ (2,5)(3,4)(7,10)(8,9), (1,2,3,4,5)(6,7,8,9,10) ], 
-  (1,5,3,2,4)(6,10,7)(8,9) ]
+  (1,5,3,2,4)(6,10,7)(8,9), 2440551578 ]
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g2c:=Group(bl2c[1]);</span>
 Group([ (2,5)(3,4)(7,10)(8,9), (1,2,3,4,5)(6,7,8,9,10) ])
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Print(StructureDescription(g2c),"\n");</span>
@@ -216,7 +216,8 @@ D10
 [ [ 2, 4 ], [ 3, 5 ], [ 1, 6 ], [ 5, 7 ], [ 6, 8 ], [ 4, 9 ], 
   [ 1, 8 ], [ 2, 9 ], [ 3, 7 ] ]
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">bl3:=BlissGraphCanonicalLabeling(9, dg, false, true);</span>
-[ [ (2,4)(3,7)(6,8), (1,2,3)(4,5,6)(7,8,9) ], (1,9)(2,7,5,4,8)(3,6) ]
+[ [ (2,4)(3,7)(6,8), (1,2,3)(4,5,6)(7,8,9) ], (1,9)(2,7,5,4,8)(3,6), 
+  895877481 ]
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g3:=Group(bl3[1]);</span>
 Group([ (2,4)(3,7)(6,8), (1,2,3)(4,5,6)(7,8,9) ])
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Print(StructureDescription(g3),"\n");</span>
@@ -230,9 +231,9 @@ C3 x S3
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">path:=[[2],[3],[]];</span>
 [ [ 2 ], [ 3 ], [  ] ]
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">BlissGraphCanonicalLabeling(3, path, false, true);</span>
-[ [  ], (1,2,3) ]
+[ [  ], (1,2,3), 1876527224 ]
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">BlissGraphCanonicalLabeling(3, path, false, false);</span>
-[ [ (1,3) ], (1,2,3) ]
+[ [ (1,3) ], (1,2,3), 4110465937 ]
 </pre></div>
 
 

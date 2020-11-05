@@ -6,10 +6,10 @@
            [1X Low level interface to the bliss graph automorphism tool [101X
   
   
-                                      0.21
+                                      0.22
   
   
-                                 8 October 2019
+                                 26 March 2020
   
   
                                  Gábor P. Nagy

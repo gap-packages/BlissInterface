@@ -1,6 +1,6 @@
 name: BlissInterface
-version: "0.21"
-date: 2019-10-08
+version: "0.22"
+date: 2020-03-26
 description: |
     Low level interface to the bliss graph automorphism tool
 
@@ -20,9 +20,7 @@ packageinfo: https://gap-packages.github.io/BlissInterface/PackageInfo.g
 
 downloads:
     - name: .tar.gz
-      url: https://github.com/gap-packages/BlissInterface/releases/download/v0.21/BlissInterface-0.21.tar.gz
-    - name: .zip
-      url: https://github.com/gap-packages/BlissInterface/releases/download/v0.21/BlissInterface-0.21-win.zip
+      url: https://github.com/gap-packages/BlissInterface/releases/download/v0.22/BlissInterface-0.22.tar.gz
 
 abstract: |
 
@@ -31,26 +29,26 @@ doc-html: doc/chap0.html
 doc-pdf: doc/manual.pdf
 citeas: |
     <p class='BibEntry'>
-    [<span class='BibKey'>Nag19</span>]   <b class='BibAuthor'>Nagy, G. P.</b>,
+    [<span class='BibKey'>Nag20</span>]   <b class='BibAuthor'>Nagy, G. P.</b>,
      <i class='BibTitle'>BlissInterface, Low level interface to the bliss graph automorphism tool,
-             Version 0.21</i>
-     (<span class='BibYear'>2019</span>)<br />
+             Version 0.22</i>
+     (<span class='BibYear'>2020</span>)<br />
     (<span class='BibNote'>GAP package</span>),
     <span class='BibHowpublished'><a href="https://gap-packages.github.io/BlissInterface/">https://gap-packages.github.io/BlissInterface/</a></span>.
     </p>
     
 
 bibtex: |
-    @misc{ BlissInterface0.21,
+    @misc{ BlissInterface0.22,
       author =           {Nagy, G. P.},
       title =            {{BlissInterface},  Low  level  interface  to the bliss
-                          graph automorphism tool, {V}ersion 0.21},
-      month =            {Oct},
-      year =             {2019},
+                          graph automorphism tool, {V}ersion 0.22},
+      month =            {Mar},
+      year =             {2020},
       note =             {GAP package},
       howpublished =     {\href {https://gap-packages.github.io/BlissInterface/}
                           {\texttt{https://gap-packages.github.io/}\discretionary
                           {}{}{}\texttt{BlissInterface/}}},
-      printedkey =       {Nag19}
+      printedkey =       {Nag20}
     }
 
