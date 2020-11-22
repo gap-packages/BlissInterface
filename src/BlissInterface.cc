@@ -75,7 +75,11 @@ static Obj blissinterface_autgr_canlab(bliss::AbstractGraph *graph) {
   SET_ELM_PLIST(autos, 2, p);
   CHANGED_BAG(autos);
 
-  Obj hash = INTOBJ_INT(graph->permute(canon)->get_hash());
+  bliss::AbstractGraph *gg;
+  gg = graph->permute(canon);
+  Obj hash = INTOBJ_INT(gg->get_hash());
+  delete gg;
+
   SET_ELM_PLIST(autos, 3, hash);
   SET_LEN_PLIST(autos, 3);
   CHANGED_BAG(autos);
@@ -186,7 +190,9 @@ Obj FuncBLISS_BIPARTITE_CANONICAL_LABELING(Obj self, Obj n, Obj m, Obj outneigh,
       g->add_edge(nn + i - 1, INT_INTOBJ(ELM_PLIST(block, j)) - 1);
     }
   }
-  return blissinterface_autgr_canlab(g);
+  Obj ret = blissinterface_autgr_canlab(g);
+  delete g;
+  return ret;
 }
 
 /***************************************************************************/
