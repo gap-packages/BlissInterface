@@ -138,7 +138,9 @@ Obj FuncBLISS_GRAPH_CANONICAL_LABELING(Obj self, Obj n, Obj outneigh,
       g->add_edge(i - 1, INT_INTOBJ(ELM_PLIST(block, j)) - 1);
     }
   }
-  return blissinterface_autgr_canlab(g);
+  Obj ret = blissinterface_autgr_canlab(g);
+  delete g;
+  return ret;
 }
 
 /*
