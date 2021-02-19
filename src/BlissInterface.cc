@@ -3,21 +3,43 @@
  */
 
 #include "../extern/bliss-0.73/graph.hh" /* for bliss graph classes and namespaces */
-#include "../extern/nauty27r1/nauty.h"
 #include "../extern/nauty27r1/nautinv.h"
+#include "../extern/nauty27r1/nauty.h"
 #include "compiled.h" // GAP headers
 
 /***************** NAUTY STARTS *********************/
 
-static void userautomproc(
-    int count, int *perm, int *orbits, int numorbits, int stabvertex, int n)
-{
-  //AddList(automorphism_list, PermToGAP(perm, n));
+/*
+ * The following code is a derivative work of the code from the GAP package
+ * NautyTracesInterface 0.2 which is licensed GPLv2.
+ *
+ * Based on "userautomproc()" and "FuncNAUTY_DENSE()" of the GAP package
+ * NautyTracesInterface 0.2.
+ *
+ * Modified by G.P. Nagy, 19/02/2021
+ */
+
+static Obj automorphism_list;
+
+static Obj PermToGAP(int *perm, int n) {
+  Obj p = NEW_PERM4(n);
+  UInt4 *ptr = ADDR_PERM4(p);
+
+  for (int v = 0; v < n; v++) {
+    ptr[v] = perm[v];
+  }
+
+  return p;
+}
+
+static void userautomproc(int count, int *perm, int *orbits, int numorbits,
+                          int stabvertex, int n) {
+  Obj p = PermToGAP(perm, n);
+  AddList(automorphism_list, p);
 }
 
 Obj FuncNAUTY_GRAPH_CANONICAL_LABELING(Obj self, Obj n, Obj outneigh,
-                                       Obj colours, Obj isdirected)
-{
+                                       Obj colours, Obj isdirected) {
   // allocate the graph
   DYNALLSTAT(graph, g, g_sz);
   size_t nn = INT_INTOBJ(n);
@@ -28,19 +50,14 @@ Obj FuncNAUTY_GRAPH_CANONICAL_LABELING(Obj self, Obj n, Obj outneigh,
   // set the edges
   UInt i, j, b_size;
   Obj block;
-  for (i = 1; i <= nn; i++)
-  {
+  for (i = 1; i <= nn; i++) {
     block = ELM_PLIST(outneigh, i);
     b_size = LEN_PLIST(block);
-    for (j = 1; j <= b_size; j++)
-    {
-      //g->add_edge(i - 1, INT_INTOBJ(ELM_PLIST(block, j)) - 1);
-      if (isdirected == True)
-      {
+    for (j = 1; j <= b_size; j++) {
+      // g->add_edge(i - 1, INT_INTOBJ(ELM_PLIST(block, j)) - 1);
+      if (isdirected == True) {
         ADDONEARC(g, i - 1, INT_INTOBJ(ELM_PLIST(block, j)) - 1, m);
-      }
-      else
-      {
+      } else {
         ADDONEEDGE(g, i - 1, INT_INTOBJ(ELM_PLIST(block, j)) - 1, m);
       }
     }
@@ -55,21 +72,18 @@ Obj FuncNAUTY_GRAPH_CANONICAL_LABELING(Obj self, Obj n, Obj outneigh,
   DYNALLOC1(int, orbits, orbits_sz, nn, "malloc");
 
   // set nauty's parameters
-  Obj automorphism_list = NEW_PLIST(T_PLIST, 0);
+  automorphism_list = NEW_PLIST(T_PLIST, 0);
 
   static optionblk options;
-  if (isdirected == True)
-  {
+  if (isdirected == True) {
     static DEFAULTOPTIONS_DIGRAPH(temp_options);
     options = temp_options;
-  }
-  else
-  {
+  } else {
     static DEFAULTOPTIONS_GRAPH(temp_options2);
     options = temp_options2;
   }
   options.userautomproc = userautomproc;
-  options.getcanon = FALSE;  // no canonically labelled graph to return
+  options.getcanon = FALSE;  // FALSO == no canonically labelled graph to return
   options.defaultptn = TRUE; // lab, ptn are ignored
   nauty_check(WORDSIZE, m, nn, NAUTYVERSIONID);
 
@@ -77,13 +91,19 @@ Obj FuncNAUTY_GRAPH_CANONICAL_LABELING(Obj self, Obj n, Obj outneigh,
   statsblk stats;
   densenauty(g, lab, ptn, orbits, &options, &stats, m, nn, NULL);
 
+  Obj return_list = NEW_PLIST(T_PLIST, 0);
+  AddList(return_list, automorphism_list);
+  AddList(return_list, PermToGAP(lab, nn));
+  AddList(return_list, INTOBJ_INT(0));
+  automorphism_list = 0;
+
   // free pointers
   DYNFREE(g, g_sz);
   DYNFREE(lab, lab_sz);
   DYNFREE(ptn, ptn_sz);
   DYNFREE(orbits, orbits_sz);
 
-  return INTOBJ_INT(stats.grpsize1);
+  return return_list;
 }
 
 /*****************  NAUTY ENDS  *********************/
@@ -98,8 +118,7 @@ Obj FuncNAUTY_GRAPH_CANONICAL_LABELING(Obj self, Obj n, Obj outneigh,
  */
 
 void blissinterface_hook_function(void *user_param_v, unsigned int N,
-                                  const unsigned int *aut)
-{
+                                  const unsigned int *aut) {
   UInt4 *ptr;
   Obj p, gens, user_param;
   UInt i, n;
@@ -110,8 +129,7 @@ void blissinterface_hook_function(void *user_param_v, unsigned int N,
   p = NEW_PERM4(n);
   ptr = ADDR_PERM4(p);
 
-  for (i = 0; i < n; i++)
-  {
+  for (i = 0; i < n; i++) {
     ptr[i] = aut[i];
   }
 
@@ -134,8 +152,7 @@ void blissinterface_hook_function(void *user_param_v, unsigned int N,
  * system, and <cl> is a canonical labeling of the digraph.
  */
 
-static Obj blissinterface_autgr_canlab(bliss::AbstractGraph *graph)
-{
+static Obj blissinterface_autgr_canlab(bliss::AbstractGraph *graph) {
   Obj autos, p, n;
   UInt4 *ptr;
   const unsigned int *canon;
@@ -155,8 +172,7 @@ static Obj blissinterface_autgr_canlab(bliss::AbstractGraph *graph)
   p = NEW_PERM4(INT_INTOBJ(n));
   ptr = ADDR_PERM4(p);
 
-  for (i = 0; i < INT_INTOBJ(n); i++)
-  {
+  for (i = 0; i < INT_INTOBJ(n); i++) {
     ptr[i] = canon[i];
   }
   SET_ELM_PLIST(autos, 2, p);
@@ -171,8 +187,7 @@ static Obj blissinterface_autgr_canlab(bliss::AbstractGraph *graph)
   SET_LEN_PLIST(autos, 3);
   CHANGED_BAG(autos);
 
-  if (LEN_PLIST(ELM_PLIST(autos, 1)) != 0)
-  {
+  if (LEN_PLIST(ELM_PLIST(autos, 1)) != 0) {
     SortDensePlist(ELM_PLIST(autos, 1));
     RemoveDupsDensePlist(ELM_PLIST(autos, 1));
   }
@@ -201,36 +216,28 @@ static Obj blissinterface_autgr_canlab(bliss::AbstractGraph *graph)
  */
 
 Obj FuncBLISS_GRAPH_CANONICAL_LABELING(Obj self, Obj n, Obj outneigh,
-                                       Obj colours, Obj isdirected)
-{
+                                       Obj colours, Obj isdirected) {
   bliss::AbstractGraph *g;
   UInt nn, i, j, b_size;
   Obj block;
 
   nn = INT_INTOBJ(n);
-  if (isdirected == True)
-  {
+  if (isdirected == True) {
     g = new bliss::Digraph(nn);
-  }
-  else
-  {
+  } else {
     g = new bliss::Graph(nn);
   }
 
-  if (IS_LIST(colours) && (LEN_LIST(colours) == nn))
-  {
-    for (i = 1; i <= nn; i++)
-    {
+  if (IS_LIST(colours) && (LEN_LIST(colours) == nn)) {
+    for (i = 1; i <= nn; i++) {
       g->change_color(i - 1, INT_INTOBJ(ELM_PLIST(colours, i)));
     }
   }
 
-  for (i = 1; i <= nn; i++)
-  {
+  for (i = 1; i <= nn; i++) {
     block = ELM_PLIST(outneigh, i);
     b_size = LEN_PLIST(block);
-    for (j = 1; j <= b_size; j++)
-    {
+    for (j = 1; j <= b_size; j++) {
       g->add_edge(i - 1, INT_INTOBJ(ELM_PLIST(block, j)) - 1);
     }
   }
@@ -259,8 +266,7 @@ Obj FuncBLISS_GRAPH_CANONICAL_LABELING(Obj self, Obj n, Obj outneigh,
  */
 
 Obj FuncBLISS_BIPARTITE_CANONICAL_LABELING(Obj self, Obj n, Obj m, Obj outneigh,
-                                           Obj ucolours, Obj lcolours)
-{
+                                           Obj ucolours, Obj lcolours) {
   bliss::AbstractGraph *g;
   UInt mm, nn;
   UInt i, j, b_size;
@@ -270,28 +276,22 @@ Obj FuncBLISS_BIPARTITE_CANONICAL_LABELING(Obj self, Obj n, Obj m, Obj outneigh,
   mm = INT_INTOBJ(m);              // lower vertices n+[1..m]
   g = new bliss::Digraph(nn + mm); // edges point bottom up
 
-  if (IS_LIST(ucolours) && (LEN_LIST(ucolours) == nn))
-  {
-    for (i = 1; i <= nn; i++)
-    {
+  if (IS_LIST(ucolours) && (LEN_LIST(ucolours) == nn)) {
+    for (i = 1; i <= nn; i++) {
       g->change_color(i - 1, INT_INTOBJ(ELM_PLIST(ucolours, i)));
     }
   }
 
-  if (IS_LIST(lcolours) && (LEN_LIST(lcolours) == mm))
-  {
-    for (i = 1; i <= mm; i++)
-    {
+  if (IS_LIST(lcolours) && (LEN_LIST(lcolours) == mm)) {
+    for (i = 1; i <= mm; i++) {
       g->change_color(nn + i - 1, INT_INTOBJ(ELM_PLIST(lcolours, i)));
     }
   }
 
-  for (i = 1; i <= mm; i++)
-  {
+  for (i = 1; i <= mm; i++) {
     block = ELM_PLIST(outneigh, i);
     b_size = LEN_PLIST(block);
-    for (j = 1; j <= b_size; j++)
-    {
+    for (j = 1; j <= b_size; j++) {
       g->add_edge(nn + i - 1, INT_INTOBJ(ELM_PLIST(block, j)) - 1);
     }
   }
@@ -318,10 +318,8 @@ Obj FuncBLISS_BIPARTITE_CANONICAL_LABELING(Obj self, Obj n, Obj m, Obj outneigh,
 
 typedef Obj (*GVarFuncTypeDef)(/*arguments*/);
 
-#define GVAR_FUNC_TABLE_ENTRY(name, nparam, params)                        \
-  {                                                                        \
-#name, nparam, params, (GVarFuncTypeDef)Func##name, __FILE__ ":" #name \
-  }
+#define GVAR_FUNC_TABLE_ENTRY(name, nparam, params)                            \
+  { #name, nparam, params, (GVarFuncTypeDef)Func##name, __FILE__ ":" #name }
 
 // Table of functions to export
 static StructGVarFunc GVarFuncs[] = {
@@ -340,8 +338,7 @@ static StructGVarFunc GVarFuncs[] = {
 **
 *F  InitKernel( <module> ) . . . . . . . .  initialise kernel data structures
 */
-static Int InitKernel(StructInitInfo *module)
-{
+static Int InitKernel(StructInitInfo *module) {
   /* init filters and functions */
   InitHdlrFuncsFromTable(GVarFuncs);
 
@@ -353,8 +350,7 @@ static Int InitKernel(StructInitInfo *module)
 **
 *F  InitLibrary( <module> ) . . . . . . .  initialise library data structures
 */
-static Int InitLibrary(StructInitInfo *module)
-{
+static Int InitLibrary(StructInitInfo *module) {
   /* init filters and functions */
   InitGVarFuncsFromTable(GVarFuncs);
 
