@@ -46,7 +46,7 @@ it is necessary to check they are correct.
 
 /* Support of gcc extensions __builtin_clz, __builtin_clzl, __builtin_clzll */
 #ifndef HAVE_HWLZCNT
-#define HAVE_HWLZCNT 0
+#define HAVE_HWLZCNT 1
 #endif
 #define HAVE_CLZ 1
 #define HAVE_CLZL 1
