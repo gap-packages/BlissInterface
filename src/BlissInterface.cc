@@ -25,14 +25,15 @@ Obj FuncNAUTY_GRAPH_CANONICAL_LABELING(Obj self, Obj n, Obj outneigh,
   g_sz = m * nn;
   g = (graph *)calloc(g_sz, sizeof(graph));
 
+  printf("bubu1\n");
   // set the edges
   UInt i, j, b_size;
   Obj block;
-  for (int i = 1; i <= nn; i++)
+  for (i = 1; i <= nn; i++)
   {
     block = ELM_PLIST(outneigh, i);
     b_size = LEN_PLIST(block);
-    for (int j = 1; j <= b_size; j++)
+    for (j = 1; j <= b_size; j++)
     {
       //g->add_edge(i - 1, INT_INTOBJ(ELM_PLIST(block, j)) - 1);
       if (isdirected == True)
@@ -46,6 +47,7 @@ Obj FuncNAUTY_GRAPH_CANONICAL_LABELING(Obj self, Obj n, Obj outneigh,
     }
   }
 
+  printf("bubu2\n");
   // set the coloring
   DYNALLSTAT(int, lab, lab_sz);
   DYNALLSTAT(int, ptn, ptn_sz);
@@ -69,20 +71,23 @@ Obj FuncNAUTY_GRAPH_CANONICAL_LABELING(Obj self, Obj n, Obj outneigh,
     options = temp_options2;
   }
   options.userautomproc = userautomproc;
-  options.getcanon = FALSE;
-  options.defaultptn = FALSE;
+  options.getcanon = FALSE;  // no canonically labelled graph to return
+  options.defaultptn = TRUE; // lab, ptn are ignored
   nauty_check(WORDSIZE, m, nn, NAUTYVERSIONID);
 
+  printf("bubu3\n");
   // call nauty
   statsblk stats;
   densenauty(g, lab, ptn, orbits, &options, &stats, m, nn, NULL);
 
+  printf("bubu4\n");
   // free pointers
   DYNFREE(g, g_sz);
   DYNFREE(lab, lab_sz);
   DYNFREE(ptn, ptn_sz);
   DYNFREE(orbits, orbits_sz);
 
+  printf("bubu5\n");
   return INTOBJ_INT(42);
 }
 
