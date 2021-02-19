@@ -34,6 +34,24 @@ BlissInterface_la_SOURCES += extern/bliss-0.73/defs.cc
 BlissInterface_la_SOURCES += extern/bliss-0.73/uintseqhash.cc
 BlissInterface_la_SOURCES += extern/bliss-0.73/utils.cc
 
+pkginclude_HEADERS += extern/nauty27r1/nauty.h
+
+BlissInterface_la_SOURCES += extern/nauty27r1/nauty.c
+BlissInterface_la_SOURCES += extern/nauty27r1/naugraph.c
+BlissInterface_la_SOURCES += extern/nauty27r1/nautil.c
+BlissInterface_la_SOURCES += extern/nauty27r1/nausparse.c
+BlissInterface_la_SOURCES += extern/nauty27r1/schreier.c
+BlissInterface_la_SOURCES += extern/nauty27r1/naurng.c
+BlissInterface_la_SOURCES += extern/nauty27r1/traces.c
+BlissInterface_la_SOURCES += extern/nauty27r1/gtools.c
+BlissInterface_la_SOURCES += extern/nauty27r1/naututil.c
+BlissInterface_la_SOURCES += extern/nauty27r1/nautinv.c
+BlissInterface_la_SOURCES += extern/nauty27r1/gutil1.c
+BlissInterface_la_SOURCES += extern/nauty27r1/gutil2.c
+BlissInterface_la_SOURCES += extern/nauty27r1/gtnauty.c
+BlissInterface_la_SOURCES += extern/nauty27r1/naugroup.c
+BlissInterface_la_SOURCES += extern/nauty27r1/nautycliquer.c
+
 BlissInterface_la_CPPFLAGS = $(GAP_CPPFLAGS)
 BlissInterface_la_CFLAGS = $(GAP_CFLAGS)
 BlissInterface_la_LDFLAGS = $(GAP_LDFLAGS) -module -avoid-version

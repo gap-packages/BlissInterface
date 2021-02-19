@@ -4,7 +4,6 @@
 
 #include "../extern/bliss-0.73/graph.hh" /* for bliss graph classes and namespaces */
 #include "../extern/nauty27r1/nauty.h"
-#include "../extern/nauty27r1/naugraph.h"
 #include "../extern/nauty27r1/nautinv.h"
 #include "compiled.h" // GAP headers
 
