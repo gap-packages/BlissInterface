@@ -38,23 +38,22 @@ static void userautomproc(int count, int *perm, int *orbits, int numorbits,
   AddList(automorphism_list, p);
 }
 
-Obj FuncNAUTY_GRAPH_CANONICAL_LABELING(Obj self, Obj n, Obj outneigh,
-                                       Obj colours, Obj isdirected) {
+Obj FuncNAUTY_GRAPH_CANONICAL_LABELING(Obj self, Obj nr_vert, Obj outneigh,
+                                       Obj vertices, Obj stops, Obj isdirected) {
   // allocate the graph
   DYNALLSTAT(graph, g, g_sz);
-  size_t nn = INT_INTOBJ(n);
-  size_t m = SETWORDSNEEDED(nn);
-  g_sz = m * nn;
+  size_t n = INT_INTOBJ(nr_vert);
+  size_t m = SETWORDSNEEDED(n);
+  g_sz = m * n;
   g = (graph *)calloc(g_sz, sizeof(graph));
 
   // set the edges
   UInt i, j, b_size;
   Obj block;
-  for (i = 1; i <= nn; i++) {
+  for (i = 1; i <= n; i++) {
     block = ELM_PLIST(outneigh, i);
     b_size = LEN_PLIST(block);
     for (j = 1; j <= b_size; j++) {
-      // g->add_edge(i - 1, INT_INTOBJ(ELM_PLIST(block, j)) - 1);
       if (isdirected == True) {
         ADDONEARC(g, i - 1, INT_INTOBJ(ELM_PLIST(block, j)) - 1, m);
       } else {
@@ -67,13 +66,18 @@ Obj FuncNAUTY_GRAPH_CANONICAL_LABELING(Obj self, Obj n, Obj outneigh,
   DYNALLSTAT(int, lab, lab_sz);
   DYNALLSTAT(int, ptn, ptn_sz);
   DYNALLSTAT(int, orbits, orbits_sz);
-  DYNALLOC1(int, lab, lab_sz, nn, "malloc");
-  DYNALLOC1(int, ptn, ptn_sz, nn, "malloc");
-  DYNALLOC1(int, orbits, orbits_sz, nn, "malloc");
+  DYNALLOC1(int, lab, lab_sz, n, "malloc");
+  DYNALLOC1(int, ptn, ptn_sz, n, "malloc");
+  DYNALLOC1(int, orbits, orbits_sz, n, "malloc");
+
+  if (IS_LIST(vertices) && (LEN_LIST(vertices) == n)) {
+    for (int i = 0; i < n; i++) {
+            lab[i] = INT_INTOBJ(ELM_PLIST(vertices, i + 1)) - 1;
+            ptn[i] = INT_INTOBJ(ELM_PLIST(stops, i + 1));
+        }
+  }
 
   // set nauty's parameters
-  automorphism_list = NEW_PLIST(T_PLIST, 0);
-
   static optionblk options;
   if (isdirected == True) {
     static DEFAULTOPTIONS_DIGRAPH(temp_options);
@@ -82,18 +86,24 @@ Obj FuncNAUTY_GRAPH_CANONICAL_LABELING(Obj self, Obj n, Obj outneigh,
     static DEFAULTOPTIONS_GRAPH(temp_options2);
     options = temp_options2;
   }
-  options.userautomproc = userautomproc;
   options.getcanon = FALSE;  // FALSO == no canonically labelled graph to return
-  options.defaultptn = TRUE; // lab, ptn are ignored
-  nauty_check(WORDSIZE, m, nn, NAUTYVERSIONID);
+  if (IS_LIST(vertices) && (LEN_LIST(vertices) == n)) {
+    options.defaultptn = FALSE; // lab, ptn are used 
+  } else {
+    options.defaultptn = TRUE; // lab, ptn are ignored 
+  }
+  options.userautomproc = userautomproc;
+
+  nauty_check(WORDSIZE, m, n, NAUTYVERSIONID);
 
   // call nauty
   statsblk stats;
-  densenauty(g, lab, ptn, orbits, &options, &stats, m, nn, NULL);
+  automorphism_list = NEW_PLIST(T_PLIST, 0);
+  densenauty(g, lab, ptn, orbits, &options, &stats, m, n, NULL);
 
   Obj return_list = NEW_PLIST(T_PLIST, 0);
   AddList(return_list, automorphism_list);
-  AddList(return_list, PermToGAP(lab, nn));
+  AddList(return_list, PermToGAP(lab, n));
   AddList(return_list, INTOBJ_INT(0));
   automorphism_list = 0;
 
@@ -323,8 +333,8 @@ typedef Obj (*GVarFuncTypeDef)(/*arguments*/);
 
 // Table of functions to export
 static StructGVarFunc GVarFuncs[] = {
-    GVAR_FUNC_TABLE_ENTRY(NAUTY_GRAPH_CANONICAL_LABELING, 4,
-                          "n, outneigh, colours, isdirected"),
+    GVAR_FUNC_TABLE_ENTRY(NAUTY_GRAPH_CANONICAL_LABELING, 5,
+                          "n, outneigh, vertices, stops, isdirected"),
     GVAR_FUNC_TABLE_ENTRY(BLISS_GRAPH_CANONICAL_LABELING, 4,
                           "n, outneigh, colours, isdirected"),
     GVAR_FUNC_TABLE_ENTRY(BLISS_BIPARTITE_CANONICAL_LABELING, 5,
