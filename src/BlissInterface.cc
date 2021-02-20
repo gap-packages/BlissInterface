@@ -4,6 +4,7 @@
 
 #include "../extern/bliss-0.73/graph.hh" /* for bliss graph classes and namespaces */
 #include "../extern/nauty27r1/nautinv.h"
+#include "../extern/nauty27r1/naututil.h"
 #include "../extern/nauty27r1/nauty.h"
 #include "compiled.h" // GAP headers
 
@@ -86,7 +87,7 @@ Obj FuncNAUTY_GRAPH_CANONICAL_LABELING(Obj self, Obj nr_vert, Obj outneigh,
     static DEFAULTOPTIONS_GRAPH(temp_options2);
     options = temp_options2;
   }
-  options.getcanon = FALSE;  // FALSO == no canonically labelled graph to return
+  options.getcanon = TRUE;  // FALSO == no canonically labelled graph to return
   if (IS_LIST(vertices) && (LEN_LIST(vertices) == n)) {
     options.defaultptn = FALSE; // lab, ptn are used 
   } else {
@@ -99,16 +100,23 @@ Obj FuncNAUTY_GRAPH_CANONICAL_LABELING(Obj self, Obj nr_vert, Obj outneigh,
   // call nauty
   statsblk stats;
   automorphism_list = NEW_PLIST(T_PLIST, 0);
-  densenauty(g, lab, ptn, orbits, &options, &stats, m, n, NULL);
+  DYNALLSTAT(graph, cg, cg_sz);
+  DYNALLOC2(graph, cg, cg_sz, m, n, "malloc");
+  densenauty(g, lab, ptn, orbits, &options, &stats, m, n, cg);
 
+  // compute 32-bit hashvalue
+  long hash = hashgraph(cg,m,n,255);
+
+  // collect results
   Obj return_list = NEW_PLIST(T_PLIST, 0);
   AddList(return_list, automorphism_list);
   AddList(return_list, PermToGAP(lab, n));
-  AddList(return_list, INTOBJ_INT(0));
+  AddList(return_list, INTOBJ_INT(hash));
   automorphism_list = 0;
 
   // free pointers
   DYNFREE(g, g_sz);
+  DYNFREE(cg, cg_sz);
   DYNFREE(lab, lab_sz);
   DYNFREE(ptn, ptn_sz);
   DYNFREE(orbits, orbits_sz);
