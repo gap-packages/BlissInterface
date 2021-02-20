@@ -45,6 +45,9 @@ dg:=List([1..9],i->Filtered([1..9],j->[i,j] in dir_edges));
 bl3:=BlissGraphCanonicalLabeling(9, dg, false, true);
 g3:=Group(bl3[1]);
 Print(StructureDescription(g3),"\n");
+bl4:=BlissGraphCanonicalLabeling(9, dg, false, false);
+g4:=Group(bl4[1]);
+Print(StructureDescription(g4),"\n");
 
 path:=[[2],[3],[]];
 BlissGraphCanonicalLabeling(3, path, false, true);

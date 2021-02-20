@@ -8,9 +8,9 @@ LoadPackage( "BlissInterface" );
 
 dir := DirectoriesPackageLibrary( "BlissInterface", "tst" );
 if GAPInfo.BytesPerVariable=8 then 
-  toexclude := [ "blissinterface_32bit.tst" ]; 
+  toexclude := [ "blissinterface_32bit.tst", "nautyinterface_32bit.tst" ]; 
 else
-  toexclude := [ "blissinterface_64bit.tst" ];
+  toexclude := [ "blissinterface_64bit.tst", "nautyinterface_64bit.tst" ];
 fi;
 
 TestDirectory( dir,

@@ -105,6 +105,13 @@ gap> g3:=Group(bl3[1]);
 Group([ (2,4)(3,7)(6,8), (1,2,3)(4,5,6)(7,8,9) ])
 gap> Print(StructureDescription(g3),"\n");
 C3 x S3
+gap> bl4:=BlissGraphCanonicalLabeling(9, dg, false, false);
+[ [ (2,3)(5,6)(8,9), (2,4)(3,7)(6,8), (1,2)(4,5)(7,8) ],
+  (1,9)(2,7,5,4,8)(3,6), 3628762130 ]
+gap> g4:=Group(bl4[1]);
+Group([ (2,3)(5,6)(8,9), (2,4)(3,7)(6,8), (1,2)(4,5)(7,8) ])
+gap> Print(StructureDescription(g4),"\n");
+(S3 x S3) : C2
 gap> 
 gap> path:=[[2],[3],[]];
 [ [ 2 ], [ 3 ], [  ] ]
