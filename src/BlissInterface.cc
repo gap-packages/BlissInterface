@@ -126,6 +126,8 @@ Obj FuncNAUTY_GRAPH_CANONICAL_LABELING(Obj self, Obj nr_vert, Obj outneigh,
 
 /*****************  NAUTY ENDS  *********************/
 
+/***************** BLISS STARTS *********************/
+
 /*
  * The following code is a derivative work of the code from the GAP package
  * Digraphs which is licensed GPLv3. This code therefore is also licensed under
@@ -144,12 +146,7 @@ void blissinterface_hook_function(void *user_param_v, unsigned int N,
   // one needs this in C++ to avoid "invalid conversion" error
   user_param = static_cast<Obj>(user_param_v);
   n = INT_INTOBJ(ELM_PLIST(user_param, 2)); // the degree
-  p = NEW_PERM4(n);
-  ptr = ADDR_PERM4(p);
-
-  for (i = 0; i < n; i++) {
-    ptr[i] = aut[i];
-  }
+  p = PermToGAP((int*)aut,n);
 
   gens = ELM_PLIST(user_param, 1);
   AssPlist(gens, LEN_PLIST(gens) + 1, p);
@@ -187,12 +184,7 @@ static Obj blissinterface_autgr_canlab(bliss::AbstractGraph *graph) {
 
   canon = graph->canonical_form(stats, blissinterface_hook_function, autos);
 
-  p = NEW_PERM4(INT_INTOBJ(n));
-  ptr = ADDR_PERM4(p);
-
-  for (i = 0; i < INT_INTOBJ(n); i++) {
-    ptr[i] = canon[i];
-  }
+  p = PermToGAP((int*)canon,graph->get_nof_vertices());
   SET_ELM_PLIST(autos, 2, p);
   CHANGED_BAG(autos);
 
@@ -317,6 +309,8 @@ Obj FuncBLISS_BIPARTITE_CANONICAL_LABELING(Obj self, Obj n, Obj m, Obj outneigh,
   delete g;
   return ret;
 }
+
+/*****************  BLISS ENDS  *********************/
 
 /***************************************************************************/
 

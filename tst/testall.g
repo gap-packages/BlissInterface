@@ -21,16 +21,4 @@ TestDirectory( dir,
   )
 );
 
-# dir := DirectoriesPackageLibrary( "BlissInterface", "tst" );
-# optrec := rec(
-#   exitGAP := true,
-#   testOptions := rec(compareFunction := "uptowhitespace")
-# );
-
-# if GAPInfo.BytesPerVariable=4 then 
-#   Test( Filename(dir,"blissinterface_32bit.tst"), rec(compareFunction := "uptowhitespace") );
-# else
-#   Test( Filename(dir,"blissinterface_64bit.tst"), rec(compareFunction := "uptowhitespace") );
-# fi;
-
 FORCE_QUIT_GAP(1); # if we ever get here, there was an error
