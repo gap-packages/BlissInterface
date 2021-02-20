@@ -71,4 +71,18 @@
   <other type="numpages">15</other>
 </inproceedings></entry>
 
+<entry id="NautyTracesInterface0.2"><misc>
+  <author>
+    <name><first>Sebastian</first><last>Gutsche</last></name>
+    <name><first>The</first><last>GAP Team</last></name>
+  </author>
+  <title><C>NautyTracesInterface</C>, An interface to nauty,
+         <C>V</C>ersion 0.2</title>
+  <howpublished><URL>https://gap-packages.github.io/NautyTracesInterface/</URL></howpublished>
+  <month>Mar</month>
+  <year>2018</year>
+  <note>GAP package</note>
+</misc></entry>
+
+
 </file>

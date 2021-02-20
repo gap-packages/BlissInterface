@@ -1,0 +1,48 @@
+@Acknowledgements
+
+Important parts of this package are based on the packages <Package>Digraphs</Package> <Cite 
+Key="Digraphs0.15.2" /> and <Package>NautyTracesInterface</Package> <Cite Key="NautyTracesInterface0.2" />.
+
+@Chapter Usage of the package
+
+@Section Introduction
+
+The &GAP; package <Package>BlissInterface</Package> provides a low level 
+interface to the software <URL Text="bliss: A Tool for Computing 
+Automorphism Groups and Canonical Labelings of 
+Graphs">http://www.tcs.hut.fi/Software/bliss/</URL>, 
+written by Tommi Junttila and Petteri Kaski <Cite Key="Bliss:2007" />. 
+
+The only interest of this package is the computation of the group 
+of colour preserving automorphisms of coloured graphs. The graphs 
+can be directed or undirected, bipartite or not. Duplicate edges 
+between vertices are ignored but try to avoid introducing them in 
+the first place as they are not ignored immediately but will 
+consume memory and computation resources for a while.
+
+For more specialized algorithms and methods of the theory of graphs,
+we recommend the packages <Package>Digraphs</Package> <Cite 
+Key="Digraphs0.15.2" /> and <Package>GRAPE</Package> <Cite 
+Key="GRAPE4.8.2" />. 
+To compute graph automorphisms see also the software  <URL Text="nauty">
+http://users.cecs.anu.edu.au/~bdm/nauty/</URL> by Brendan McKay and Adolfo 
+Piperno <Cite Key="Nauty:2014" />.
+
+@Section Installation
+
+- Download the package from <URL>https://github.com/gap-packages/BlissInterface</URL>.
+- Unzip/untar the file, this should create a directory called <F>BlissInterface*</F>.
+- Locate the <F>pkg</F> directory of your &GAP; directory, which contains the 
+  directories <F>lib</F>, <F>doc</F> and so on. Move the directory 
+  <F>BlissInterface*</F> into the <F>pkg</F> directory.
+- Alternatively, you can use your <F>pkg</F> directory. Make sure it is in your 
+  &GAP; root path.
+- It is necessary to compile the &BlissInterface; package. Inside the 
+  <F>pkg/BlissInterface*</F> directory, type
+  <Listing>
+  <![CDATA[./configure
+  make]]></Listing>
+- Start &GAP; in the usual way (i.e. type <C>gap</C> at the command line).
+- Type <C>LoadPackage("blissinterface");</C>
+- For questions, remarks and issues please use the 
+  <URL Text="issue tracker">https://github.com/gap-packages/BlissInterface/issues</URL>.
