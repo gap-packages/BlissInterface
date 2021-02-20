@@ -25,3 +25,5 @@ fanocolors:=[1,0,0,1,0,1,1,2,2,2,2,2,2,2];
 NautyGraphCanonicalLabeling(14, fano2, fanocolors, true);
 StructureDescription(Group(last[1]));
 
+paley:=p->List([0..p-1],x->Filtered([1..p],y->Jacobi(p,x-y)=1));
+NautyGraphCanonicalLabeling(41,paley(41),0,true);
