@@ -256,60 +256,6 @@ Obj FuncBLISS_GRAPH_CANONICAL_LABELING(Obj self, Obj n, Obj outneigh,
   return ret;
 }
 
-/*
- * We construct the following directed bipartite graph <C>G</C> on <C>n+m</C>
- * vertices. Upper vertices are <C>[1..n]</C>, lower vertices are
- * <C>n+[1..m]</C>. Edges point bottom up. The graph is given by the list
- * <C>[N_1,...,N_m]</C>, where <C>N_i</C> is the list of outneighbors of the
- * lower vertex <C>n+i</C>.
- *
- * If <A>ucolours</A> is a list of length <C>n</C> then its elements are used to
- * define a coloring of the upper vertices.
- * If <A>lcolours</A> is a list of length <C>m</C> then its elements are used to
- * define a coloring of the lower vertices.
- *
- * Returns: The pair <C>[gens,cl]</C> as GAP object, where <C>gens</C> is a list
- * of generators for <C>Aut(G)</C> and <C>cl</C> is a canonical labeling of
- * <C>G</C>.
- *
- * Nonchecking version.
- */
-
-Obj FuncBLISS_BIPARTITE_CANONICAL_LABELING(Obj self, Obj n, Obj m, Obj outneigh,
-                                           Obj ucolours, Obj lcolours) {
-  bliss::AbstractGraph *g;
-  UInt mm, nn;
-  UInt i, j, b_size;
-  Obj block;
-
-  nn = INT_INTOBJ(n);              // upper vertices [1..n]
-  mm = INT_INTOBJ(m);              // lower vertices n+[1..m]
-  g = new bliss::Digraph(nn + mm); // edges point bottom up
-
-  if (IS_LIST(ucolours) && (LEN_LIST(ucolours) == nn)) {
-    for (i = 1; i <= nn; i++) {
-      g->change_color(i - 1, INT_INTOBJ(ELM_PLIST(ucolours, i)));
-    }
-  }
-
-  if (IS_LIST(lcolours) && (LEN_LIST(lcolours) == mm)) {
-    for (i = 1; i <= mm; i++) {
-      g->change_color(nn + i - 1, INT_INTOBJ(ELM_PLIST(lcolours, i)));
-    }
-  }
-
-  for (i = 1; i <= mm; i++) {
-    block = ELM_PLIST(outneigh, i);
-    b_size = LEN_PLIST(block);
-    for (j = 1; j <= b_size; j++) {
-      g->add_edge(nn + i - 1, INT_INTOBJ(ELM_PLIST(block, j)) - 1);
-    }
-  }
-  Obj ret = blissinterface_autgr_canlab(g);
-  delete g;
-  return ret;
-}
-
 /*****************  BLISS ENDS  *********************/
 
 /***************************************************************************/
@@ -339,8 +285,6 @@ static StructGVarFunc GVarFuncs[] = {
                           "n, outneigh, vertices, stops, isdirected"),
     GVAR_FUNC_TABLE_ENTRY(BLISS_GRAPH_CANONICAL_LABELING, 4,
                           "n, outneigh, colours, isdirected"),
-    GVAR_FUNC_TABLE_ENTRY(BLISS_BIPARTITE_CANONICAL_LABELING, 5,
-                          "n, m, outneigh, ucolours, lcolours"),
 
     {0} /* Finish with an empty entry */
 
