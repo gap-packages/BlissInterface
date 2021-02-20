@@ -10,3 +10,4 @@ fi;
 Unbind(_PATH_SO);
 
 ReadPackage( "BlissInterface", "gap/BlissInterface.gd");
+ReadPackage( "BlissInterface", "gap/NautyInterface.gd");
