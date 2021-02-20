@@ -1,6 +1,8 @@
 #
 # BlissInterface: Low level interface to the bliss graph automorphism tool
 #
+#! @Chapter Usage of the package
+#!
 #! @Section Functionality
 #!
 #! This section will describe the function of <Package>BlissInterface</Package>, 
