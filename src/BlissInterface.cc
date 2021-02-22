@@ -2,11 +2,12 @@
  * BlissInterface: Low level interface to the bliss graph automorphism tool
  */
 
+#include "compiled.h" // GAP headers
+
 #include "../extern/bliss-0.73/graph.hh" /* for bliss graph classes and namespaces */
 #include "../extern/nauty27r1/nautinv.h"
 #include "../extern/nauty27r1/naututil.h"
 #include "../extern/nauty27r1/nauty.h"
-#include "compiled.h" // GAP headers
 
 /***************** NAUTY STARTS *********************/
 
@@ -40,7 +41,8 @@ static void userautomproc(int count, int *perm, int *orbits, int numorbits,
 }
 
 Obj FuncNAUTY_GRAPH_CANONICAL_LABELING(Obj self, Obj nr_vert, Obj outneigh,
-                                       Obj vertices, Obj stops, Obj isdirected) {
+                                       Obj vertices, Obj stops,
+                                       Obj isdirected) {
   // allocate the graph
   DYNALLSTAT(graph, g, g_sz);
   size_t n = INT_INTOBJ(nr_vert);
@@ -73,9 +75,9 @@ Obj FuncNAUTY_GRAPH_CANONICAL_LABELING(Obj self, Obj nr_vert, Obj outneigh,
 
   if (IS_LIST(vertices) && (LEN_LIST(vertices) == n)) {
     for (int i = 0; i < n; i++) {
-            lab[i] = INT_INTOBJ(ELM_PLIST(vertices, i + 1)) - 1;
-            ptn[i] = INT_INTOBJ(ELM_PLIST(stops, i + 1));
-        }
+      lab[i] = INT_INTOBJ(ELM_PLIST(vertices, i + 1)) - 1;
+      ptn[i] = INT_INTOBJ(ELM_PLIST(stops, i + 1));
+    }
   }
 
   // set nauty's parameters
@@ -87,11 +89,11 @@ Obj FuncNAUTY_GRAPH_CANONICAL_LABELING(Obj self, Obj nr_vert, Obj outneigh,
     static DEFAULTOPTIONS_GRAPH(temp_options2);
     options = temp_options2;
   }
-  options.getcanon = TRUE;  // FALSO == no canonically labelled graph to return
+  options.getcanon = TRUE; // FALSO == no canonically labelled graph to return
   if (IS_LIST(vertices) && (LEN_LIST(vertices) == n)) {
-    options.defaultptn = FALSE; // lab, ptn are used 
+    options.defaultptn = FALSE; // lab, ptn are used
   } else {
-    options.defaultptn = TRUE; // lab, ptn are ignored 
+    options.defaultptn = TRUE; // lab, ptn are ignored
   }
   options.userautomproc = userautomproc;
 
@@ -105,7 +107,7 @@ Obj FuncNAUTY_GRAPH_CANONICAL_LABELING(Obj self, Obj nr_vert, Obj outneigh,
   densenauty(g, lab, ptn, orbits, &options, &stats, m, n, cg);
 
   // compute 32-bit hashvalue
-  long hash = hashgraph(cg,m,n,255);
+  long hash = hashgraph(cg, m, n, 255);
 
   // collect results
   Obj return_list = NEW_PLIST(T_PLIST, 0);
@@ -146,7 +148,7 @@ void blissinterface_hook_function(void *user_param_v, unsigned int N,
   // one needs this in C++ to avoid "invalid conversion" error
   user_param = static_cast<Obj>(user_param_v);
   n = INT_INTOBJ(ELM_PLIST(user_param, 2)); // the degree
-  p = PermToGAP((int*)aut,n);
+  p = PermToGAP((int *)aut, n);
 
   gens = ELM_PLIST(user_param, 1);
   AssPlist(gens, LEN_PLIST(gens) + 1, p);
@@ -184,7 +186,7 @@ static Obj blissinterface_autgr_canlab(bliss::AbstractGraph *graph) {
 
   canon = graph->canonical_form(stats, blissinterface_hook_function, autos);
 
-  p = PermToGAP((int*)canon,graph->get_nof_vertices());
+  p = PermToGAP((int *)canon, graph->get_nof_vertices());
   SET_ELM_PLIST(autos, 2, p);
   CHANGED_BAG(autos);
 
