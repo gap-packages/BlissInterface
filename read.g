@@ -5,3 +5,4 @@
 #
 ReadPackage( "BlissInterface", "gap/BlissInterface.gi");
 ReadPackage( "BlissInterface", "gap/NautyInterface.gi");
+ReadPackage( "BlissInterface", "gap/interfaces.gi");
