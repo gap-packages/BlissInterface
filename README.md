@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/gap-packages/BlissInterface.svg?branch=master)](https://travis-ci.com/gap-packages/BlissInterface)
+[![Build Status](https://github.com/gap-packages/BlissInterface/workflows/CI/badge.svg?branch=master)](https://github.com/gap-packages/BlissInterface/actions?query=workflow%3ACI+branch%3Amaster)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/gap-packages/blissinterface?branch=master&svg=true)](https://ci.appveyor.com/project/nagygp/blissinterface)
 [![Code Coverage](https://codecov.io/github/gap-packages/BlissInterface/coverage.svg?branch=master&token=)](https://codecov.io/gh/gap-packages/BlissInterface)
 
