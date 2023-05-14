@@ -20,7 +20,7 @@ Persons := [
     IsMaintainer := true,
     FirstNames := "Gábor P.",
     LastName := "Nagy",
-    WWWHome := "https://algebra.math.bme.hu/nagy-gabor",
+    WWWHome := "https://algebra.math.bme.hu/nagy-gabor-peter",
     Email := "nagyg@math.bme.hu",
     PostalAddress := Concatenation(
                "Department of Algebra, Budapest University of Technology\n",

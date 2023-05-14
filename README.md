@@ -36,7 +36,7 @@ For details on how to use the BlissInterface package see the package documentati
 
 Maintainer:
 
-* [Gábor P. Nagy](https://algebra.math.bme.hu/nagy-gabor), Budapest University of Technology, Hungary.
+* [Gábor P. Nagy](https://algebra.math.bme.hu/nagy-gabor-peter), Budapest University of Technology, Hungary.
 
 For questions, remarks and issues please use the [issue tracker](https://github.com/gap-packages/BlissInterface/issues).
 
