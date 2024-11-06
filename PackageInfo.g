@@ -67,17 +67,14 @@ PackageDoc := rec(
 ),
 
 Dependencies := rec(
-  GAP := ">= 4.10",
+  GAP := ">= 4.12",
   NeededOtherPackages := [ ],
   SuggestedOtherPackages := [ ],
   ExternalConditions := [ ],
 ),
 
 AvailabilityTest := function()
-  local dir, lib;
-  dir := DirectoriesPackagePrograms("BlissInterface");
-  lib := Filename(dir, "BlissInterface.so");
-  if lib = fail then
+  if not IsKernelExtensionAvailable("BlissInterface") then
     LogPackageLoadingMessage(PACKAGE_WARNING,
                              "failed to load kernel module of package BlissInterface");
     return fail;
@@ -90,5 +87,3 @@ TestFile := "tst/testall.g",
 #Keywords := [ "TODO" ],
 
 ));
-
-

@@ -3,10 +3,8 @@
 #
 # Reading the declaration part of the package.
 #
-_PATH_SO:=Filename(DirectoriesPackagePrograms("BlissInterface"), "BlissInterface.so");
-if _PATH_SO <> fail then
-    LoadDynamicModule(_PATH_SO);
+if not LoadKernelExtension("BlissInterface") then
+  Error("failed to load the BlissInterface package kernel extension");
 fi;
-Unbind(_PATH_SO);
 
 ReadPackage( "BlissInterface", "gap/BlissInterface.gd");
