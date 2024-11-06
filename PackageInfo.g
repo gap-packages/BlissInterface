@@ -77,7 +77,7 @@ AvailabilityTest := function()
   if not IsKernelExtensionAvailable("BlissInterface") then
     LogPackageLoadingMessage(PACKAGE_WARNING,
                              "failed to load kernel module of package BlissInterface");
-    return fail;
+    return false;
   fi;
   return true;
 end,
