@@ -3,7 +3,7 @@
  */
 
 #include "../extern/bliss-0.73/graph.hh" /* for bliss graph classes and namespaces */
-#include "compiled.h" // GAP headers
+#include "gap_all.h" // GAP headers
 
 /*
  * The following code is a derivative work of the code from the GAP package
