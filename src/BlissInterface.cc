@@ -201,29 +201,11 @@ Obj FuncBLISS_BIPARTITE_CANONICAL_LABELING(Obj self, Obj n, Obj m, Obj outneigh,
 
 // Table of functions to export
 
-/*
- * "GVarFuncs" is not workin in C++, due to
- * "invalid conversion from ‘void*’ to ‘Obj‘" error
- */
-
-// static StructGVarFunc GVarFuncs [] = {
-//    GVAR_FUNC(TestCommand, 0, ""),
-//    GVAR_FUNC(TestCommandWithParams, 2, "param, param2"),
-//
-//    { 0 } /* Finish with an empty entry */
-//};
-
-typedef Obj (*GVarFuncTypeDef)(/*arguments*/);
-
-#define GVAR_FUNC_TABLE_ENTRY(name, nparam, params)                            \
-  { #name, nparam, params, (GVarFuncTypeDef)Func##name, __FILE__ ":" #name }
 
 // Table of functions to export
 static StructGVarFunc GVarFuncs[] = {
-    GVAR_FUNC_TABLE_ENTRY(BLISS_GRAPH_CANONICAL_LABELING, 4,
-                          "n, outneigh, colours, isdirected"),
-    GVAR_FUNC_TABLE_ENTRY(BLISS_BIPARTITE_CANONICAL_LABELING, 5,
-                          "n, m, outneigh, ucolours, lcolours"),
+    GVAR_FUNC_4ARGS(BLISS_GRAPH_CANONICAL_LABELING, n, outneigh, colours, isdirected),
+    GVAR_FUNC_5ARGS(BLISS_BIPARTITE_CANONICAL_LABELING, n, m, outneigh, ucolours, lcolours),
 
     {0} /* Finish with an empty entry */
 
